@@ -1,0 +1,34 @@
+.bar {
+    background: lighten(#1e262f, 10%);
+
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        li {
+            a {
+                padding: .4rem 1rem;
+                display: block;
+                color: #aaa;
+                text-decoration: none;
+                margin: .5rem .1rem;
+                border-radius: .25rem;
+                border: 2px solid transparent;
+
+                &:hover {
+                    //background: lighten(#1e262f, 15%);
+                    border: 2px solid lighten(#1e262f, 25%);
+                }
+            }
+
+            &.active {
+                a {
+                    background: #228ae6;
+                    background: lighten(#1e262f, 25%);
+                    
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
