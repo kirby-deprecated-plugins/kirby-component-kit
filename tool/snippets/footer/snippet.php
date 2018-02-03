@@ -17,6 +17,22 @@
             }
         }
     });
+
+    document.addEventListener('DOMContentLoaded', function(){ 
+        var colors = document.querySelectorAll('.actions .color');
+
+        for(i=0; i<colors.length; i++) {
+            colors[i].addEventListener('click', function() {
+                console.log('click');
+                var iframe = document.querySelector('.preview iframe').contentWindow;
+                var html = iframe.document.querySelector('html');
+                var type = this.dataset.value;
+
+                html.classList.remove('ckit-off', 'ckit-transparent', 'ckit-white', 'ckit-black');
+                html.classList.add('ckit-' + type);
+            });
+        }
+    });
 </script>
 </body>
 </html>

@@ -17,15 +17,13 @@
 
                 &:hover {
                     //background: lighten(#1e262f, 15%);
-                    border: 2px solid lighten(#1e262f, 25%);
+                    border: 2px solid #1e262f;
                 }
             }
 
             &.active {
                 a {
-                    background: #228ae6;
-                    background: lighten(#1e262f, 25%);
-                    
+                    background: #1e262f;
                     color: #fff;
                 }
             }
