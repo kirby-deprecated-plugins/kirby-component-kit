@@ -23,13 +23,22 @@
 
         for(i=0; i<colors.length; i++) {
             colors[i].addEventListener('click', function() {
-                console.log('click');
                 var iframe = document.querySelector('.preview iframe').contentWindow;
                 var html = iframe.document.querySelector('html');
                 var type = this.dataset.value;
 
                 html.classList.remove('ckit-off', 'ckit-transparent', 'ckit-white', 'ckit-black');
                 html.classList.add('ckit-' + type);
+
+                var siblings = this.parentNode.querySelectorAll('.color');
+                //console.log(siblings);
+
+                for(i=0; i<siblings.length; i++) {
+                    console.log(i);
+                   // console.log(siblings[i]);
+                    siblings[i].classList.remove('active');
+                }
+                this.classList.add('active');
             });
         }
     });
