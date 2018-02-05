@@ -27,8 +27,6 @@ aside {
 
         li {
             padding-left: 24px;
-            padding-top: .2rem;
-            padding-bottom: .2rem;
 
             a {
                 color: #aaa;
@@ -36,22 +34,26 @@ aside {
                 display: flex;
                 align-items: center;
 
+                padding: .2rem 0;
+
                 .icon {
-                    height: 14px;
-                    width: 14px;
+                    height: 18px;
+                    width: 18px;
                     margin-right: 10px;
 
                     svg {
-                        fill: #666;
+                        fill: #aaa;
+                        max-height: 18px;
+                        max-width: 18px;
                     }
 
-                    &.icon-native {
+                    &.icon-snippet {
                         svg {
                             fill: #228ae6;
                         }
                     }
 
-                    &.icon-component {
+                    &.icon-template {
                         svg {
                             fill: #e69122;
                         }

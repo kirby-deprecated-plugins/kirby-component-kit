@@ -3,11 +3,11 @@ namespace JensTornell\ComponentKit;
 use Response;
 use tpl;
 
-function toArray($paths) {
+function toArray($data) {
     $result = [];
 
-    foreach($paths as $key => $filepath) {
-        $path = explode('/', $key);
+    foreach($data as $item) {
+        $path = explode('/', $item['name']);
         $temp = [];
         $p = &$temp;
         $last = array_pop($path);
@@ -17,12 +17,17 @@ function toArray($paths) {
             $p = &$p[$s]['_children'];
         }
 
-        $p[$last] = [
-            'path' => $filepath,
-            'type' => (pathinfo($filepath)['filename'] == 'snippet') ? 'component' : 'native',
-            'id' => $key
-        ];
-        $result = array_merge_recursive($result, $temp);
+        $filename = basename($item['path']);
+
+        if($filename == 'template.php' || $filename == 'snippet.php') {
+
+            $p[$last] = [
+                'path' => $item['path'],
+                'type' => $item['type'],
+                'id' => $item['name']
+            ];
+            $result = array_merge_recursive($result, $temp);
+        }
     }
     return $result;
 }
@@ -37,6 +42,12 @@ kirby()->routes(array(
             $snippet = new Snippet();
             $root = __DIR__ . DS . '..' . DS . 'snippets';
             $paths = toArray($snippet->paths($snippet->root()));
+
+            #print_r($paths);
+
+            $test = $snippet->paths($root, 'ckit/');
+            #print_r($test);
+
             $snippet->register($snippet->paths($root, 'ckit/'));
 
             $data = [
