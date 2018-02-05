@@ -5,14 +5,10 @@ use str;
 class Snippet {
 	function run() {
 		$data = $this->paths($this->root());
-
-		#print_r($data);
-
 		$this->register($data);
 	}
 	function root() {
-		global $kirby;
-		return $kirby->roots->components;
+		return settings::components();
 	}
     function paths($root, $prefix = '') {
 		$this->root = $root;

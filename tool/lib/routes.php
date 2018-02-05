@@ -35,8 +35,8 @@ function toArray($data) {
 kirby()->routes(array(
     [
         'pattern' => [
-            'component-kit',
-            'component-kit/snippet/(:all)'
+            settings::route(),
+            settings::route() . '/snippet/(:all)'
         ],
         'action'  => function($uid = null) {
             $snippet = new Snippet();
