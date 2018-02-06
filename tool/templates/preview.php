@@ -1,13 +1,19 @@
 <?php
+namespace JensTornell\ComponentKit;
 extract($data);
 
 if(isset($name)) {
-    $Preview = new JensTornell\ComponentKit\Preview(kirby());
-    $snippet_path =  kirby()->roots()->components() . DS . str_replace('/', DS, $name);
-    $snippet_path = (file_exists($snippet_path . '.php')) ? $snippet_path . '.php' : $snippet_path . DS . 'snippet.php';
+    $Preview = new Preview(kirby());
+    $path =  settings::components() . DS . str_replace('/', DS, $name);
+
+    if(file_exists($path . DS . 'snippet.php')) {
+        $path = $path . DS . 'snippet.php';
+    } elseif(file_exists($path . DS . 'template.php')) {
+        $path = $path . DS . 'template.php';
+    }
 
     $html = $Preview->snippet(
-        $snippet_path,
+        $path,
         [
             'page' => page('about') // Valfritt
         ],

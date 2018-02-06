@@ -3,36 +3,60 @@ namespace JensTornell\ComponentKit;
 use c;
 
 class settings {
-    static $site;
-    static $name;
-    static $prefix;
-    static $settings;
-
     public static function __callStatic($name, $args) {
-        self::$name = $name;
-        self::$prefix = 'plugin.component.kit.';
-        self::$settings = [
-            'route'   => 'component-kit',
-            'slug'  => 'sync',
-            'token' => 'token',
-        ];
-        self::$site = [
-            'components' => 'components'
-        ];
+        $SettingsClass = new SettingsClass($name);
+        return $SettingsClass->get($name);
+    }
+}
 
-        if(array_key_exists(self::$name, self::$settings)) {
-            return self::config();
-        } elseif(array_key_exists(self::$name, self::$site)) {
-            return self::site();
-        }
+class SettingsClass {
+    // Set defaults
+    private function defaults() {
+        $defaults = [
+            'config' => [
+                'route' => 'component-kit',
+                'slug' => 'sync',
+                'token' => 'token',
+            ],
+            'roots' => [
+                'components' => $this->kirby->roots()->site() . DS . 'components'
+            ]
+        ];
+        return $defaults;
     }
 
-    public static function config() {
-        return c::get(self::$prefix . self::$name, self::$settings[self::$name]);
+    public function set($name) {
+        global $kirby;
+        $this->kirby = $kirby;
+        $this->prefix = 'plugin.component.kit';
+        $this->defaults = $this->defaults();
+        $this->name = $name;
     }
 
-    public static function site() {
-        $root = kirby()->roots()->components();
-        return (!isset($root)) ? kirby()->roots()->site() . DS . self::$site[self::$name] : kirby()->roots()->component();
+    // Get and return setting value
+    public function get($name) {
+        $this->set($name);
+
+        if($this->is('config')) return $this->config();
+        if($this->is('roots')) return $this->site('roots');
+        if($this->is('urls')) return $this->site('urls');
+    }
+
+    // Is type
+    private function is($type) {
+        return array_key_exists($this->name, $this->defaults[$type]); 
+    }
+
+    // Get config value from config.php
+    private function config() {
+        return c::get($this->prefix . $this->name, $this->defaults['config'][$this->name]);
+    }
+
+    // Get url value from site.php
+    private function site($type) {
+        $path = $this->kirby->{$type}()->{$this->name}();
+
+        if(isset($path)) return $path;
+        return $this->defaults[$type][$this->name];
     }
 }
