@@ -4,9 +4,12 @@
         <li<?= (isset($name)) ? ' class="active"' : ''; ?>>
             <a href="#">Preview</a>
         </li>
+        <?php /*
         <li>
-            <a href="#">PHP</a>
+            <a href="#">Code</a>
         </li>
+        */
+        ?>
         <li>
             <a href="#">HTML</a>
         </li>

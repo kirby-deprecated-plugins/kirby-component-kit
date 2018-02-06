@@ -3,22 +3,28 @@ aside {
     font-family: arial;
     width: 20rem;
     padding-top: 24px;
+    overflow: auto;
 
-    h1 {
+    h1 a {
         color: #fff;
         font-weight: normal;
         padding-left: 24px;
         margin-bottom: 24px;
         line-height: 1;
+        display: block;
+        text-decoration: none;
+
+        &:before,
+        &:after {
+            color: #666;
+        }
 
         &:before {
             content: '< ';
-            color: #666;
         }
 
         &:after {
             content: ' >';
-            color: #666;
         }
     }
 
@@ -27,6 +33,15 @@ aside {
 
         li {
             padding-left: 24px;
+
+            &.active > a {
+                background: rgb(50, 63, 78);
+                padding: .2rem .5rem;
+                padding-right: 0;
+                margin: 0 -.5rem;
+                margin-right: 0;
+                color: #fff;
+            }
 
             a {
                 color: #aaa;

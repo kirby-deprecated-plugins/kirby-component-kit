@@ -36,28 +36,48 @@ kirby()->routes(array(
     [
         'pattern' => [
             settings::route(),
-            settings::route() . '/snippet/(:all)'
+            settings::route() . '/snippet/(:all)',
         ],
         'action'  => function($uid = null) {
             $snippet = new Snippet();
             $root = __DIR__ . DS . '..' . DS . 'snippets';
+            $flat = $snippet->paths($snippet->root());
             $paths = toArray($snippet->paths($snippet->root()));
-
-            #print_r($paths);
-
-            $test = $snippet->paths($root, 'ckit/');
-            #print_r($test);
-
             $snippet->register($snippet->paths($root, 'ckit/'));
 
-            $data = [
+            $args = [
                 'root' => $root,
                 'paths' => $paths,
+                'flat' => $flat,
                 'name' => $uid
             ];
             
             return new Response(
-                tpl::load(__DIR__ . DS . '..' . DS . 'templates' . DS . 'home.php', ['data' => $data]), 'html', 200
+                tpl::load(__DIR__ . DS . '..' . DS . 'templates' . DS . 'home.php', ['data' => $args]), 'html', 200
+            );
+        }
+    ],
+    [
+        'pattern' => [
+            settings::route() . '/file/(:all)/(:any)',
+        ],
+        'action' => function($uid, $filename) {
+            $snippet = new Snippet();
+            $root = __DIR__ . DS . '..' . DS . 'snippets';
+            $flat = $snippet->paths($snippet->root());
+            $paths = toArray($snippet->paths($snippet->root()));
+            $snippet->register($snippet->paths($root, 'ckit/'));
+
+            $args = [
+                'root' => $root,
+                'paths' => $paths,
+                'flat' => $flat,
+                'name' => $uid,
+                'filename' => $filename
+            ];
+            
+            return new Response(
+                tpl::load(__DIR__ . DS . '..' . DS . 'templates' . DS . 'home.php', ['data' => $args]), 'html', 200
             );
         }
     ],
@@ -82,13 +102,15 @@ kirby()->routes(array(
         'action' => function($uid) {
             $snippet = new Snippet();
             $root = __DIR__ . DS . '..' . DS . 'snippets';
+            $flat = $snippet->paths($snippet->root());
             $paths = toArray($snippet->paths($snippet->root()));
             $snippet->register($snippet->paths($root, 'ckit/'));
 
             $data = [
                 'root' => $root,
                 'paths' => $paths,
-                'name' => $uid
+                'name' => $uid,
+                'flat' => $flat
             ];
 
             return new Response(

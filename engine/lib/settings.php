@@ -15,8 +15,6 @@ class SettingsClass {
         $defaults = [
             'config' => [
                 'route' => 'component-kit',
-                'slug' => 'sync',
-                'token' => 'token',
             ],
             'roots' => [
                 'components' => $this->kirby->roots()->site() . DS . 'components'

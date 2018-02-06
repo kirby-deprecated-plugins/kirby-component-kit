@@ -6,6 +6,8 @@ class Snippet {
 	function run() {
 		$data = $this->paths($this->root());
 		$this->register($data);
+
+		return $data;
 	}
 	function root() {
 		return settings::components();
