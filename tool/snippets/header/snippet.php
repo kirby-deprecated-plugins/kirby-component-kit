@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?= u('component-kit/assets/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?= u('assets/plugins/kirby-component-kit/css/dist/style.min.css'); ?>">
     
     <title>Kirby Component Kit</title>
     <?php /*

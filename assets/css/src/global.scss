@@ -1,0 +1,29 @@
+:root {
+    --chess: url('../../svg/chess-board.svg');
+    //--chess: red;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: arial;
+}
+
+.wrap {
+    display: flex;
+    height: 100%;
+}
+
+aside {
+    background-image: var(--chess) !important;
+    background-color: #ccc;
+    background-size: 2rem !important;
+}

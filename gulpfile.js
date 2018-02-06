@@ -11,14 +11,14 @@ var uglify = require('gulp-uglify');
 // CSS
 gulp.task('css', function() {
     return gulp.src([
-        'tool/assets/css/src/**/*.scss',
+        'assets/css/src/**/*.scss',
         'tool/snippets/**/*.scss'
         ])
-        .pipe(concat('style.scss'))
+        .pipe(concat('style.min.scss'))
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(cssmin())
-        .pipe(gulp.dest('tool/assets/css/dist'))
+        .pipe(gulp.dest('assets/css/dist'))
         .pipe(notify("CSS generated!"));
 });
 
@@ -29,13 +29,13 @@ gulp.task('js', function() {
         )
         .pipe(concat('script.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('tool/assets/js'))
+        .pipe(gulp.dest('assets/js'))
         .pipe(notify("JS generated!"));
 });
 
 gulp.task('default', function() {
     gulp.watch([
-        'tool/assets/css/src/**/*.scss',
+        'assets/css/src/**/*.scss',
         'tool/snippets/**/*.scss'
         ],
         ['css']);

@@ -1,4 +1,4 @@
-<script src="<?= u('component-kit/assets/js/script.min.js'); ?>"></script>
+<script src="<?= u('assets/plugins/kirby-component-kit/js/script.min.js'); ?>"></script>
 <script>
     toggly.init({
         'callback': function(e) {
