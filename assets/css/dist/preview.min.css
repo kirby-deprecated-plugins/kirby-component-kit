@@ -1,0 +1,1 @@
+:root{--chess:url(../../svg/chess-board.svg)!important}html.ckit-outline body{outline:red solid 1px!important}html.ckit-margin{padding:2rem!important}html.ckit-off{background:0 0!important}html.ckit-black{background:#000!important}html.ckit-white{background:#fff!important}html.ckit-transparent{background:var(--chess) #ccc!important;background-size:2rem!important}

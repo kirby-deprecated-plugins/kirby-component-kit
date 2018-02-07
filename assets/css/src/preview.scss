@@ -1,0 +1,27 @@
+@import 'mixins.scss';
+
+html {
+    &.ckit-outline {
+        body {
+            outline: 1px solid red !important;
+        }
+    }
+    &.ckit-margin {
+        padding: 2rem !important;
+    }
+
+    &.ckit-off {
+        background: none !important;
+    }
+
+    &.ckit-black {
+        background: #000 !important;
+    }
+    &.ckit-white {
+        background: #fff !important;
+    }
+
+    &.ckit-transparent {
+        @include chess;
+    }
+}

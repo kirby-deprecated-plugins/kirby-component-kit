@@ -1,7 +1,4 @@
-:root {
-    --chess: url('../../svg/chess-board.svg');
-    //--chess: red;
-}
+@import 'mixins.scss';
 
 * {
     padding: 0;
@@ -20,10 +17,4 @@ body {
 .wrap {
     display: flex;
     height: 100%;
-}
-
-aside {
-    background-image: var(--chess) !important;
-    background-color: #ccc;
-    background-size: 2rem !important;
 }

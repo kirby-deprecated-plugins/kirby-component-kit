@@ -17,7 +17,7 @@ class Snippet {
 		$this->prefix = $prefix;
 
 		if(!file_exists($root)) {
-			die('The Component kit snippets folder could not be found');
+			die('The Component kit folder could not be found');
 		}
 		$iterator = new \RecursiveIteratorIterator(
 			new \RecursiveDirectoryIterator($root),
@@ -37,25 +37,18 @@ class Snippet {
 
 	function generateData($path, $data) {
 		$filename = basename($path);
-		$name = $this->snippetFolderName($path);
+		$raw = $this->folderName($path);
+		$name = $this->resolveName($raw);
+
+		$type = ($this->isTemplateFolder($raw)) ? 'template' : 'snippet';
 
 		if(empty($name)) return $data;
 
-		if($this->isTemplateFolder($name)) {
-			$name = $this->resolveName($name);
-			$type = 'template';
+		if(!in_array($filename, $this->whitelist($type))) return $data;
 
-			if(!in_array($filename, $this->templateWhitelist())) return $data;
-
-		} elseif($filename == 'snippet.php') {
-			$name = $this->resolveName($name);
-			$type = 'snippet';
-		}
-
-		if(!isset($type)) return $data;
-
-		$data[md5(strval($path))] = [
+		$data[crc32(strval($path))] = [
 			'path' => strval($path),
+			'raw' => $raw,
 			'name' => $this->prefix . $name,
 			'type' => $type,
 			'filename' => $filename
@@ -64,10 +57,16 @@ class Snippet {
 		return $data;
 	}
 
-	function templateWhitelist() {
-		return [
-			'blueprint.yml', 'controller.php', 'template.php',
+	function whitelist($type) {
+		$whitelists = [
+			'template' => [
+				'blueprint.yml', 'controller.php', 'component.php',
+			],
+			'snippet' => [
+				'component.php'
+			]
 		];
+		return $whitelists[$type];
 	}
 
 	function resolveName($name) {
@@ -84,7 +83,7 @@ class Snippet {
 		return pathinfo($path)['extension'];
 	}
 
-	function snippetFolderName($path) {
+	function folderName($path) {
 		$parts = pathinfo($path);
 		$name = $this->extractFolder($parts);
 		$name = trim($name, '/');
@@ -100,11 +99,25 @@ class Snippet {
 	
 	function register($data) {
 		global $kirby;
+		$sets = [];
+
 		if($data) {
 			foreach($data as $item) {
 				$fname = pathinfo($item['filename'])['filename'];
-				$kirby->set($fname, $item['name'], $item['path']);
+				
+				if($fname == 'component') {
+					$registry = $item['type'];
+				} else {
+					$registry = $fname;
+				}
+				$sets[] = [
+					$registry,
+					$item['name'],
+					$item['path']
+				];
+				$kirby->set($registry, $item['name'], $item['path']);
 			}
 		}
+		return $sets;
 	}
 }

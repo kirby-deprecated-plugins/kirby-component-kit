@@ -1,0 +1,8 @@
+@mixin chess {
+    background: #ccc var(--chess) !important;
+    background-size: 2rem !important;
+}
+
+:root {
+    --chess: url('../../svg/chess-board.svg') !important;
+}
