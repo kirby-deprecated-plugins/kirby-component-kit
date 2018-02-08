@@ -6,7 +6,7 @@ extract($data);
 #print_r($data);
 
 if(isset($name)) {
-    $Preview = new Preview(kirby());
+    $Raw = new Render(kirby());
 
     $item = itemFinder($name, $data);
     #print_r($item);
@@ -25,7 +25,7 @@ if(isset($name)) {
         $path = $snippet_path;
     }*/
 
-    $html = $Preview->snippet(
+    $html = $Raw->snippet(
         $path,
         [
             'page' => page('about') // Valfritt

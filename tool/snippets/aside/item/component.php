@@ -5,9 +5,9 @@ if(isset($paths)) {
         <ul>
             <?php if(isset($item['path'])) : ?>
                 <li<?= ($name == $item['id']) ? ' class="active"' : ''; ?>>
-                    <a href="<?= u('component-kit/snippet/' . $item['id']); ?>">
+                    <a href="<?= u('component-kit/preview/' . $item['id']); ?>">
                         <div class="icon icon-<?= $item['type']; ?>">
-                            <?php snippet('ckit/icons/puzzle-piece'); ?>
+                            <?php #snippet('ckit/icons/puzzle-piece'); ?>
                         </div>
                         <div class="text">
                             <?= $key; ?>
@@ -42,7 +42,7 @@ if(isset($paths)) {
                                 }
                             ?>
                                 <li>
-                                    <a href="<?= u('component-kit/file/' . $item['id'] . '/' . basename($file)); ?>">
+                                    <a href="<?= u('component-kit/file/' . $item['id'] . '?file=' . basename($file)); ?>">
                                         <div class="icon">
                                             <?= snippet('ckit/icons/' . $snippet); ?>
                                         </div>

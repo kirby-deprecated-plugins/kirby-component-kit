@@ -63,15 +63,11 @@ aside {
                     }
 
                     &.icon-snippet {
-                        svg {
-                            fill: #228ae6;
-                        }
+                        background-image: var(--snippet);
                     }
 
                     &.icon-template {
-                        svg {
-                            fill: #e69122;
-                        }
+                        background-image: var(--template);
                     }
                 }
 

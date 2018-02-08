@@ -3,7 +3,7 @@ namespace JensTornell\ComponentKit;
 use tpl;
 use Exception;
 
-class Preview extends \Kirby\Component\Template {
+class Render extends \Kirby\Component\Template {
   function snippet($filepath, $data = [], $page = null) {
     $data = $this->data($page, $data);
 

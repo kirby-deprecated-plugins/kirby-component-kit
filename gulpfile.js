@@ -11,6 +11,7 @@ var uglify = require('gulp-uglify');
 // CSS
 gulp.task('css', function() {
     return gulp.src([
+        'assets/css/src/mixins.scss',
         'assets/css/src/global.scss',
         'tool/snippets/**/*.scss'
         ])

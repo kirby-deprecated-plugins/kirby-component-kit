@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="<?= u('assets/plugins/kirby-component-kit/css/dist/style.min.css'); ?>">
     
-    <title>Kirby Component Kit</title>
+    <title><?= $data['title']; ?></title>
     <?php /*
     <link rel="icon" href="https://assets.getkirby.com/assets/images/favicon.png" type="image/png" />
     */

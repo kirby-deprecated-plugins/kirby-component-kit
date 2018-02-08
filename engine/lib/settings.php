@@ -15,6 +15,9 @@ class SettingsClass {
         $defaults = [
             'config' => [
                 'route' => 'component-kit',
+                'lock' => false,
+                'js' => false,
+                'css' => false
             ],
             'roots' => [
                 'components' => $this->kirby->roots()->site() . DS . 'components'
@@ -26,6 +29,7 @@ class SettingsClass {
     public function set($name) {
         global $kirby;
         $this->kirby = $kirby;
+
         $this->prefix = 'plugin.component.kit';
         $this->defaults = $this->defaults();
         $this->name = $name;
@@ -47,7 +51,7 @@ class SettingsClass {
 
     // Get config value from config.php
     private function config() {
-        return c::get($this->prefix . $this->name, $this->defaults['config'][$this->name]);
+        return c::get($this->prefix . '.' . $this->name, $this->defaults['config'][$this->name]);
     }
 
     // Get url value from site.php

@@ -1,5 +1,5 @@
 <?php extract($data); ?>
-<?= snippet('ckit/header'); ?>
+<?= snippet('ckit/header', ['data' => $data]); ?>
 
 <div class="wrap">
     <?= snippet('ckit/aside', ['data' => $data]); ?>

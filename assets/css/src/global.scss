@@ -1,4 +1,7 @@
-@import 'mixins.scss';
+:root {
+    --snippet: url('../../svg/puzzle-piece-snippet.svg') !important;
+    --template: url('../../svg/puzzle-piece-template.svg') !important;
+}
 
 * {
     padding: 0;

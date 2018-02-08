@@ -7,56 +7,35 @@ kirby()->routes([
     [
         'pattern' => [
             settings::route(),
-            settings::route() . '/snippet/(:all)',
-            settings::route() . '/file/(:all)/(:any)',
+            settings::route() . '/(:any)/(:all)',
         ],
-        'action'  => function($uid = null, $filename = null) {
-            $Helpers = new Helpers();
-            $Helpers->toolComponentsRegister();
-
-            echo $filename . "#";
-
-            $flat = $Helpers->coreSnippetArray();
-
-            $args = [
-                'root' => $Helpers->toolSnippetRoot(),
-                'name' => $uid, //id
-                'current' => $Helpers->currrent($uid, $flat),
-                'paths' => $Helpers->coreSnippetArrayNested(),
-                'flat' => $flat,
-            ];
-
-            if(isset($filename)) {
-                $args['filename'] = $filename;
-                //$args['file_whitelists'] = $Helpers->fileWhitelists();
-                $args['file_group'] = $Helpers->fileGroupType($filename);
+        'action'  => function($view = null, $uid = null) {
+            switch($view) {
+                case null:
+                    echo 'Home all alone';
+                    break;
+                case 'file':
+                    $File = new File();
+                    $response = $File->run($uid);
+                    break;
+                case 'preview':
+                    $Preview = new Preview();
+                    $response = $Preview->run($uid);
+                    break;
+                case 'image':
+                    $ExternalImage = new ExternalImage();
+                    $response = $ExternalImage->run($uid);
+                    break;
+                case 'raw':
+                    $ExternalRaw = new ExternalRaw();
+                    $response = $ExternalRaw->run($uid);
+                    break;
+                case 'html':
+                    break;
+                default:
+                    return site()->visit(site()->errorPage());
             }
-            
-            return new Response(
-                tpl::load(
-                    __DIR__ . DS . '..' . DS . 'templates' . DS . 'home.php', ['data' => $args]
-                ), 'html', 200
-            );
+            return $response;
         }
     ],
-    [
-        'pattern' => 'component-kit/preview/(:all)',
-        'action' => function($uid) {
-            $Helpers = new Helpers();
-            $Helpers->toolComponentsRegister();
-
-            $args = [
-                'root' => $Helpers->toolSnippetRoot(),
-                'name' => $uid, //id
-                'paths' => $Helpers->coreSnippetArrayNested(),
-                'flat' => $Helpers->coreSnippetArray(),
-            ];
-
-            return new Response(
-                tpl::load(
-                    __DIR__ . DS . '..' . DS . 'templates' . DS . 'preview.php', ['data' => $args]
-                ), 'html', 200
-            );
-        }
-    ]
 ]);

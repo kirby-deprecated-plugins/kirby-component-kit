@@ -10,7 +10,7 @@ extract($data);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?= u(c::get('component.kit.preview.css')); ?>">
+    <link rel="stylesheet" href="<?= u(settings::css()); ?>">
     <title><?= $name; ?> - Kirby Component Kit</title>
     <?php /*
     <link rel="icon" href="https://assets.getkirby.com/assets/images/favicon.png" type="image/png" />

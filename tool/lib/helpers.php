@@ -68,6 +68,7 @@ class Helpers {
         return $whitelists;
     }
 
+    // Returns code or image dending on the type
     public function fileGroupType($filename) {
         $extension = pathinfo($filename)['extension'];
         foreach($this->fileWhitelists() as $grouptype => $collections) {
