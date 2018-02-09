@@ -33,23 +33,49 @@ aside {
 
         li {
             padding-left: 24px;
+            position: relative;
 
-            &.active > a {
-                background: rgb(50, 63, 78);
-                padding: .2rem .5rem;
-                padding-right: 0;
-                margin: 0 -.5rem;
-                margin-right: 0;
-                color: #fff;
+            &.active {
+                > a {
+                    &:before {
+                        background: darken(#1e262f, 10%) !important;
+                    }
+
+                    span {
+                        color: #fff;
+                    }
+                }
             }
 
             a {
                 color: #aaa;
                 text-decoration: none;
-                display: flex;
-                align-items: center;
+                display: block;
+                position: relative;
 
-                padding: .2rem 0;
+                &:hover {
+                    &:before {
+                        background: lighten(#1e262f, 5%);
+                    }
+                }
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: -500px;
+                    z-index: 0;
+                }
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    padding: .3rem 0;
+                    z-index: 1;
+                    position: relative;
+                }
 
                 .icon {
                     height: 18px;
@@ -75,9 +101,9 @@ aside {
 
                 }
 
-                &:hover {
+                /*&:hover {
                     color: #fff;
-                }
+                }*/
             }
         }
     }

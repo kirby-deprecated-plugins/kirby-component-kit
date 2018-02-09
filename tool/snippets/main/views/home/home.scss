@@ -1,0 +1,49 @@
+.home {
+    background: #323f4e;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+
+    h1 {
+        font-size: 3rem;
+        font-weight: normal;
+        margin-bottom: 3rem;
+        color: #fff;
+
+        &:before {
+            content: '< ';
+            color: #666;
+        }
+
+        &:after {
+            content: ' >';
+            color: #666;
+        }
+    }
+    ol {
+        margin-left: 18px;
+        margin-bottom: 1.5rem;
+        
+        li {
+            margin-bottom: .5rem;
+            font-size: 1rem;
+
+            code {
+                font-family: Arial;
+                color: #fff;
+            }
+        }
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    a {
+        color: #aaa;
+    }
+
+}

@@ -2,6 +2,6 @@
 namespace JensTornell\ComponentKit;
 ?>
 
-<script src="<?= u(settings::js()); ?>"></script>
+<?= js(settings::js()); ?>
 </body>
 </html>

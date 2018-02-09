@@ -1,0 +1,7 @@
+{
+    "name": "kirby-component-kit",
+    "version": "0.1",
+    "description": "Bundle files together as components to build your site",
+    "license": "MIT",
+    "type": "kirby-plugin"
+}

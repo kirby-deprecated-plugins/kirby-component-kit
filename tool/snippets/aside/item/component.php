@@ -4,19 +4,21 @@ if(isset($paths)) {
     foreach($paths as $key => $item) : ?>
         <ul>
             <?php if(isset($item['path'])) : ?>
-                <li<?= ($name == $item['id']) ? ' class="active"' : ''; ?>>
+                <li<?= (isset($name) && $name == $item['id']) ? ' class="active"' : ''; ?>>
                     <a href="<?= u('component-kit/preview/' . $item['id']); ?>">
-                        <div class="icon icon-<?= $item['type']; ?>">
-                            <?php #snippet('ckit/icons/puzzle-piece'); ?>
-                        </div>
-                        <div class="text">
-                            <?= $key; ?>
-                        </div>
+                        <span>
+                            <div class="icon icon-<?= $item['type']; ?>">
+                                <?php #snippet('ckit/icons/puzzle-piece'); ?>
+                            </div>
+                            <div class="text">
+                                <?= $key; ?>
+                            </div>
+                        </span>
                     </a>
 
                     <ul>
                         <?php
-                        if($item['id'] ==  $data['name']) {
+                        if(isset($data['name']) && $item['id'] ==  $data['name']) {
                             $pattern = pathinfo($item['path'])['dirname'] . '/*.{jpg,jpeg,png,gif,css,scss,txt,yml,php,less}';
                             $glob = glob($pattern, GLOB_BRACE);
 
@@ -43,12 +45,14 @@ if(isset($paths)) {
                             ?>
                                 <li>
                                     <a href="<?= u('component-kit/file/' . $item['id'] . '?file=' . basename($file)); ?>">
-                                        <div class="icon">
-                                            <?= snippet('ckit/icons/' . $snippet); ?>
-                                        </div>
-                                        <div class="text">
-                                            <?= basename($file); ?>
-                                        </div>
+                                        <span>
+                                            <div class="icon">
+                                                <?= snippet('ckit/icons/' . $snippet); ?>
+                                            </div>
+                                            <div class="text">
+                                                <?= basename($file); ?>
+                                            </div>
+                                        </span>
                                     </a>
                                 </li>
                             <?php endforeach;
@@ -64,8 +68,10 @@ if(isset($paths)) {
                     $data = [
                         'paths' => $item['_children'],
                         'root' => $root,
-                        'name' => $name
                     ];
+                    if(isset($name)) {
+                        $data['name'] = $name;
+                    }
                     snippet('ckit/aside/item', ['data' => $data]);
                     ?>
                 </li>

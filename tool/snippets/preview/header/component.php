@@ -12,11 +12,8 @@ extract($data);
 
     <link rel="stylesheet" href="<?= u(settings::css()); ?>">
     <title><?= $name; ?> - Kirby Component Kit</title>
-    <?php /*
-    <link rel="icon" href="https://assets.getkirby.com/assets/images/favicon.png" type="image/png" />
-    */
-    ?>
-    <link rel="stylesheet" href="<?= u('assets/plugins/kirby-component-kit/css/dist/preview.min.css'); ?>">
+    <link rel="icon" href="<?= u('assets/plugins/kirby-component-kit/png/favicon.png'); ?>" type="image/png" />
 
+    <?= css('assets/plugins/kirby-component-kit/css/dist/preview.min.css'); ?>
 </head>
 <body>

@@ -12,7 +12,8 @@ kirby()->routes([
         'action'  => function($view = null, $uid = null) {
             switch($view) {
                 case null:
-                    echo 'Home all alone';
+                    $Home = new Home();
+                    $response = $Home->run($uid);
                     break;
                 case 'file':
                     $File = new File();

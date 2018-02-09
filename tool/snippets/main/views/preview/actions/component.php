@@ -1,12 +1,10 @@
+<?php
+extract($data)
+?>
 <div class="actions bar">
     <ul>
         <li>
-            <div class="colors">
-                <div class="color color-off"></div>
-                <div class="color" data-value="transparent"></div>
-                <div class="color" data-value="white"></div>
-                <div class="color" data-value="black"></div>
-            </div>
+            <?= snippet('ckit/main/views/preview/actions/backgrounds'); ?>
         </li>
         <li>
             <div class="switches">
@@ -26,6 +24,21 @@
                     </label>
                 </div>
             </div>
+        </li>
+        <li>
+            <div class="views">
+                <div class="view view-preview<?= (isset($name)) ? ' active' : ''; ?>">
+                    <a href="#"></a>
+                </div>
+                <div class="view view-html">
+                    <a href="#"></a>
+                </div>
+            </div>
+
+            
+            
+            <a href="<?= u('component-kit/raw/' . $name); ?>" target="_blank">RAW EXternal ICON</a>
+            
         </li>
     </ul>
 </div>

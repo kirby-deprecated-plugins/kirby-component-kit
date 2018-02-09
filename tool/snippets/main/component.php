@@ -10,8 +10,12 @@ extract($data);
                 snippet('ckit/main/views/file/image', ['data' => $data]);
             }
         } else {
-            snippet('ckit/main/bar', ['data' => $data]);
-            snippet('ckit/main/views/preview', ['data' => $data]);
+            if(isset($name)) {
+                #snippet('ckit/main/bar', ['data' => $data]);
+                snippet('ckit/main/views/preview', ['data' => $data]);
+            } else {
+                snippet('ckit/main/views/home', ['data' => $data]);
+            }
         }
         /*
 Markup

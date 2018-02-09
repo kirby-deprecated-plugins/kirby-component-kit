@@ -5,4 +5,4 @@
     </div>
 <?php endif; ?>
 
-<?= snippet('ckit/main/views/preview/actions'); ?>
+<?= snippet('ckit/main/views/preview/actions', ['data' => $data]); ?>
