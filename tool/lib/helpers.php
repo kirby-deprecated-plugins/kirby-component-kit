@@ -4,6 +4,7 @@ namespace JensTornell\ComponentKit;
 class Helpers {
     public function __construct() {
         $this->Snippet = new Snippet();
+        $this->Finder = new Finder();
     }
     public function dataToNested($data) {
         $result = [];
@@ -37,11 +38,11 @@ class Helpers {
     }
 
     public function toolSnippetRoot() {
-        return realpath(__DIR__ . DS . '..' . DS . 'snippets');
+        return realpath(__DIR__ . DS . '..' . DS . 'components');
     }
 
     public function coreSnippetArray() {
-        return $this->Snippet->paths($this->Snippet->root());
+        return $this->Finder->paths($this->Finder->root());
     }
 
     public function coreSnippetArrayNested() {
@@ -49,7 +50,7 @@ class Helpers {
     }
 
     public function toolSnippetArray() {
-        return $this->Snippet->paths($this->toolSnippetRoot(), 'ckit/');
+        return $this->Finder->paths($this->toolSnippetRoot(), 'ckit/');
     }
 
     public function toolComponentsRegister() {

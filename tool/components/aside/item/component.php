@@ -4,7 +4,7 @@ if(isset($paths)) {
     foreach($paths as $key => $item) : ?>
         <ul>
             <?php if(isset($item['path'])) : ?>
-                <li<?= (isset($name) && $name == $item['id']) ? ' class="active"' : ''; ?>>
+                <li<?= (isset($name) && !isset($filename) && $name == $item['id']) ? ' class="active"' : ''; ?>>
                     <a href="<?= u('component-kit/preview/' . $item['id']); ?>">
                         <span>
                             <div class="icon icon-<?= $item['type']; ?>">
@@ -43,7 +43,7 @@ if(isset($paths)) {
                                     $snippet = 'file';
                                 }
                             ?>
-                                <li>
+                                <li<?= (isset($name) && isset($filename) && $filename == basename($file)) ? ' class="active"' : ''; ?>>
                                     <a href="<?= u('component-kit/file/' . $item['id'] . '?file=' . basename($file)); ?>">
                                         <span>
                                             <div class="icon">

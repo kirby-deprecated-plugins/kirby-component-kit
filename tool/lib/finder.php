@@ -2,13 +2,7 @@
 namespace JensTornell\ComponentKit;
 use str;
 
-class Snippet {
-	function run() {
-		$data = $this->paths($this->root());
-		$this->register($data);
-
-		return $data;
-	}
+class Finder {
 	function root() {
 		return settings::components();
 	}
@@ -32,6 +26,7 @@ class Snippet {
 				$data = $this->generateData($path, $data);
 			}
 		}
+
 		return $data;
 	}
 
@@ -95,29 +90,5 @@ class Snippet {
 			$this->root => '',
 			DS => '/'
 		]);
-	}
-	
-	function register($data) {
-		global $kirby;
-		$sets = [];
-
-		if($data) {
-			foreach($data as $item) {
-				$fname = pathinfo($item['filename'])['filename'];
-				
-				if($fname == 'component') {
-					$registry = $item['type'];
-				} else {
-					$registry = $fname;
-				}
-				$sets[] = [
-					$registry,
-					$item['name'],
-					$item['path']
-				];
-				$kirby->set($registry, $item['name'], $item['path']);
-			}
-		}
-		return $sets;
 	}
 }
