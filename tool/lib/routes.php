@@ -32,6 +32,8 @@ kirby()->routes([
                     $response = $ExternalRaw->run($uid);
                     break;
                 case 'html':
+                    $Html = new Html();
+                    $response = $Html->run($uid);
                     break;
                 default:
                     return site()->visit(site()->errorPage());
