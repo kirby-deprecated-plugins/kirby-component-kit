@@ -34,8 +34,7 @@ class Finder {
 		$filename = basename($path);
 		$raw = $this->folderName($path);
 		$name = $this->resolveName($raw);
-
-		$type = ($this->isTemplateFolder($raw)) ? 'template' : 'snippet';
+		$type = $this->type($raw);
 
 		if(empty($name)) return $data;
 
@@ -46,7 +45,8 @@ class Finder {
 			'raw' => $raw,
 			'name' => $this->prefix . $name,
 			'type' => $type,
-			'filename' => $filename
+			'filename' => $filename,
+			'extension' => pathinfo($path)['extension'],
 		];
 
 		return $data;
@@ -70,25 +70,14 @@ class Finder {
 		return $name;
 	}
 
-	function isTemplateFolder($name) {
-		return (str::startsWith($name, '--') && !str::contains($name, '/')) ? true : false;
-	}
-
-	function extension($path) {
-		return pathinfo($path)['extension'];
+	function type($name) {
+		return (str::startsWith($name, '--') && !str::contains($name, '/')) ? 'template' : 'snippet';
 	}
 
 	function folderName($path) {
 		$parts = pathinfo($path);
-		$name = $this->extractFolder($parts);
+		$name = strtr($parts['dirname'], [$this->root => '', DS => '/']);
 		$name = trim($name, '/');
 		return $name;
-	}
-
-	function extractFolder($parts) {
-		return strtr($parts['dirname'], [
-			$this->root => '',
-			DS => '/'
-		]);
 	}
 }

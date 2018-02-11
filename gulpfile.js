@@ -13,7 +13,7 @@ gulp.task('css', function() {
     return gulp.src([
         'assets/css/src/mixins.scss',
         'assets/css/src/global.scss',
-        'tool/snippets/**/*.scss'
+        'tool/components/**/*.scss'
         ])
         .pipe(concat('style.min.scss'))
         .pipe(sass().on('error', sass.logError))
@@ -37,7 +37,7 @@ gulp.task('preview_css', function() {
 // JS
 gulp.task('js', function() {
     gulp.src(
-        'tool/snippets/**/*.js'
+        'tool/components/**/*.js'
         )
         .pipe(concat('script.min.js'))
         .pipe(uglify())
@@ -48,11 +48,11 @@ gulp.task('js', function() {
 gulp.task('default', function() {
     gulp.watch([
         'assets/css/src/global.scss',
-        'tool/snippets/**/*.scss'
+        'tool/components/**/*.scss'
         ],
         ['css']);
     gulp.watch('assets/css/src/preview.scss', ['preview_css']);
     gulp.watch(
-        'tool/snippets/**/*.js',
+        'tool/components/**/*.js',
         ['js']);
 });

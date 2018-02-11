@@ -25,20 +25,5 @@ extract($data)
                 </div>
             </div>
         </li>
-        <li>
-            <div class="views">
-                <div class="view view-preview<?= (isset($name)) ? ' active' : ''; ?>">
-                    <a href="#"></a>
-                </div>
-                <div class="view view-html">
-                    <a href="#"></a>
-                </div>
-            </div>
-
-            
-            
-            <a href="<?= u('component-kit/raw/' . $name); ?>" target="_blank">RAW EXternal ICON</a>
-            
-        </li>
     </ul>
 </div>

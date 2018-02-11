@@ -8,6 +8,15 @@
                 margin: .5rem .1rem;
             }
 
+            .raw {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 3rem;
+                line-height: 3rem;
+                padding-right: 1rem;
+            }
+
             .views {
                 display: flex;
                 margin-top: .5rem;
@@ -26,13 +35,15 @@
                         border-radius: 0;
                         display: block;
                         height: 2rem;
-                        width: 3rem;
+                        //width: 3rem;
                         color: #aaa;
                         text-decoration: none;
                         box-sizing: border-box;
+                        line-height: calc(2rem - 4px);
+                        padding: 0 1rem;
                     }
 
-                    &.view-preview {
+                    /*&.view-preview {
                         a {
                             background-image: var(--preview);
                         }
@@ -41,11 +52,12 @@
                         a {
                             background-image: var(--code);
                         }
-                    }
+                    }*/
 
                     &.active {
                         a {
                             background-color: #527d50;
+                            color: #fff;
                         }
                     }
 

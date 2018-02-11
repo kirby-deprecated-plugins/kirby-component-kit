@@ -11,7 +11,7 @@ extract($data);
             }
         } else {
             if(isset($name)) {
-                #snippet('ckit/main/bar', ['data' => $data]);
+                snippet('ckit/main/bar', ['data' => $data]);
                 snippet('ckit/main/views/preview', ['data' => $data]);
             } else {
                 snippet('ckit/main/views/home', ['data' => $data]);
