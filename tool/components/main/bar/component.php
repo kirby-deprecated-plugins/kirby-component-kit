@@ -11,11 +11,14 @@ extract($data)
                 <div class="view view-html">
                     <a href="#">Html</a>
                 </div>
+                <div class="view view-gallery">
+                    <a href="#">Images</a>
+                </div>
             </div>
         </li>
         <li>
             <div class="raw">
-                <a href="<?= u('component-kit/raw/' . $name); ?>" target="_blank">RAW</a>
+                <a href="<?= u('component-kit/raw/' . $name); ?>" target="_blank"></a>
             </div>
         </li>
     </ul>

@@ -81,6 +81,8 @@ aside {
                     height: 18px;
                     width: 18px;
                     margin-right: 10px;
+                    background-repeat: no-repeat;
+                    background-position: center;
 
                     svg {
                         fill: #aaa;
@@ -94,6 +96,10 @@ aside {
 
                     &.icon-template {
                         background-image: var(--template);
+                    }
+
+                    &.icon-file {
+                        background-image: var(--file);
                     }
                 }
 

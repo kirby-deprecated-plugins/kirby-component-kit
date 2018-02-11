@@ -16,7 +16,7 @@ if(isset($paths)) {
                         </span>
                     </a>
 
-                    <ul>
+                    <ul class="files">
                         <?php
                         if(isset($data['name']) && $item['id'] ==  $data['name']) {
                             $pattern = pathinfo($item['path'])['dirname'] . '/*.{jpg,jpeg,png,gif,css,scss,txt,yml,php,less}';
@@ -46,8 +46,7 @@ if(isset($paths)) {
                                 <li<?= (isset($name) && isset($filename) && $filename == basename($file)) ? ' class="active"' : ''; ?>>
                                     <a href="<?= u('component-kit/file/' . $item['id'] . '?file=' . basename($file)); ?>">
                                         <span>
-                                            <div class="icon">
-                                                <?= snippet('ckit/icons/' . $snippet); ?>
+                                            <div class="icon icon-file">
                                             </div>
                                             <div class="text">
                                                 <?= basename($file); ?>
