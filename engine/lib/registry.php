@@ -4,20 +4,16 @@ use str;
 
 class Snippet {
 	function run() {
-		$data = $this->paths($this->root());
-		$this->register($data);
-
-		return $data;
+		$this->register(settings::components(), $prefix = null);
 	}
-	function root() {
-		return settings::components();
-	}
-    function paths($root, $prefix = '') {
+	
+    function register($root, $prefix = '') {
+		global $kirby;
 		$this->root = $root;
 		$this->prefix = $prefix;
 
 		if(!file_exists($root)) {
-			die('The Component kit folder could not be found');
+			die('The components folder could not be found');
 		}
 		$iterator = new \RecursiveIteratorIterator(
 			new \RecursiveDirectoryIterator($root),
@@ -29,95 +25,68 @@ class Snippet {
 			$data = [];
 			foreach($iterator as $path) {
 				if($path->isDir()) continue;
-				$data = $this->generateData($path, $data);
+
+				// Path as string
+				$path = strval($path);
+
+				// Filename with extension
+				$filename = basename($path);
+
+				// Raw name
+				$raw_id = $this->rawId($path);
+
+				// Name without --
+				$id = $this->id($raw_id);
+				if(empty($id)) continue;
+				$id = $this->prefix . $id;
+
+				// Stem - Filename without extension
+				$stem = pathinfo($filename)['filename'];
+
+				// Type - Template or snippet
+				$type = $this->type($raw_id);
+
+				// Allowed - Is filename allowed
+				if(!$this->allowed($filename, $type)) continue;
+
+				// Registry - If component, return template or snippet, else the stem
+				$registry = ($stem == 'component') ? $type : $stem;
+
+				// Register file
+				$kirby->set($registry, $id, $path);
 			}
 		}
 		return $data;
 	}
 
-	function generateData($path, $data) {
-		$filename = basename($path);
-		$raw = $this->folderName($path);
-		$name = $this->resolveName($raw);
-
-		$type = ($this->isTemplateFolder($raw)) ? 'template' : 'snippet';
-
-		if(empty($name)) return $data;
-
-		if(!in_array($filename, $this->whitelist($type))) return $data;
-
-		$data[] = [
-			'path' => strval($path),
-			'raw' => $raw,
-			'name' => $this->prefix . $name,
-			'type' => $type,
-			'filename' => $filename
-		];
-
-		return $data;
+	function type($name) {
+		return (str::startsWith($name, '--') && !str::contains($name, '/')) ? 'template' : 'snippet';
 	}
 
-	function whitelist($type) {
+	function allowed($filename, $type) {
 		$whitelists = [
 			'template' => [
-				'blueprint.yml', 'controller.php', 'component.php',
+				'blueprint.yml',
+				'component.php',
+				'controller.php',
 			],
 			'snippet' => [
 				'component.php'
 			]
 		];
-		return $whitelists[$type];
+		return(in_array($filename, $whitelists[$type]));
 	}
 
-	function resolveName($name) {
+	function id($name) {
 		$name = (str::startsWith($name, '--')) ? substr($name, 2) : $name;
 		$name = str_replace('/--', '/', $name);
 		return $name;
 	}
 
-	function isTemplateFolder($name) {
-		return (str::startsWith($name, '--') && !str::contains($name, '/')) ? true : false;
-	}
-
-	function extension($path) {
-		return pathinfo($path)['extension'];
-	}
-
-	function folderName($path) {
+	function rawId($path) {
 		$parts = pathinfo($path);
-		$name = $this->extractFolder($parts);
+		$name = strtr($parts['dirname'], [$this->root => '', DS => '/']);
 		$name = trim($name, '/');
 		return $name;
-	}
-
-	function extractFolder($parts) {
-		return strtr($parts['dirname'], [
-			$this->root => '',
-			DS => '/'
-		]);
-	}
-	
-	function register($data) {
-		global $kirby;
-		$sets = [];
-
-		if($data) {
-			foreach($data as $item) {
-				$fname = pathinfo($item['filename'])['filename'];
-				
-				if($fname == 'component') {
-					$registry = $item['type'];
-				} else {
-					$registry = $fname;
-				}
-				$sets[] = [
-					$registry,
-					$item['name'],
-					$item['path']
-				];
-				$kirby->set($registry, $item['name'], $item['path']);
-			}
-		}
-		return $sets;
 	}
 }

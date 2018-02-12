@@ -27,3 +27,10 @@ class File extends View {
         return new Response(tpl::load($path, ['data' => $args]), 'html', 200);
     }
 }
+
+/*
+$code = ['php'];
+                                $markup = ['css', 'yml', 'scss', 'less'];
+                                $image = ['jpg', 'jpeg', 'png', 'gif'];
+                                $text = ['txt']
+*/

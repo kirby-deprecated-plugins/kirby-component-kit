@@ -4,10 +4,13 @@ use response;
 use tpl;
 
 class Html extends View {
-    public function run($uid) {
-        $args = $this->args($uid);
+    public function run($id) {
+        $args = $this->args($id);
 
         $args['title'] = '';
+        $args['data']['preview_url'] = $this->url($id, 'preview');
+        $args['data']['raw_url'] = $this->url($id, 'raw');
+        $args['data']['html_url'] = $this->url($id, 'html');
 
         return $this->response($args);
     }

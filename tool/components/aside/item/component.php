@@ -7,12 +7,8 @@ if(isset($paths)) {
                 <li<?= (isset($name) && !isset($filename) && $name == $item['id']) ? ' class="active"' : ''; ?>>
                     <a href="<?= u('component-kit/preview/' . $item['id']); ?>">
                         <span>
-                            <div class="icon icon-<?= $item['type']; ?>">
-                                <?php #snippet('ckit/icons/puzzle-piece'); ?>
-                            </div>
-                            <div class="text">
-                                <?= $key; ?>
-                            </div>
+                            <div class="icon icon-<?= $item['type']; ?>"></div>
+                            <div class="text"><?= $key; ?></div>
                         </span>
                     </a>
 
@@ -26,23 +22,7 @@ if(isset($paths)) {
                                 return strcmp($a, $b);
                             });
 
-                            foreach($glob as $file) :
-                                $extension = pathinfo($file)['extension'];
-                                $code = ['php'];
-                                $markup = ['css', 'yml', 'scss', 'less'];
-                                $image = ['jpg', 'jpeg', 'png', 'gif'];
-                                $text = ['txt'];
-
-                                if(in_array($extension, $code)) {
-                                    $snippet = 'file-code';
-                                } elseif(in_array($extension, $text)) {
-                                    $snippet = 'file-alt';
-                                } elseif(in_array($extension, $image)) {
-                                    $snippet = 'file-image';
-                                } elseif(in_array($extension, $markup)) {
-                                    $snippet = 'file';
-                                }
-                            ?>
+                            foreach($glob as $file) : ?>
                                 <li<?= (isset($name) && isset($filename) && $filename == basename($file)) ? ' class="active"' : ''; ?>>
                                     <a href="<?= u('component-kit/file/' . $item['id'] . '?file=' . basename($file)); ?>">
                                         <span>
