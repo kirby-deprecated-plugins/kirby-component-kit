@@ -3,8 +3,6 @@ namespace JensTornell\ComponentKit;
 
 class View {
     public function __construct() {
-        $this->Helpers = new Helpers();
-
         $this->Snippet = new Snippet();
         $this->Finder = new finder();
         $this->tool_components_root = realpath(__DIR__ . DS . '..' . DS . 'components');
@@ -17,14 +15,14 @@ class View {
         $args = [
             'data' => [
                 'route' => settings::route(),
-                'current' => $this->currrent($id, $flat),
-                'name' => $id,
                 'root' => $this->tool_components_root,
-                'home' => u(settings::route())
+                'home' => u(settings::route()),
+                'current' => $this->currrent($id, $flat),
             ],
             'paths' => $this->coreComponentsArray(),
             'flat' => $flat,
         ];
+        $args['data']['current']['id'] = $id;
         return $args;
     }
 

@@ -14,24 +14,29 @@ class ExternalImage extends View {
         'jpg'
     ];
 
-    public function run($uid) {
-        $Helpers = new Helpers();
-        $current = $Helpers->currrent($uid, $Helpers->coreSnippetArray());
+    public function run($id) {
+        $args = $this->args($id);
 
-        $this->setExtension();
-        $this->setFilepath($current);
-        $this->setCtype();
+        #print_r($args);
 
-        if(!$this->allowed()) return site()->visit(site()->errorPage());
+        $args['data']['current']['title'] = $this->title($id);
+        $args['data']['current']['dir'] = pathinfo($args['data']['current']['path'])['dirname'];
+        $args['data']['current']['filename'] = get('file');
+        $args['data']['current']['extension'] = pathinfo($args['data']['current']['filename'])['extension'];
+        $args['data']['current']['path'] = $args['data']['current']['dir'] . DS . $args['data']['current']['filename'];
+        $args['data']['current']['ctype'] = $this->setCtype($args['data']['current']['extension']);
 
-        $image = file_get_contents($this->filepath);
+        #print_r($args);
 
-        header('Content-type: ' . $this->ctype);
-        return new Response($image, $this->ctype, 200);
+        if(!$this->allowed($args['data']['current'])) return site()->visit(site()->errorPage());
+
+        $image = file_get_contents($args['data']['current']['path']);
+
+        return new Response($image, $args['data']['current']['ctype'], 200);
     }
 
-    protected function setExtension() {
-        $this->extension = pathinfo(get('file'))['extension'];
+    protected function title($id) {
+        return get('file') . ' - ' . $id . ' - Component Kit';
     }
 
     protected function response($args) {
@@ -45,13 +50,14 @@ class ExternalImage extends View {
         $this->filepath = pathinfo($current['path'])['dirname'] . DS . get('file');
     }
 
-    protected function allowed() {
-        if(in_array($this->extension, $this->whitelist) && file_exists($this->filepath))
+    protected function allowed($current) {
+        extract($current);
+        if(in_array($extension, $this->whitelist) && file_exists($path))
             return true;
     }
 
-    protected function setCtype() {
-        switch($this->extension) {
+    protected function setCtype($extension) {
+        switch($extension) {
             case "gif":
                 $ctype = "image/gif";
                 break;
@@ -64,6 +70,6 @@ class ExternalImage extends View {
                 break;
             default:
         }
-        $this->ctype = $ctype;
+        return $ctype;
     }
 }

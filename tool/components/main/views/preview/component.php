@@ -1,8 +1,7 @@
-<?php extract($data); ?>
-<?php if(isset($name)) : ?>
-    <div class="preview">
-        <iframe src="<?= u('component-kit/raw/' . $name); ?>"></iframe>
-    </div>
-<?php endif; ?>
+<?php extract($data['current']); ?>
+
+<div class="preview">
+    <iframe src="<?= u('component-kit/raw/' . $id); ?>"></iframe>
+</div>
 
 <?= snippet('ckit/main/views/preview/actions', ['data' => $data]); ?>

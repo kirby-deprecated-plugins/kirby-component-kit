@@ -1,22 +1,31 @@
 <?php
-extract($data);
+extract($data['current']);
 ?>
 <div class="main">
     <?php
-        if(isset($filename)) {
-            if($file_group == 'code') {
-                snippet('ckit/main/views/file/code', ['data' => $data]);
-            } elseif($file_group == 'image') {
-                snippet('ckit/main/views/file/image', ['data' => $data]);
+    if(in_array($view, ['preview', 'html'])) {
+        snippet('ckit/main/bar');
+    }
+
+    switch($view) {
+        case 'preview':
+            snippet('ckit/main/views/preview');
+            break;
+        case 'html':
+            snippet('ckit/main/views/html');
+            break;
+        case 'file':
+            switch($group) {
+                case 'code':
+                    snippet('ckit/main/views/file/code');
+                    break;
+                case 'image':
+                    snippet('ckit/main/views/file/image');
+                    break;
             }
-        } else {
-            if(isset($name)) {
-                snippet('ckit/main/bar', ['data' => $data]);
-                snippet('ckit/main/views/preview', ['data' => $data]);
-            } else {
-                snippet('ckit/main/views/home', ['data' => $data]);
-            }
-        }
+            break;
+    }
+    
         /*
 Markup
 css

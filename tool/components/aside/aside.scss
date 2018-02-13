@@ -101,6 +101,9 @@ aside {
                     &.icon-file {
                         background-image: var(--file);
                     }
+                    &.icon-empty {
+                        background-image: var(--empty);
+                    }
                 }
 
                 .text {

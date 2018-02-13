@@ -28,7 +28,9 @@
                 var type = this.dataset.value;
 
                 html.classList.remove('ckit-off', 'ckit-transparent', 'ckit-white', 'ckit-black');
-                html.classList.add('ckit-' + type);
+                if(typeof type !== 'undefined') {
+                    html.classList.add('ckit-' + type);
+                }
 
                 var siblings = this.parentNode.querySelectorAll('.color');
                 //console.log(siblings);
