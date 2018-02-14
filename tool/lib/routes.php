@@ -19,10 +19,6 @@ kirby()->routes([
                     $File = new File();
                     $response = $File->run($uid);
                     break;
-                case 'preview':
-                    $Preview = new Preview();
-                    $response = $Preview->run($uid);
-                    break;
                 case 'image':
                     $ExternalImage = new ExternalImage();
                     $response = $ExternalImage->run($uid);

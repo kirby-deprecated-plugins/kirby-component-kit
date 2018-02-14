@@ -1,0 +1,19 @@
+.image-info {
+    background: #1e262f;
+    ul {
+        display: flex;
+        list-style: none;
+        padding: 0 1rem;
+
+        li {
+            padding: .5rem 1rem;
+            //font-size: .8rem;
+            color: #fff;
+
+            strong {
+                color: #aaa;
+                font-weight: normal;
+            }
+        }
+    }
+}

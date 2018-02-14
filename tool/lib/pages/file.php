@@ -17,8 +17,8 @@ class File extends View {
             'extension' => $extension,
             'group' => $this->group($extension),
             'filetype' => $this->filetype($extension),
-            'path' => $dir . DS . get('file'),
-            'pattern' => $dir . '/*',
+            'filepath' => $args['data']['current']['path'] . DS . get('file'),
+            'pattern' => $args['data']['current']['path'] . '/*',
             'urls' => $args['data']['current']['urls'] = $this->urls([
                 'id' => $id,
                 'items' => [

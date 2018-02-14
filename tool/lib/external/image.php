@@ -18,16 +18,15 @@ class ExternalImage extends View {
         $args = $this->args($id);
 
         $args['data']['current']['title'] = $this->title($id);
-        $args['data']['current']['dir'] = pathinfo($args['data']['current']['path'])['dirname'];
         $args['data']['current']['filename'] = get('file');
         $args['data']['current']['extension'] = pathinfo($args['data']['current']['filename'])['extension'];
-        $args['data']['current']['path'] = $args['data']['current']['dir'] . DS . $args['data']['current']['filename'];
+        $args['data']['current']['filepath'] = $args['data']['current']['path'] . DS . $args['data']['current']['filename'];
         $args['data']['current']['ctype'] = $this->setCtype($args['data']['current']['extension']);
 
         if(!$this->allowed($args['data']['current'])) return site()->visit(site()->errorPage());
 
-        $image = file_get_contents($args['data']['current']['path']);
-
+        $image = file_get_contents($args['data']['current']['filepath']);
+        
         return new Response($image, $args['data']['current']['ctype'], 200);
     }
 
@@ -41,7 +40,7 @@ class ExternalImage extends View {
 
     protected function allowed($current) {
         extract($current);
-        if(in_array($extension, $this->whitelist) && file_exists($path))
+        if(in_array($extension, $this->whitelist) && file_exists($filepath))
             return true;
     }
 
