@@ -4,7 +4,7 @@ use str;
 
 class Snippet {
 	function run() {
-		$this->register(settings::components(), $prefix = null);
+		$this->register(settings::directory(), $prefix = null);
 	}
 	
     function register($root, $prefix = '') {

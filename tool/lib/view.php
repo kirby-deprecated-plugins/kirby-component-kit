@@ -35,7 +35,7 @@ class View {
     }
 
     protected function coreComponentsFlat() {
-        return $this->Finder->paths(settings::components());
+        return $this->Finder->paths(settings::directory());
     }
 
     protected function coreComponentsArray() {

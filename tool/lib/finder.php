@@ -4,7 +4,7 @@ use str;
 
 class Finder {
 	function root() {
-		return settings::components();
+		return settings::directory();
 	}
     function paths($root, $prefix = '') {
 		$this->root = $root;
