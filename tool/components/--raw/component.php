@@ -5,6 +5,6 @@ use str;
 $Render = new Render(kirby());
 $html = $Render->snippet($data['current']['path'], $data);
 
-snippet('ckit/preview/header');
+snippet('ckit/raw/header');
 echo $html;
-snippet('ckit/preview/footer');
+snippet('ckit/raw/footer');

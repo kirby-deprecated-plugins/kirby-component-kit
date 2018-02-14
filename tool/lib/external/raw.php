@@ -11,8 +11,8 @@ class ExternalRaw extends View {
     }
 
     protected function response($args) {
-        $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit'; // FEL Route
-        $path = $basepath . DS . 'tool' . DS . 'components' . DS . 'templates' . DS . 'raw' . DS . 'component.php';
+        $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
+        $path = $basepath . DS . 'tool' . DS . 'components' . DS . '--raw' . DS . 'component.php';
 
         $Render = new Render(kirby());
         $html = $Render->snippet($path, $args);

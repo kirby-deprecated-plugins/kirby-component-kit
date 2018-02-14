@@ -5,7 +5,14 @@ if(isset($paths)) {
     foreach($paths as $key => $item) : ?>
         <ul>
             <?php if(isset($item['path'])) : ?>
-                <?php $active = ($current['view'] == 'preview' && $current['id'] == $item['id']) ? ' class="active"' : ''; ?>
+                <?php
+                $active = '';
+                if(in_array($current['view'], ['preview', 'html'])) {
+                    if($current['id'] == $item['id']) {
+                        $active = ' class="active"';
+                    }
+                }
+                ?>
                 <li<?= $active; ?>>
                     <a href="<?= u('component-kit/preview/' . $item['id']); ?>">
                         <span>

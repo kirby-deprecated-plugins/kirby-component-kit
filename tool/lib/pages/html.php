@@ -10,11 +10,14 @@ class Html extends View {
         $args['data']['current']['title'] = $id . ' - HTML - Component Kit';
         $args['data']['current']['dir'] = pathinfo($args['data']['current']['path'])['dirname'];
         $args['data']['current']['view'] = 'html';
-        $args['data']['current']['urls'] = [
-            'preview' => $this->url($id, 'preview'),
-            'raw' => $this->url($id, 'raw'),
-            'html' => $this->url($id, 'html')
-        ];
+        $args['data']['current']['urls'] = $this->urls([
+            'id' => $id,
+            'items' => [
+                'preview' => 'Preview',
+                'php' => 'PHP',
+                'html' => 'HTML',
+            ]
+        ]);
         $args['data']['current']['pattern'] = $args['data']['current']['dir'] . '/*';
         $args['data']['current']['files'] = $this->files($args);
 

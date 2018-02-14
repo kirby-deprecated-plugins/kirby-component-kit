@@ -26,8 +26,23 @@ class View {
         return $args;
     }
 
-    protected function url($id, $view) {
-        return u(settings::path() . '/' . $view . '/' . $id);
+    protected function urls($args) {
+        $root = u(settings::path() . '/');
+        $urls = [
+            'preview' => [
+                'title' => 'Preview',
+                'url' => $root . 'preview/' . $args['id'],
+            ],
+            'php' => [
+                'title' => 'PHP',
+                'url' => $root . 'file/' . $args['id'] . '?file=component.php',
+            ],
+            'html' => [
+                'title' => 'HTML',
+                'url' => $root . 'html/' . $args['id'],
+            ]
+        ];
+        return $urls;
     }
 
     protected function toolSnippetArray() {

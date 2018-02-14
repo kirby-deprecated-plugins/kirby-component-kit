@@ -21,6 +21,14 @@ class File extends View {
             'filetype' => $this->filetype($extension),
             'path' => $dir . DS . get('file'),
             'pattern' => $dir . '/*',
+            'urls' => $args['data']['current']['urls'] = $this->urls([
+                'id' => $id,
+                'items' => [
+                    'preview' => 'Preview',
+                    'php' => 'PHP',
+                    'html' => 'HTML',
+                ]
+            ]),
         ];
         $current = array_merge($args['data']['current'], $current);
         $current['files'] = $this->files($current);
@@ -68,7 +76,7 @@ class File extends View {
             $current_filename = basename($file);
             $files[] = [
                 'active' => ($current['view'] == 'file' && $current['filename'] == $current_filename) ? ' class="active"' : '',
-                'url' => u('component-kit/file/' . $current['id'] . '?file=' . $current_filename), // FEL ROUTE
+                'url' => u(settings::path() . '/file/' . $current['id'] . '?file=' . $current_filename),
                 'filename' => $current_filename,
             ];
         }

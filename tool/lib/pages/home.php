@@ -11,21 +11,24 @@ class Home extends View {
         return $this->response($args);
     }
 
-    protected function args($uid) {
-        $flat = $this->Helpers->coreSnippetArray();
+    protected function args($id) {
+        $flat = $this->coreComponentsFlat();
         $args = [
             'route' => settings::path(),
             'flat' => $flat,
-            'paths' => $this->Helpers->coreSnippetArrayNested(),
-            'root' => $this->Helpers->toolSnippetRoot(),
+            'paths' => $this->coreComponentsArray(),
+            'root' => $this->tool_components_root,
         ];
         return $args;
     }
 
     protected function response($args) {
         $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
-        $path = $basepath . DS . 'tool' . DS . 'templates' . DS . 'home.php';
+        $path = $basepath . DS . 'tool' . DS . 'components' . DS . 'templates' . DS . 'home' . DS . 'component.php';
 
-        return new Response(tpl::load($path, ['data' => $args]), 'html', 200);
+        $Render = new Render(kirby());
+        $html = $Render->snippet($path, $args);
+
+        return new Response(trim($html), 'html', 200);
     }
 }

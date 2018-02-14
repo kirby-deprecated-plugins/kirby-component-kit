@@ -3,7 +3,7 @@ extract($data['current']);
 ?>
 <div class="main">
     <?php
-    if(in_array($view, ['preview', 'html'])) {
+    if(in_array($view, ['preview', 'html']) || $filename == 'component.php') {
         snippet('ckit/main/bar');
     }
 
