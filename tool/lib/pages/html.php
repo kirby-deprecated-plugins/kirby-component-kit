@@ -21,17 +21,7 @@ class Html extends View {
         $args['data']['current']['pattern'] = $args['data']['current']['dir'] . '/*';
         $args['data']['current']['files'] = $this->files($args);
 
-        return $this->response($args);
-    }
-
-    protected function response($args) {
-        $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
-        $path = $basepath . DS . 'tool' . DS . 'components' . DS . 'templates' . DS . 'home' . DS . 'component.php';
-
-        $Render = new Render(kirby());
-        $html = $Render->snippet($path, $args);
-
-        return new Response(trim($html), 'html', 200);
+        return $this->response('templates' . DS . 'home' . DS . 'component.php', $args);
     }
 
     protected function files($args) {

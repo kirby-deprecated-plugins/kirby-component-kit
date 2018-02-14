@@ -5,6 +5,7 @@ namespace JensTornell\ComponentKit;
     <ul>
         <li>
             <div class="views">
+                <?php /*
                 <?php foreach($data['current']['urls'] as $key => $item) : ?>
                     <?php
                     $match = ($data['current']['view'] == $key);
@@ -15,6 +16,8 @@ namespace JensTornell\ComponentKit;
                         <a href="<?= $item['url']; ?>"><?= $item['title']; ?></a>
                     </div>
                 <?php endforeach; ?>
+                */
+                ?>
             </div>
         </li>
         <li>

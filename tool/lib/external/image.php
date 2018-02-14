@@ -17,16 +17,12 @@ class ExternalImage extends View {
     public function run($id) {
         $args = $this->args($id);
 
-        #print_r($args);
-
         $args['data']['current']['title'] = $this->title($id);
         $args['data']['current']['dir'] = pathinfo($args['data']['current']['path'])['dirname'];
         $args['data']['current']['filename'] = get('file');
         $args['data']['current']['extension'] = pathinfo($args['data']['current']['filename'])['extension'];
         $args['data']['current']['path'] = $args['data']['current']['dir'] . DS . $args['data']['current']['filename'];
         $args['data']['current']['ctype'] = $this->setCtype($args['data']['current']['extension']);
-
-        #print_r($args);
 
         if(!$this->allowed($args['data']['current'])) return site()->visit(site()->errorPage());
 
@@ -37,13 +33,6 @@ class ExternalImage extends View {
 
     protected function title($id) {
         return get('file') . ' - ' . $id . ' - Component Kit';
-    }
-
-    protected function response($args) {
-        $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
-        $path = $basepath . DS . 'tool' . DS . 'templates' . DS . 'home.php';
-
-        return new Response(tpl::load($path, ['data' => $args]), 'html', 200);
     }
 
     protected function setFilepath($current) {

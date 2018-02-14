@@ -8,12 +8,10 @@ class File extends View {
         $args = $this->args($id);
 
         $self = $args['data']['current'];
-        $dir = pathinfo($self['path'])['dirname'];
         $extension = pathinfo(get('file'))['extension'];
 
         $current = [
             'title' => $this->title($id),
-            'dir' => $dir,
             'filename' => get('file'),
             'view' => 'file',
             'extension' => $extension,
@@ -38,22 +36,13 @@ class File extends View {
         }
 
         $args['data']['current'] = $current;
+        
 
-        return $this->response($args);
+        return $this->response('templates' . DS . 'home' . DS . 'component.php', $args);
     }
 
     protected function title($id) {
         return get('file') . ' - ' . $id . ' - Component Kit';
-    }
-
-    protected function response($args) {
-        $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
-        $path = $basepath . DS . 'tool' . DS . 'components' . DS . 'templates' . DS . 'home' . DS . 'component.php';
-
-        $Render = new Render(kirby());
-        $html = $Render->snippet($path, $args);
-
-        return new Response(trim($html), 'html', 200);
     }
 
     protected function filetype($language) {

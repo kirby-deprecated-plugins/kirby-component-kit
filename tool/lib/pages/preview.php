@@ -8,7 +8,6 @@ class Preview extends View {
         $args = $this->args($id);
 
         $args['data']['current']['title'] = $id . ' - Component Kit';
-        $args['data']['current']['dir'] = pathinfo($args['data']['current']['path'])['dirname'];
         $args['data']['current']['view'] = 'preview';
         $args['data']['current']['urls'] = $this->urls([
             'id' => $id,
@@ -18,32 +17,22 @@ class Preview extends View {
                 'html' => 'HTML',
             ]
         ]);
-        $args['data']['current']['pattern'] = $args['data']['current']['dir'] . '/*';
+        $args['data']['current']['pattern'] = $args['data']['current']['path'] . '/*';
         $args['data']['current']['files'] = $this->files($args);
 
-        return $this->response($args);
-    }
-
-    protected function response($args) {
-        $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
-        $path = $basepath . DS . 'tool' . DS . 'components' . DS . 'templates' . DS . 'home' . DS . 'component.php';
-
-        $Render = new Render(kirby());
-        $html = $Render->snippet($path, $args);
-
-        return new Response(trim($html), 'html', 200);
+        return $this->response('templates' . DS . 'home' . DS . 'component.php', $args);
     }
 
     protected function files($args) {
-        extract($args['data']['current']);
-        $glob = glob($pattern, GLOB_BRACE);
+        $current = $args['data']['current'];
+        $glob = glob($current['pattern'], GLOB_BRACE);
         $glob = array_filter($glob, 'is_file');
 
         foreach($glob as $file) {
             $current_filename = basename($file);
             $files[] = [
-                'active' => ($view == 'file' && $filename == $current_filename) ? ' class="active"' : '',
-                'url' => u('component-kit/file/' . $id . '?file=' . $current_filename),
+                'active' => ($current['view'] == 'file' && $current['filename'] == $current_filename) ? ' class="active"' : '',
+                'url' => u('component-kit/file/' . $current['id'] . '?file=' . $current_filename),
                 'filename' => $current_filename,
             ];
         }

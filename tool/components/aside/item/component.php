@@ -14,7 +14,7 @@ if(isset($paths)) {
                 }
                 ?>
                 <li<?= $active; ?>>
-                    <a href="<?= u('component-kit/preview/' . $item['id']); ?>">
+                    <a href="<?= u('component-kit/file/' . $item['id'] . '?file=component.php'); ?>"> <?php /* FEL, ska ta option */ ?>
                         <span>
                             <div class="icon icon-<?= $item['type']; ?>"></div>
                             <div class="text"><?= $key; ?></div>

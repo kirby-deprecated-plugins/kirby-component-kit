@@ -21,47 +21,37 @@ class Finder {
 
 		if($iterator) {
 			$data = [];
+			$blacklist = [];
 			foreach($iterator as $path) {
 				if($path->isDir()) continue;
-				$data = $this->generateData($path, $data);
+
+				$dirpath = pathinfo(strval($path))['dirname'];
+		
+        		if(!in_array($dirpath, $blacklist)) {
+					$data = $this->generateData($dirpath, $data);
+					$blacklist[] = $dirpath;
+				}
 			}
 		}
 
 		return $data;
 	}
 
-	function generateData($path, $data) {
-		$filename = basename($path);
-		$raw = $this->folderName($path);
-		$name = $this->resolveName($raw);
+	function generateData($dirpath, $data) {
+		$raw = $this->folderName($dirpath);
+		$id = $this->resolveName($raw);
 		$type = $this->type($raw);
 
-		if(empty($name)) return $data;
-
-		if(!in_array($filename, $this->whitelist($type))) return $data;
+		if(empty($id)) return $data;
 
 		$data[] = [
-			'path' => strval($path),
-			'raw' => $raw,
-			'name' => $this->prefix . $name,
+			'path' => $dirpath,
 			'type' => $type,
-			'filename' => $filename,
-			'extension' => pathinfo($path)['extension'],
+			'id' => $this->prefix . $id,
+			'raw' => $raw,
 		];
 
 		return $data;
-	}
-
-	function whitelist($type) {
-		$whitelists = [
-			'template' => [
-				'blueprint.yml', 'controller.php', 'component.php',
-			],
-			'snippet' => [
-				'component.php'
-			]
-		];
-		return $whitelists[$type];
 	}
 
 	function resolveName($name) {
@@ -74,9 +64,8 @@ class Finder {
 		return (str::startsWith($name, '--') && !str::contains($name, '/')) ? 'template' : 'snippet';
 	}
 
-	function folderName($path) {
-		$parts = pathinfo($path);
-		$name = strtr($parts['dirname'], [$this->root => '', DS => '/']);
+	function folderName($dirpath) {
+		$name = strtr($dirpath, [$this->root => '', DS => '/']);
 		$name = trim($name, '/');
 		return $name;
 	}

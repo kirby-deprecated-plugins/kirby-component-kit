@@ -1,5 +1,6 @@
 <?php
 namespace JensTornell\ComponentKit;
+use response;
 
 class View {
     public function __construct() {
@@ -23,6 +24,7 @@ class View {
             'flat' => $flat,
         ];
         $args['data']['current']['id'] = $id;
+
         return $args;
     }
 
@@ -71,7 +73,7 @@ class View {
 
     protected function currrent($name, $flat) {
         foreach($flat as $item) {
-            if($item['name'] == $name) {
+            if($item['id'] == $name) {
                 return $item;
             }
         }
@@ -81,31 +83,37 @@ class View {
         $result = [];
     
         foreach($data as $item) {
-            $path = explode('/', $item['name']);
+            $path = explode('/', $item['id']);
             $temp = [];
             $p = &$temp;
 
             $last = array_pop($path);
     
             foreach($path as $s) {
-                $p[$s] = ['_children' => []];
                 $p = &$p[$s]['_children'];
             }
     
             $filename = basename($item['path']);
-    
-            if($filename == 'component.php') {
-    
-                $p[$last] = [
-                    'path' => $item['path'],
-                    'type' => $item['type'],
-                    'id' => $item['name'],
-                    'raw' => $item['raw'],
-                    'filename' => $item['filename'],
-                ];
-                $result = array_merge_recursive($result, $temp);
-            }
+            $dir = pathinfo($item['path'])['dirname'];
+            $p[$last] = [
+                'path' => $dir,
+                'type' => $item['type'],
+                'id' => $item['id'],
+                'raw' => $item['raw'],
+            ];
+
+            $result = array_merge_recursive($result, $temp);
         }
         return $result;
+    }
+
+    protected function response($path, $args) {
+        $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
+        $path = $basepath . DS . 'tool' . DS . 'components' . DS . $path;
+
+        $Render = new Render(kirby());
+        $html = $Render->snippet($path, $args);
+
+        return new Response(trim($html), 'html', 200);
     }
 }

@@ -8,7 +8,7 @@ class Home extends View {
         $args = $this->args(null);
         $args['title'] = 'Kirby Component Kit';
 
-        return $this->response($args);
+        return $this->response('templates' . DS . 'home' . DS . 'component.php', $args);
     }
 
     protected function args($id) {
@@ -20,15 +20,5 @@ class Home extends View {
             'root' => $this->tool_components_root,
         ];
         return $args;
-    }
-
-    protected function response($args) {
-        $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
-        $path = $basepath . DS . 'tool' . DS . 'components' . DS . 'templates' . DS . 'home' . DS . 'component.php';
-
-        $Render = new Render(kirby());
-        $html = $Render->snippet($path, $args);
-
-        return new Response(trim($html), 'html', 200);
     }
 }
