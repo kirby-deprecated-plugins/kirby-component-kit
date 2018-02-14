@@ -9,21 +9,33 @@ aside {
         color: #fff;
         font-weight: normal;
         padding-left: 24px;
-        margin-bottom: 24px;
+        
         line-height: 1;
         display: block;
         text-decoration: none;
 
-        &:before,
-        &:after {
+        .version {
+            font-size: .8rem;
+            padding-left: 24px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        span {
+            display: block;
+            margin-bottom: .5rem;
+        }
+
+        span:before,
+        span:after {
             color: #666;
         }
 
-        &:before {
+        span:before {
             content: '< ';
         }
 
-        &:after {
+        span:after {
             content: ' >';
         }
     }
