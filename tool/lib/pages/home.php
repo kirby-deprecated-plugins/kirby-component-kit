@@ -14,7 +14,7 @@ class Home extends View {
     protected function args($uid) {
         $flat = $this->Helpers->coreSnippetArray();
         $args = [
-            'route' => settings::route(),
+            'route' => settings::path(),
             'flat' => $flat,
             'paths' => $this->Helpers->coreSnippetArrayNested(),
             'root' => $this->Helpers->toolSnippetRoot(),

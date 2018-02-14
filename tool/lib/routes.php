@@ -6,8 +6,8 @@ use tpl;
 kirby()->routes([
     [
         'pattern' => [
-            settings::route(),
-            settings::route() . '/(:any)/(:all)',
+            settings::path(),
+            settings::path() . '/(:any)/(:all)',
         ],
         'action'  => function($view = null, $uid = null) {
             switch($view) {

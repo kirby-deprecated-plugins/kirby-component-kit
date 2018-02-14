@@ -57,4 +57,4 @@ It is discouraged to use this plugin in any project that promotes racism, sexism
 ## Credits
 
 - [Jens Törnell](https://github.com/jenstornell)
-- [Bastian Allgeier](https://github.com/bastianallgeier) - This plugin is inspired by the [Patterns](https://github.com/getkirby-plugins/patterns-plugin) plugin.
+- [Bastian Allgeier](https://github.com/bastianallgeier) - This plugin is inspired by the [Patterns plugin](https://github.com/getkirby-plugins/patterns-plugin).

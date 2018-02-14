@@ -12,7 +12,6 @@ class Preview extends View {
         $args['data']['current']['view'] = 'preview';
         $args['data']['current']['urls'] = [
             'preview' => $this->url($id, 'preview'),
-            'raw' => $this->url($id, 'raw'),
             'html' => $this->url($id, 'html')
         ];
         $args['data']['current']['pattern'] = $args['data']['current']['dir'] . '/*';

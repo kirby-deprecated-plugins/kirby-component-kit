@@ -2,6 +2,6 @@
 namespace JensTornell\ComponentKit;
 ?>
 
-<?= js(settings::js()); ?>
+<?= js(settings::get('preview.js')); ?>
 </body>
 </html>

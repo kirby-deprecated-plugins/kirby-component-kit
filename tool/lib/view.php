@@ -14,9 +14,9 @@ class View {
         $flat = $this->coreComponentsFlat();
         $args = [
             'data' => [
-                'route' => settings::route(),
+                'route' => settings::path(),
                 'root' => $this->tool_components_root,
-                'home' => u(settings::route()),
+                'home' => u(settings::path()),
                 'current' => $this->currrent($id, $flat),
             ],
             'paths' => $this->coreComponentsArray(),
@@ -27,7 +27,7 @@ class View {
     }
 
     protected function url($id, $view) {
-        return u(settings::route() . '/' . $view . '/' . $id);
+        return u(settings::path() . '/' . $view . '/' . $id);
     }
 
     protected function toolSnippetArray() {

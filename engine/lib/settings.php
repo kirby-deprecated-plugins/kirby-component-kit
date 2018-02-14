@@ -3,12 +3,13 @@ namespace JensTornell\ComponentKit;
 use c;
 
 class SettingsClass {
-    private $prefix = 'plugin.component.kit';
+    private $prefix = 'component.kit';
     private $defaults = [
-        'route' => 'component-kit',
+        'path' => 'component-kit',
+        'directory' => null,
         'lock' => false,
-        'js' => false,
-        'css' => false
+        'preview.js' => false,
+        'preview.css' => false
     ];
 
     public function __construct() {
@@ -21,6 +22,10 @@ class SettingsClass {
 }
 
 class settings {
+    public static function get($name) {
+        $SettingsClass = new SettingsClass($name);
+        return $SettingsClass->get($name);
+    }
     public static function __callStatic($name, $args) {
         $SettingsClass = new SettingsClass($name);
         return $SettingsClass->get($name);
