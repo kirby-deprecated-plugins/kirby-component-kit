@@ -28,23 +28,30 @@ class View {
         return $args;
     }
 
-    protected function urls($args) {
+    protected function bar($args) {        
         $root = u(settings::path() . '/');
         $urls = [
-            'preview' => [
-                'title' => 'Preview',
-                'url' => $root . 'preview/' . $args['id'],
+            'preview' => [ 'title' => 'Preview',
             ],
-            'php' => [
+            'code' => [
                 'title' => 'PHP',
-                'url' => $root . 'file/' . $args['id'] . '?file=component.php',
             ],
             'html' => [
                 'title' => 'HTML',
-                'url' => $root . 'html/' . $args['id'],
             ]
         ];
-        return $urls;
+
+        
+        $array = [];
+        foreach($urls as $key => $url) {
+            $array[$key] = $url;
+            $array[$key]['url'] = $root . 'tool/' . $key . '/' . $args['data']['current']['id'] . '/component.php';
+
+            if($args['data']['current']['route_type'] == $key) {    
+                $array[$key]['active'] = true;
+            }
+        }
+        return $array;
     }
 
     protected function toolSnippetArray() {
@@ -97,9 +104,12 @@ class View {
             $dir = pathinfo($item['path'])['dirname'];
             $p[$last] = [
                 'path' => $dir,
-                'type' => $item['type'],
+                'type' => ($item['count'] == 0) ? 'empty' : $item['type'],
                 'id' => $item['id'],
                 'raw' => $item['raw'],
+                'count' => $item['count'],
+                'first' => (isset($item['first'])) ? $item['first'] : null,
+                'aside_url' => $this->asideUrl($item),
             ];
 
             $result = array_merge_recursive($result, $temp);
@@ -115,5 +125,12 @@ class View {
         $html = $Render->snippet($path, $args);
 
         return new Response(trim($html), 'html', 200);
+    }
+
+    protected function asideUrl($item) {
+        if(isset($item['first'])) {
+            $type = ($item['first'] == 'component.php') ? 'preview' : 'code';
+            return u(settings::path() . '/tool/' . $type . '/' . $item['id'] . '/' . $item['first']);
+        }
     }
 }

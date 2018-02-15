@@ -22,36 +22,42 @@ class Finder {
 		if($iterator) {
 			$data = [];
 			$blacklist = [];
+			
 			foreach($iterator as $path) {
-				if($path->isDir()) continue;
+				if($path->isDir()) {
+					$generated = $this->generateData($path->getPathname());
+					$key = crc32($path->getPathname());
 
-				$dirpath = pathinfo(strval($path))['dirname'];
-		
-        		if(!in_array($dirpath, $blacklist)) {
-					$data = $this->generateData($dirpath, $data);
-					$blacklist[] = $dirpath;
+					$data[$key] = $generated;
+					$data[$key]['count'] = 0;
+				} else {
+					$key = crc32(dirname($path->getPathname()));
+
+					if(isset($data[$key])) {
+						$key = crc32(dirname($path->getPathname()));
+						$data[$key]['count']++;
+
+						if(!isset($data[$key]['first']) || $path->getFilename() == 'component.php') {
+							$data[$key]['first'] = $path->getFilename();
+						}
+					}
 				}
 			}
 		}
-
 		return $data;
 	}
 
-	function generateData($dirpath, $data) {
+	function generateData($dirpath) {
 		$raw = $this->folderName($dirpath);
 		$id = $this->resolveName($raw);
 		$type = $this->type($raw);
 
-		if(empty($id)) return $data;
-
-		$data[] = [
+		return [
 			'path' => $dirpath,
 			'type' => $type,
 			'id' => $this->prefix . $id,
 			'raw' => $raw,
 		];
-
-		return $data;
 	}
 
 	function resolveName($name) {

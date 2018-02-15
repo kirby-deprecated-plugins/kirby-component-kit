@@ -14,12 +14,16 @@ if(isset($paths)) {
                 }
                 ?>
                 <li<?= $active; ?>>
-                    <a href="<?= u('component-kit/file/' . $item['id'] . '?file=component.php'); ?>"> <?php /* FEL, ska ta option */ ?>
+                    <?php $element = (isset($item['aside_url'])) ? 'a href="' . $item['aside_url'] . '"' : 'div class="a"'; ?>
+                    <<?= $element; ?>>
                         <span>
                             <div class="icon icon-<?= $item['type']; ?>"></div>
-                            <div class="text"><?= $key; ?></div>
+                            <div class="text">
+                                <?= $key; ?>
+                                <div class="count"><?= $item['count']; ?></div>
+                            </div>
                         </span>
-                    </a>
+                    </<?= $element; ?>>
 
                     <?= snippet('ckit/aside/item/files', ['item' => $item]); ?>
                 </li>

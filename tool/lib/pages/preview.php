@@ -3,39 +3,23 @@ namespace JensTornell\ComponentKit;
 use response;
 use tpl;
 
-class Preview extends View {
-    public function run($id) {
-        $args = $this->args($id);
+class Preview extends Filex {
+    public function run($uid) {
+        $this->filename = basename($uid);
+        $this->dirname = dirname($uid);
 
-        $args['data']['current']['title'] = $id . ' - Component Kit';
+        $args = $this->args($this->dirname);
+
+        $args['data']['current']['title'] = $this->dirname . ' - Component Kit';
+        $args['data']['current']['filename'] = $this->filename;
         $args['data']['current']['view'] = 'preview';
-        $args['data']['current']['urls'] = $this->urls([
-            'id' => $id,
-            'items' => [
-                'preview' => 'Preview',
-                'php' => 'PHP',
-                'html' => 'HTML',
-            ]
-        ]);
-        $args['data']['current']['pattern'] = $args['data']['current']['path'] . '/*';
-        $args['data']['current']['files'] = $this->files($args);
+        $args['data']['current']['pattern'] = $args['data']['current']['path'] . '/*';        
+        $args['data']['current']['route_type'] = 'preview';
+        $args['data']['current']['preview_url'] = u(settings::path() . '/render/raw/' . $this->dirname);
+
+        $args['data']['current']['files'] = $this->files($args['data']['current']);
+        $args['data']['current']['bar'] = $this->bar($args);
 
         return $this->response('templates' . DS . 'home' . DS . 'component.php', $args);
-    }
-
-    protected function files($args) {
-        $current = $args['data']['current'];
-        $glob = glob($current['pattern'], GLOB_BRACE);
-        $glob = array_filter($glob, 'is_file');
-
-        foreach($glob as $file) {
-            $current_filename = basename($file);
-            $files[] = [
-                'active' => ($current['view'] == 'file' && $current['filename'] == $current_filename) ? ' class="active"' : '',
-                'url' => u('component-kit/file/' . $current['id'] . '?file=' . $current_filename),
-                'filename' => $current_filename,
-            ];
-        }
-        return $files;
     }
 }

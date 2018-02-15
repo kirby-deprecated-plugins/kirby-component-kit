@@ -14,24 +14,24 @@ class ExternalImage extends View {
         'jpg'
     ];
 
-    public function run($id) {
-        $args = $this->args($id);
+    public function run($uid) {
+        $this->filename = basename($uid);
+        $this->dirname = dirname($uid);
+        
+        $args = $this->args($this->dirname);
 
-        $args['data']['current']['title'] = $this->title($id);
-        $args['data']['current']['filename'] = get('file');
-        $args['data']['current']['extension'] = pathinfo($args['data']['current']['filename'])['extension'];
+        $args['data']['current']['title'] = $this->filename . ' - ' . $this->dirname . ' - Component Kit';
+        $args['data']['current']['filename'] = $this->filename;
+        $args['data']['current']['extension'] = pathinfo($this->filename)['extension'];
         $args['data']['current']['filepath'] = $args['data']['current']['path'] . DS . $args['data']['current']['filename'];
         $args['data']['current']['ctype'] = $this->setCtype($args['data']['current']['extension']);
+
 
         if(!$this->allowed($args['data']['current'])) return site()->visit(site()->errorPage());
 
         $image = file_get_contents($args['data']['current']['filepath']);
         
         return new Response($image, $args['data']['current']['ctype'], 200);
-    }
-
-    protected function title($id) {
-        return get('file') . ' - ' . $id . ' - Component Kit';
     }
 
     protected function setFilepath($current) {

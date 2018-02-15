@@ -4,7 +4,7 @@
     if($item['id'] ==  $id) {
         if(isset($files)) {
             foreach($files as $file) : ?>
-                <li<?= $file['active']; ?>>
+                <li<?= (isset($file['active'])) ? ' class="active"' : ''; ?>>
                     <a href="<?= $file['url']; ?>">
                         <span>
                             <div class="icon icon-file"></div>

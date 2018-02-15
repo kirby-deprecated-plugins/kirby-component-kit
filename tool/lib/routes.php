@@ -5,6 +5,46 @@ use tpl;
 
 kirby()->routes([
     [
+        'pattern' => settings::path() . '/tool/code/(:all)',
+        'action' => function($uid) {
+            $Code = new Code();
+            $response = $Code->run($uid);
+            return $response;
+        }
+    ],
+    [
+        'pattern' => settings::path() . '/tool/image/(:all)',
+        'action' => function($uid) {
+            $Code = new Code();
+            $response = $Code->run($uid);
+            return $response;
+        }
+    ],
+    [
+        'pattern' => settings::path() . '/tool/preview/(:all)',
+        'action' => function($uid) {
+            $Preview = new Preview();
+            $response = $Preview->run($uid);
+            return $response;
+        }
+    ],
+    [
+        'pattern' => settings::path() . '/render/image/(:all)',
+        'action' => function($uid) {
+            $ExternalImage = new ExternalImage();
+            $response = $ExternalImage->run($uid);
+            return $response;
+        }
+    ],
+    [
+        'pattern' => settings::path() . '/render/raw/(:all)',
+        'action' => function($uid) {
+            $ExternalRaw = new ExternalRaw();
+            $response = $ExternalRaw->run($uid);
+            return $response;
+        }
+    ],
+    [
         'pattern' => [
             settings::path(),
             settings::path() . '/(:any)/(:all)',
@@ -15,18 +55,14 @@ kirby()->routes([
                     $Home = new Home();
                     $response = $Home->run($uid);
                     break;
-                case 'file':
-                    $File = new File();
-                    $response = $File->run($uid);
-                    break;
-                case 'image':
+                /*case 'image':
                     $ExternalImage = new ExternalImage();
                     $response = $ExternalImage->run($uid);
                     break;
                 case 'raw':
                     $ExternalRaw = new ExternalRaw();
                     $response = $ExternalRaw->run($uid);
-                    break;
+                    break;*/
                 case 'html':
                     $Html = new Html();
                     $response = $Html->run($uid);

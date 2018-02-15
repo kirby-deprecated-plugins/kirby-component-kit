@@ -37,7 +37,7 @@ aside {
         list-style: none;
 
         li {
-            padding-left: 24px;
+            padding-left: 28px;
             position: relative;
 
             &.active {
@@ -52,7 +52,18 @@ aside {
                 }
             }
 
-            a {
+            .a {
+                cursor: default;
+
+                &:hover {
+                    &:before {
+                        background: none !important;
+                    }
+                }
+            }
+
+            a,
+            .a {
                 color: #aaa;
                 text-decoration: none;
                 display: block;
@@ -112,7 +123,18 @@ aside {
                 }
 
                 .text {
+                    .count {
+                        display: inline-block;
+                        color: #666;
+                        font-size: .8rem;
 
+                        &:before {
+                            content: '(';
+                        }
+                        &:after {
+                            content: ')';
+                        }
+                    }
                 }
 
                 /*&:hover {

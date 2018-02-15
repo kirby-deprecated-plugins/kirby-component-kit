@@ -5,24 +5,16 @@ namespace JensTornell\ComponentKit;
     <ul>
         <li>
             <div class="views">
-                <?php /*
-                <?php foreach($data['current']['urls'] as $key => $item) : ?>
-                    <?php
-                    $match = ($data['current']['view'] == $key);
-                    $filematch = ($data['current']['filename'] == 'component.php' && $key == 'php' && $data['current']['view'] == 'file');
-
-                    $active = ($match || $filematch) ? ' active' : ''; ?>
-                    <div class="view view-<?= $key . $active; ?>">
+                <?php foreach($data['current']['bar'] as $key => $item) : ?>
+                    <div class="view view-<?= $key; ?><?= (isset($item['active'])) ? ' active' : ''; ?>">
                         <a href="<?= $item['url']; ?>"><?= $item['title']; ?></a>
                     </div>
                 <?php endforeach; ?>
-                */
-                ?>
             </div>
         </li>
         <li>
             <div class="raw">
-                <a href="<?= u(settings::path() . '/raw/' . $data['current']['id']); ?>" target="_blank"></a>
+                <a href="<?= u(settings::path() . '/render/raw/' . $data['current']['id']); ?>" target="_blank"></a>
             </div>
         </li>
     </ul>

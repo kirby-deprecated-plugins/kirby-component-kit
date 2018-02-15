@@ -1,5 +1,7 @@
 <div class="preview-image">
-    <img src="<?= $data['current']['url']; ?>">
+    <a href="<?= $data['current']['url']; ?>" target="_blank">
+        <img src="<?= $data['current']['url']; ?>">
+    </a>
 </div>
 
 <?php
