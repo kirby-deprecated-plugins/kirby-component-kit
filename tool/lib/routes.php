@@ -23,9 +23,17 @@ kirby()->routes([
     [
         'pattern' => settings::path() . '/tool/preview/(:all)',
         'action' => function($uid) {
-            $Preview = new Preview();
+            #echo 'ROSSE';
+
+            #echo 'test';
+            $file = new FileAPI();
+            $test = $file->set('tool', 'preview', $uid);
+            print_r($test);
+            #die;
+
+            /*$Preview = new Preview();
             $response = $Preview->run($uid);
-            return $response;
+            return $response;*/
         }
     ],
     [

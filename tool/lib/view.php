@@ -13,6 +13,9 @@ class View {
 
     protected function args($id) {
         $flat = $this->coreComponentsFlat();
+
+        print_r($flat);
+
         $args = [
             'data' => [
                 'route' => settings::path(),
@@ -66,7 +69,8 @@ class View {
         return $this->dataToNested($this->coreComponentsFlat());
     }
 
-    protected function fileWhitelists() {
+    // NOT USED
+    /*protected function fileWhitelists() {
         $whitelists = [
             'code' => [
                 'css', 'js', 'scss', 'sass', 'less', 'php', 'yaml', 'yml'
@@ -76,16 +80,17 @@ class View {
             ]
         ];
         return $whitelists;
-    }
+    }*/
 
-    protected function currrent($name, $flat) {
+    /*protected function currrent($name, $flat) {
         foreach($flat as $item) {
             if($item['id'] == $name) {
                 return $item;
             }
         }
-    }
+    }*/
 
+    // I FILES CLASS
     protected function dataToNested($data) {
         $result = [];
     

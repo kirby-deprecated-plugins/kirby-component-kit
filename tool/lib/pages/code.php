@@ -39,6 +39,7 @@ class Code extends Filex {
         return $this->response('templates' . DS . 'home' . DS . 'component.php', $args);
     }
 
+    /*
     protected function filetype($language) {
         switch($language) {
             case 'yml':
@@ -49,9 +50,9 @@ class Code extends Filex {
                 break;
         }
         return $language;
-    }
+    }*/
 
-    protected function whitelists() {
+    /*protected function whitelists() {
         $whitelists = [
             'code' => [
                 'css', 'js', 'scss', 'sass', 'less', 'php', 'yaml', 'yml'
@@ -69,5 +70,5 @@ class Code extends Filex {
                 return $group;
             }
         }
-    }
+    }*/
 }

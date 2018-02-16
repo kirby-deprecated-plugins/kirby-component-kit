@@ -75,4 +75,42 @@ class Finder {
 		$name = trim($name, '/');
 		return $name;
 	}
+
+	public function dataToNested($data) {
+        $result = [];
+    
+        foreach($data as $item) {
+            $path = explode('/', $item['id']);
+            $temp = [];
+            $p = &$temp;
+
+            $last = array_pop($path);
+    
+            foreach($path as $s) {
+                $p = &$p[$s]['_children'];
+            }
+    
+            $filename = basename($item['path']);
+            $dir = pathinfo($item['path'])['dirname'];
+            $p[$last] = [
+                'path' => $dir,
+                'type' => ($item['count'] == 0) ? 'empty' : $item['type'],
+                'id' => $item['id'],
+                'raw' => $item['raw'],
+                'count' => $item['count'],
+                'first' => (isset($item['first'])) ? $item['first'] : null,
+                'aside_url' => $this->asideUrl($item),
+            ];
+
+            $result = array_merge_recursive($result, $temp);
+        }
+        return $result;
+	}
+	
+	protected function asideUrl($item) {
+        if(isset($item['first'])) {
+            $type = ($item['first'] == 'component.php') ? 'preview' : 'code';
+            return u(settings::path() . '/tool/' . $type . '/' . $item['id'] . '/' . $item['first']);
+        }
+    }
 }

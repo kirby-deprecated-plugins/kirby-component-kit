@@ -26,6 +26,7 @@ class Filex extends View {
         return $files;
     }
 
+    // REMOVE
     function filesize($bytes) {
         if ($bytes == 0)
             return "0 byte";

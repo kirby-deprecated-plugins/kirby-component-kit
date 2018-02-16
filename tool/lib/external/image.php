@@ -44,7 +44,7 @@ class ExternalImage extends View {
             return true;
     }
 
-    protected function setCtype($extension) {
+    /*protected function setCtype($extension) {
         switch($extension) {
             case "gif":
                 $ctype = "image/gif";
@@ -59,5 +59,5 @@ class ExternalImage extends View {
             default:
         }
         return $ctype;
-    }
+    }*/
 }
