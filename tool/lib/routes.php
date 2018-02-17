@@ -15,27 +15,8 @@ kirby()->routes([
     [
         'pattern' => settings::path() . '/tool/image/(:all)',
         'action' => function($uid) {
-            $Globals = new Globals();
-            $Core = new Core();
-            $File = new FileAPI();
-            $Image = new ImageAPI();
-            $Bar = new BarAPI();
-
-            $globals = $Globals->set();
-            $file = $File->set('tool', 'image', $uid);
-            $image = $Image->set($globals, $file);
-
-            $bar = $Bar->set($file);
-
-            print_r($bar);
-
-            $results = (object)array_merge(
-                (array)$file,
-                (array)$image,
-                (array)$bar
-            );
-            
-            print_r($results);
+            $ToolImage = new RouteToolImage();
+            $ToolImage->set('tool', 'image', $uid);
 
             return $response;
         }

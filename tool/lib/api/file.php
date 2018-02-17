@@ -2,14 +2,9 @@
 namespace JensTornell\ComponentKit;
 
 class FileAPI {
-    public function __construct() {
-        $this->Files = new FilesAPI();
-        $this->Globals = new Globals();
-    }
-
-    public function set($template, $view, $uid) {
-        $this->files = $this->Files->set();
-        $this->globals = $this->Globals->set();
+    public function set($template, $view, $uid, $globals) {
+        //$this->globals = $this->Globals->set();
+        #$this->files = $this->Files->set($globals, $core);
 
         $filename = basename($uid);
         $current = $this->current(dirname($uid), $this->files->flat);

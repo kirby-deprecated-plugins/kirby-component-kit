@@ -2,42 +2,20 @@
 namespace JensTornell\ComponentKit;
 
 class FilesAPI {
-    private $Core;
-    private $Finder;
-    private $Globals;
-
-    public function __construct() {
-        $this->Core = new Core();
-        $this->Finder = new finder();
-        $this->Globals = new Globals();
-    }
-
-    public function set() {
-        $this->globals = $this->Globals->set();
-        $core = $this->globals->core;
-
-        $this->Core->register($core->roots->components);
-        
-        $this->flat = $this->setFlat($core->roots->components);
+    public function set($dirpath, $Finder) {
+        $flat = $this->setFlat($Finder, $dirpath);
 
         return (object)[
-            'flat' => $this->flat,
-            'nested' => $this->setNested()
+            'flat' => $flat,
+            'nested' => $this->setNested($Finder, $flat)
         ];
     }
 
-    private function setFlat($root) {
-        return $this->Finder->paths($root);
+    private function setFlat($Finder, $root) {
+        return $Finder->paths($root);
     }
 
-    private function setNested() {
-        return $this->Finder->dataToNested($this->flat);
+    private function setNested($Finder, $flat) {
+        return $Finder->dataToNested($flat);
     }
 }
-
-#$test = new FilesAPI(new Globals());
-#$array = $test->set();
-
-#print_r($array);
-
-#die;

@@ -11,6 +11,8 @@ require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'file.php';
 require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'image.php';
 require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'bar.php';
 
+require_once __DIR__ . DS . 'lib' . DS . 'routes' . DS . 'tool-image.php';
+
 require_once __DIR__ . DS . 'lib' . DS . 'pages' . DS . 'file.php';
 require_once __DIR__ . DS . 'lib' . DS . 'pages' . DS . 'preview.php';
 require_once __DIR__ . DS . 'lib' . DS . 'pages' . DS . 'home.php';
