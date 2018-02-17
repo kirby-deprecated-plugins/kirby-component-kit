@@ -16,9 +16,10 @@ class FileAPI {
         $filepath = $current['path'] . DS . $filename;
         $extension = pathinfo($filename)['extension'];
         $group = $this->group($extension);
+        $filesize = $this->filesize($filepath);
 
         $result = (object)[
-            'component' => [
+            'component' => (object)[
                 'id' => $current['id'],
                 'raw' => $current['raw'],
                 'view' => $view,
@@ -33,16 +34,21 @@ class FileAPI {
                 'path' => $filepath,
                 'name' => $filename,
                 'first' => $current['first'],
-                'size' => $this->humanFilesize(filesize($filepath)),
+                'filesize' => $filesize,
+                'size' => $this->humanFilesize($filesize),
                 'extension' => $extension,
                 'count' => $current['count'],
                 'group' => $group,
                 'type' => $this->filetype($extension),
-                'image_url' => $this->url($current['id'], $filename, $group),
             ],
         ];
-        $result->component = array_filter($result->file);
         return $result;
+    }
+
+    private function filesize($filepath) {
+        if(!file_exists($filepath)) return;
+
+        return filesize($filepath);
     }
 
     private function url($id, $filename, $group) {

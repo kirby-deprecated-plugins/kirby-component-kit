@@ -8,6 +8,8 @@ require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'globals.php';
 require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'core.php';
 require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'files.php';
 require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'file.php';
+require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'image.php';
+require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'bar.php';
 
 require_once __DIR__ . DS . 'lib' . DS . 'pages' . DS . 'file.php';
 require_once __DIR__ . DS . 'lib' . DS . 'pages' . DS . 'preview.php';
