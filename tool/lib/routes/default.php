@@ -1,5 +1,6 @@
 <?php
 namespace JensTornell\ComponentKit;
+use response;
 
 class RouteDefault {
     public function __construct() {
@@ -21,6 +22,7 @@ class RouteDefault {
         $this->file = $this->File->set('tool', 'image', $uid, $this->globals, $this->files->flat);
 
         return (object)array_merge(
+            (array)$this->globals,
             (array)$this->file,
             (array)$this->files
         );
@@ -29,5 +31,13 @@ class RouteDefault {
     protected function register($globals) {
         $this->Core->register($globals->tool->roots->components);
         $this->Core->register($globals->core->roots->components);
+    }
+
+    protected function response($args, $results) {
+        $Render = new Render(kirby());
+
+        $html = $Render->snippet($args['path'], ['data' => $results]);
+
+        return new Response(trim($html), 'html', 200);
     }
 }

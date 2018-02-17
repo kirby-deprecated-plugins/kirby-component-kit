@@ -7,11 +7,12 @@
     <link rel="icon" href="<?= u('assets/plugins/kirby-component-kit/png/favicon.png'); ?>" type="image/png" />
 
     <?= css('assets/plugins/kirby-component-kit/css/dist/style.min.css'); ?>
-    
-    <title><?= $data['current']['title']; ?></title>
+
+    <title><?php #$data['current']['title']; ?></title>
     <?php /*
     <link rel="icon" href="https://assets.getkirby.com/assets/images/favicon.png" type="image/png" />
     */
+    
     ?>
 </head>
 <body>

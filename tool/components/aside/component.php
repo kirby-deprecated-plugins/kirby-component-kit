@@ -1,9 +1,7 @@
-<?php
-namespace JensTornell\ComponentKit;
-?>
+    
 <aside>
     <h1>
-        <a href="<?= $data['home']; ?>">
+        <a href="<?= $data->tool->urls->home; ?>">
             <span>Component Kit</span>
         </a>
     </h1>

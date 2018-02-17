@@ -31,7 +31,7 @@ class View {
         return $args;
     }
 
-    protected function bar($args) {        
+    /*protected function bar($args) {        
         $root = u(settings::path() . '/');
         $urls = [
             'preview' => [ 'title' => 'Preview',
@@ -55,9 +55,9 @@ class View {
             }
         }
         return $array;
-    }
+    }*/
 
-    protected function toolSnippetArray() {
+    /*protected function toolSnippetArray() {
         return $this->Finder->paths($this->tool_components_root, 'ckit/');
     }
 
@@ -67,7 +67,7 @@ class View {
 
     protected function coreComponentsArray() {
         return $this->dataToNested($this->coreComponentsFlat());
-    }
+    }*/
 
     // NOT USED
     /*protected function fileWhitelists() {
@@ -122,7 +122,7 @@ class View {
         return $result;
     }
 
-    protected function response($path, $args) {
+    /*protected function response($path, $args) {
         $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
         $path = $basepath . DS . 'tool' . DS . 'components' . DS . $path;
 
@@ -130,7 +130,7 @@ class View {
         $html = $Render->snippet($path, $args);
 
         return new Response(trim($html), 'html', 200);
-    }
+    }*/
 
     protected function asideUrl($item) {
         if(isset($item['first'])) {

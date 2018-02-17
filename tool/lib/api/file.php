@@ -9,6 +9,7 @@ class FileAPI {
         $extension = pathinfo($filename)['extension'];
         $group = $this->group($extension);
         $filesize = $this->filesize($filepath);
+        $template_root = $globals->tool->roots->components . DS . '--' . $template . DS . 'component.php';
 
         $result = (object)[
             'component' => (object)[
@@ -21,6 +22,7 @@ class FileAPI {
             ],
             'roots' => (object)[
                 'component' => $current['path'],
+                'template' => $template_root,
             ],
             'file' => (object)[
                 'path' => $filepath,
@@ -34,6 +36,7 @@ class FileAPI {
                 'type' => $this->filetype($extension),
             ],
         ];
+        #print_r($result);
         return $result;
     }
 

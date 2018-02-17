@@ -16,9 +16,11 @@ kirby()->routes([
         'pattern' => settings::path() . '/tool/image/(:all)',
         'action' => function($uid) {
             $ToolImage = new RouteToolImage();
-            $ToolImage->set('tool', 'image', $uid);
-
-            return $response;
+            return $ToolImage->set([
+                'template' => 'tool',
+                'view' => 'image',
+                'uid' => $uid
+            ]);
         }
     ],
     [
