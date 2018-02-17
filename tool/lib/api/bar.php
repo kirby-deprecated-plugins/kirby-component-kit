@@ -2,9 +2,9 @@
 namespace JensTornell\ComponentKit;
 
 class BarAPI {
-    public function set($file) {
+    public function set($view, $id) {
         return [
-            'bar' => $this->urls($file->component->view, $file->component->id),
+            'bar' => $this->urls($view, $id),
         ];
     }
 
