@@ -9,34 +9,29 @@ class FileAPI {
         $extension = pathinfo($filename)['extension'];
         $group = $this->group($extension);
         $filesize = $this->filesize($filepath);
-        $template_root = $globals->tool->roots->components . DS . '--' . $template . DS . 'component.php';
+        $template_root = $globals->roots->tool_components . DS . '--' . $template . DS . 'component.php';
 
         $result = (object)[
-            'component' => (object)[
+            'current' => (object)[
+                'content_type' => $this->ctype($extension),
                 'id' => $current['id'],
+                'filecount' => $current['count'],
+                'filegroup' => $group,
+                'filename' => $filename,
+                'filename_first' => $current['first'],
+                'filepath' => $filepath,
+                'filetype' => $this->filetype($extension),
+                'extension' => $extension,
                 'raw' => $current['raw'],
                 'view' => $view,
                 'template' => $template,
+                'component_root' => $current['path'],
+                'templatepath' => $template_root,
                 'type' => $current['type'],
-                'ctype' => $this->ctype($extension),
-            ],
-            'roots' => (object)[
-                'component' => $current['path'],
-                'template' => $template_root,
-            ],
-            'file' => (object)[
-                'path' => $filepath,
-                'name' => $filename,
-                'first' => $current['first'],
                 'filesize' => $filesize,
-                'size' => $this->humanFilesize($filesize),
-                'extension' => $extension,
-                'count' => $current['count'],
-                'group' => $group,
-                'type' => $this->filetype($extension),
+                'filesize_human' => $this->humanFilesize($filesize),
             ],
         ];
-        #print_r($result);
         return $result;
     }
 

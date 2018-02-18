@@ -11,22 +11,16 @@ class Globals {
 
     public function set() {
         return (object)[
-            'core' => (object)[
-                'roots' => (object)[
-                    'components' => settings::directory(),
-                ]
+            'roots' => (object)[
+                'components' => settings::directory(),
+                'tool' => settings::path(),
+                'tool_components' => $this->toolComponentsRoot(),
+                'tool_plugin' => $this->toolPluginRoot(),
             ],
-            'tool' => (object)[
-                'path' => settings::path(),
-                'urls' => (object)[
-                    'home' => u(settings::path()),
-                    'css' => settings::get('preview.css'),
-                    'js' => settings::get('preview.js'),
-                ],
-                'roots' => (object)[
-                    'plugin' => $this->toolPluginRoot(),
-                    'components' => $this->toolComponentsRoot()
-                ],
+            'urls' => (object)[
+                'home' => u(settings::path()),
+                'css' => settings::get('preview.css'),
+                'js' => settings::get('preview.js'),
             ],
         ];
     }

@@ -25,15 +25,4 @@ class Filex extends View {
         }
         return $files;
     }
-
-    // REMOVE
-    function filesize($bytes) {
-        if ($bytes == 0)
-            return "0 byte";
-    
-        $s = array('byte', 'kB', 'MB', 'GB', 'TB', 'PB');
-        $e = floor(log($bytes, 1024));
-    
-        return round($bytes/pow(1024, $e), 2). ' ' . $s[$e];
-    }
 }

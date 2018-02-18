@@ -31,65 +31,6 @@ class View {
         return $args;
     }
 
-    /*protected function bar($args) {        
-        $root = u(settings::path() . '/');
-        $urls = [
-            'preview' => [ 'title' => 'Preview',
-            ],
-            'code' => [
-                'title' => 'PHP',
-            ],
-            'html' => [
-                'title' => 'HTML',
-            ]
-        ];
-
-        
-        $array = [];
-        foreach($urls as $key => $url) {
-            $array[$key] = $url;
-            $array[$key]['url'] = $root . 'tool/' . $key . '/' . $args['data']['current']['id'] . '/component.php';
-
-            if($args['data']['current']['route_type'] == $key) {    
-                $array[$key]['active'] = true;
-            }
-        }
-        return $array;
-    }*/
-
-    /*protected function toolSnippetArray() {
-        return $this->Finder->paths($this->tool_components_root, 'ckit/');
-    }
-
-    protected function coreComponentsFlat() {
-        return $this->Finder->paths(settings::directory());
-    }
-
-    protected function coreComponentsArray() {
-        return $this->dataToNested($this->coreComponentsFlat());
-    }*/
-
-    // NOT USED
-    /*protected function fileWhitelists() {
-        $whitelists = [
-            'code' => [
-                'css', 'js', 'scss', 'sass', 'less', 'php', 'yaml', 'yml'
-            ],
-            'image' => [
-                'jpg', 'jpeg', 'png', 'gif'
-            ]
-        ];
-        return $whitelists;
-    }*/
-
-    /*protected function currrent($name, $flat) {
-        foreach($flat as $item) {
-            if($item['id'] == $name) {
-                return $item;
-            }
-        }
-    }*/
-
     // I FILES CLASS
     protected function dataToNested($data) {
         $result = [];
@@ -121,16 +62,6 @@ class View {
         }
         return $result;
     }
-
-    /*protected function response($path, $args) {
-        $basepath = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
-        $path = $basepath . DS . 'tool' . DS . 'components' . DS . $path;
-
-        $Render = new Render(kirby());
-        $html = $Render->snippet($path, $args);
-
-        return new Response(trim($html), 'html', 200);
-    }*/
 
     protected function asideUrl($item) {
         if(isset($item['first'])) {

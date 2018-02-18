@@ -18,8 +18,10 @@ class RouteDefault {
 
         $this->register($this->globals);
 
-        $this->files = $this->Files->set($this->globals->core->roots->components, $this->Finder);
+        $this->files = $this->Files->set($this->globals->roots->components, $this->Finder);
         $this->file = $this->File->set('tool', 'image', $uid, $this->globals, $this->files->flat);
+
+        unset($this->files->flat);
 
         return (object)array_merge(
             (array)$this->globals,
@@ -29,8 +31,8 @@ class RouteDefault {
     }
 
     protected function register($globals) {
-        $this->Core->register($globals->tool->roots->components);
-        $this->Core->register($globals->core->roots->components);
+        $this->Core->register($globals->roots->tool_components);
+        $this->Core->register($globals->roots->components);
     }
 
     protected function response($args, $results) {

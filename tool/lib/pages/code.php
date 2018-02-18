@@ -38,37 +38,4 @@ class Code extends Filex {
 
         return $this->response('templates' . DS . 'home' . DS . 'component.php', $args);
     }
-
-    /*
-    protected function filetype($language) {
-        switch($language) {
-            case 'yml':
-                $language = 'yaml';
-                break;
-            case 'scss':
-                $language = 'sass';
-                break;
-        }
-        return $language;
-    }*/
-
-    /*protected function whitelists() {
-        $whitelists = [
-            'code' => [
-                'css', 'js', 'scss', 'sass', 'less', 'php', 'yaml', 'yml'
-            ],
-            'image' => [
-                'jpg', 'jpeg', 'png', 'gif'
-            ]
-        ];
-        return $whitelists;
-    }
-
-    protected function group($extension) {
-        foreach($this->whitelists() as $group => $collections) {
-            if(in_array($extension, $collections)) {
-                return $group;
-            }
-        }
-    }*/
 }
