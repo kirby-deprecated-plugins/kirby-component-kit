@@ -1,4 +1,3 @@
-
 <?= snippet('ckit/header'); ?>
 
 <div class="wrap">

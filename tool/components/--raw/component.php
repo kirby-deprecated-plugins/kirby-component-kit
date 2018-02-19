@@ -4,7 +4,7 @@ use str;
 
 $Render = new Render(kirby());
 
-$html = $Render->snippet($data['current']['path'] . DS . 'component.php', $data);
+$html = $Render->snippet($data->current->filepath, ['data' => $data]);
 
 snippet('ckit/raw/header');
 echo $html;

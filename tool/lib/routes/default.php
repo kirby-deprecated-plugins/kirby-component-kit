@@ -4,30 +4,35 @@ use response;
 
 class RouteDefault {
     public function __construct() {
-        $this->Globals = new Globals();
+        $this->Globals = new GlobalsAPI();
         $this->Core = new CoreAPI();
         $this->File = new FileAPI();
-        $this->Files = new FilesAPI();
+        $this->Components = new ComponentsAPI();
         $this->Finder = new Finder();
         $this->Image = new ImageAPI();
         $this->Bar = new BarAPI();
+        $this->Files = new FilesAPI();
     }
 
-    protected function base($uid) {
+    protected function base($uid, $view) {
         $this->globals = $this->Globals->set();
 
         $this->register($this->globals);
 
-        $this->files = $this->Files->set($this->globals->roots->components, $this->Finder);
-        $this->file = $this->File->set('tool', 'image', $uid, $this->globals, $this->files->flat);
+        $this->components = $this->Components->set($this->globals->roots->components, $this->Finder);
+        $this->file = $this->File->set('tool', $view, $uid, $this->globals, $this->components->flat);
+        $this->files = $this->Files->set((object)[
+            'current' => $this->file
+        ]);
 
-        unset($this->files->flat);
+        unset($this->components->flat);
 
-        return (object)array_merge(
-            (array)$this->globals,
-            (array)$this->file,
-            (array)$this->files
-        );
+        return [
+            'globals' => $this->globals,
+            'current' => $this->file,
+            'files' => $this->files,
+            'components' => $this->components->nested
+        ];
     }
 
     protected function register($globals) {

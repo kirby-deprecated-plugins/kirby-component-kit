@@ -1,7 +1,6 @@
-<?php print_r($data); ?>
 <?php
-if(isset($data->nested)) {
-    foreach($data->nested as $key => $item) : ?>
+if(isset($data->components)) {
+    foreach($data->components as $key => $item) : ?>
         <ul>
             <li>
                 <?php $element = (isset($item['aside_url'])) ? 'a href="' . $item['aside_url'] . '"' : 'div class="a"'; ?>
@@ -10,18 +9,22 @@ if(isset($data->nested)) {
                         <div class="icon icon-<?= $item['type']; ?>"></div>
                         <div class="text">
                             <?= $key; ?>
-                            <div class="count"><?= $item['count']; ?></div>
+                            <?php if($item['count'] > 0) : ?>
+                                <div class="count"><?= $item['count']; ?></div>
+                            <?php endif; ?>
                         </div>
                     </span>
                 </<?= $element; ?>>
 
-                <?= snippet('ckit/aside/item/files', ['item' => $item]); ?>
+                <?php if(isset($data->current->id) && $data->current->id == $item['id']) : ?>
+                    <?= snippet('ckit/aside/item/files', ['item' => $item]); ?>
+                <?php endif; ?>
             </li>
             
             <?php if(isset($item['_children'])) : ?>
                 <li>
                     <?php
-                        $data['paths'] = $item['_children'];
+                        $data->components = $item['_children'];
                         snippet('ckit/aside/item', ['data' => $data]);
                     ?>
                 </li>

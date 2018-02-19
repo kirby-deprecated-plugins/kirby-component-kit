@@ -1,8 +1,5 @@
-<?php extract($data['current']); ?>
-
 <div class="preview">
-
-    <iframe src="<?= $data['current']['preview_url']; ?>"></iframe>
+    <iframe src="<?= $data->globals->urls->home . '/render/raw/' . $data->current->id . '/component.php'; ?>"></iframe>
 </div>
 
-<?= snippet('ckit/main/views/preview/actions', ['data' => $data]); ?>
+<?= snippet('ckit/main/views/preview/actions'); ?>

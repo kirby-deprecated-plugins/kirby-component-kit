@@ -1,7 +1,7 @@
 <?php
 namespace JensTornell\ComponentKit;
 
-class Globals {
+class GlobalsAPI {
     private $kirby;
 
     public function __construct() {
@@ -10,9 +10,12 @@ class Globals {
     }
 
     public function set() {
-        return (object)[
+        $plugin_root = $this->toolPluginRoot();
+        $results = (object)[
             'roots' => (object)[
                 'components' => settings::directory(),
+                'template_raw' => str_replace('/', DS, $plugin_root . '/tool/components/--raw/component.php'),
+                'template_tool' => str_replace('/', DS, $plugin_root . '/tool/components/--tool/component.php'),
                 'tool' => settings::path(),
                 'tool_components' => $this->toolComponentsRoot(),
                 'tool_plugin' => $this->toolPluginRoot(),
@@ -23,6 +26,7 @@ class Globals {
                 'js' => settings::get('preview.js'),
             ],
         ];
+        return $results;
     }
 
     // Tool plugin root

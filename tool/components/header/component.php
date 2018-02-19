@@ -9,10 +9,5 @@
     <?= css('assets/plugins/kirby-component-kit/css/dist/style.min.css'); ?>
 
     <title><?php #$data['current']['title']; ?></title>
-    <?php /*
-    <link rel="icon" href="https://assets.getkirby.com/assets/images/favicon.png" type="image/png" />
-    */
-    
-    ?>
 </head>
 <body>

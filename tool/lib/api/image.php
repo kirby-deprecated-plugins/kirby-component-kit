@@ -5,8 +5,8 @@ class ImageAPI {
     public function set($globals, $file) {
         $result = (object)[
             'image' => (object)[
-                'url' => $this->url($globals->urls->home, $file->current->id, $file->current->filename, $file->current->filegroup),
-                'dimensions' => $this->dimensions($file->current->filepath),
+                'url' => $this->url($globals->urls->home, $file->id, $file->filename, $file->filegroup),
+                'dimensions' => $this->dimensions($file->filepath),
             ]
         ];
         return $result;

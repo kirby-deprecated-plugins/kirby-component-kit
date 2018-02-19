@@ -1,19 +1,15 @@
 <div class="home">
     <div class="text">
-        <h1>Component Kit!</h1>
-
         <?php
-            $start = microtime(true);
             $root = kirby()->roots()->plugins() . DS . 'kirby-component-kit';
             $package = file_get_contents($root . DS . 'package.json');
             $object = json_decode($package);
-            echo $object->version;
-            $time_elapsed_secs = microtime(true) - $start;
-            echo $time_elapsed_secs;
-            ?>
+        ?>
+
+        <h1>Component Kit <span class="version">v<?= $object->version; ?></span></h1>
 
         <ol>
-            <li>Create a file in <code>site</code> called <code>/components/my-snippet/component.php</code></li>
+            <li>Create a file called <code>/site/components/my-snippet/component.php</code></li>
             <li>Refresh this page and your new component should appear in the sidebar</li>
         </ol>
 

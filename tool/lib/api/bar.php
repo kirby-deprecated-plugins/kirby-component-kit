@@ -25,11 +25,13 @@ class BarAPI {
         foreach($urls as $key => $url) {
             $array[$key] = $url;
             $array[$key]['url'] = $root . 'tool/' . $key . '/' . $id . '/component.php';
+            $array[$key]['active'] = false;
 
             if($view == $key) {    
                 $array[$key]['active'] = true;
             }
+            $array[$key] = (object)$array[$key];
         }
-        return $array;
+        return (object)$array;
     }
 }

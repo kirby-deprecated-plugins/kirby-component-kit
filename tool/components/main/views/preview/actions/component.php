@@ -1,6 +1,3 @@
-<?php
-extract($data)
-?>
 <div class="actions bar">
     <ul>
         <li>

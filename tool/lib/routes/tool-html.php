@@ -1,14 +1,16 @@
 <?php
 namespace JensTornell\ComponentKit;
 
-class RouteToolImage extends RouteDefault {
+class RouteToolHtml extends RouteDefault {
     public function set($args) {
         $base = $this->base($args['uid'], $args['view']);
-
-        $image = $this->Image->set($this->globals, $this->file);
+        $bar = $this->Bar->set([
+            'view' => $args['view'],
+            'id' => $this->file->id
+        ]);
 
         $results = (object)array_merge(
-            (array)$image,
+            (array)$bar,
             (array)$base
         );
 

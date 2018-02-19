@@ -12,25 +12,25 @@ class FileAPI {
         $template_root = $globals->roots->tool_components . DS . '--' . $template . DS . 'component.php';
 
         $result = (object)[
-            'current' => (object)[
-                'content_type' => $this->ctype($extension),
-                'id' => $current['id'],
-                'filecount' => $current['count'],
-                'filegroup' => $group,
-                'filename' => $filename,
-                'filename_first' => $current['first'],
-                'filepath' => $filepath,
-                'filetype' => $this->filetype($extension),
-                'extension' => $extension,
-                'raw' => $current['raw'],
-                'view' => $view,
-                'template' => $template,
-                'component_root' => $current['path'],
-                'templatepath' => $template_root,
-                'type' => $current['type'],
-                'filesize' => $filesize,
-                'filesize_human' => $this->humanFilesize($filesize),
-            ],
+            'content_type' => $this->ctype($extension),
+            'id' => $current['id'],
+            'filecount' => $current['count'],
+            'filegroup' => $group,
+            'filename' => $filename,
+            'filename_first' => $current['first'],
+            'filepath' => $filepath,
+            'filetype' => $this->filetype($extension),
+            'extension' => $extension,
+            'raw' => $current['raw'],
+            'view' => $view,
+            'template' => $template,
+            'component_root' => $current['path'],
+            'component_root_url' => $globals->urls->home . '/tool',
+            'templatepath' => $template_root,
+            'type' => $current['type'],
+            'filesize' => $filesize,
+            'filesize_human' => $this->humanFilesize($filesize),
+            'modified' => date('Y-m-d, H:i', filemtime($filepath)),
         ];
         return $result;
     }
@@ -41,13 +41,13 @@ class FileAPI {
         return filesize($filepath);
     }
 
-    private function url($id, $filename, $group) {
+    /*private function url($id, $filename, $group) {
         print_r($this->globals);
         if($group == 'image') {
             return $this->globals->tool->urls->home . '/render/image/' . $id . '/' . $filename;
         }
         return null;
-    }
+    }*/
 
     private function humanFilesize($bytes) {
         if($bytes == 0) {
@@ -71,10 +71,23 @@ class FileAPI {
     protected function whitelists() {
         $whitelists = [
             'code' => [
-                'css', 'js', 'scss', 'sass', 'less', 'php', 'yaml', 'yml'
+                'css',
+                'haml',
+                'html',
+                'js',
+                'less',
+                'ls',
+                'sass',
+                'scss',
+                'php',
+                'yaml',
+                'yml',
             ],
             'image' => [
-                'jpg', 'jpeg', 'png', 'gif'
+                'gif',
+                'jpeg',
+                'jpg',
+                'png',
             ]
         ];
         return $whitelists;
