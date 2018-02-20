@@ -1,5 +1,6 @@
 <?php
 namespace JensTornell\ComponentKit;
+use f;
 
 class FileAPI {
     public function set($template, $view, $uid, $globals, $flat) {
@@ -25,14 +26,21 @@ class FileAPI {
             'view' => $view,
             'template' => $template,
             'component_root' => $current['path'],
-            'component_root_url' => $globals->urls->home . '/tool',
             'templatepath' => $template_root,
             'type' => $current['type'],
             'filesize' => $filesize,
             'filesize_human' => $this->humanFilesize($filesize),
-            'modified' => date('Y-m-d, H:i', filemtime($filepath)),
+            'modified' => $this->modified($filepath),
+            'raw_url' => $globals->urls->home  . '/render/raw/' . $current['id'] . '/' . $filename,
+            'iframe_url' => $globals->urls->home . '/render/raw/' . $current['id'] . '/component.php'
         ];
         return $result;
+    }
+
+    private function modified($filepath) {
+        global $kirby;
+        $format = $kirby->option('date.handler') == 'strftime' ? '%Y/%m/%d' : 'Y/m/d';
+        return f::modified($filepath, $format, $kirby->options['date.handler']);
     }
 
     private function filesize($filepath) {
@@ -42,7 +50,6 @@ class FileAPI {
     }
 
     /*private function url($id, $filename, $group) {
-        print_r($this->globals);
         if($group == 'image') {
             return $this->globals->tool->urls->home . '/render/image/' . $id . '/' . $filename;
         }
@@ -72,14 +79,18 @@ class FileAPI {
         $whitelists = [
             'code' => [
                 'css',
+                'coffee',
                 'haml',
                 'html',
                 'js',
+                'json',
                 'less',
                 'ls',
+                'md',
                 'sass',
                 'scss',
                 'php',
+                'twig',
                 'yaml',
                 'yml',
             ],
@@ -88,6 +99,7 @@ class FileAPI {
                 'jpeg',
                 'jpg',
                 'png',
+                'svg',
             ]
         ];
         return $whitelists;
@@ -124,6 +136,9 @@ class FileAPI {
             case 'jpeg':
             case 'jpg':
                 $ctype = 'image/jpeg';
+                break;
+            case 'svg':
+                $ctype = 'image/svg+xml';
                 break;
             default:
                 $ctype = 'text/html';

@@ -77,7 +77,9 @@ class Finder {
 	}
 
 	public function dataToNested($data) {
-        $result = [];
+		$results = [];
+		$file_count = 0;
+		$component_count = 0;
     
         foreach($data as $item) {
             $path = explode('/', $item['id']);
@@ -102,9 +104,15 @@ class Finder {
                 'aside_url' => $this->asideUrl($item),
             ];
 
-            $result = array_merge_recursive($result, $temp);
-        }
-        return $result;
+			$file_count += $item['count'];
+			$component_count++;
+            $results = array_merge_recursive($results, $temp);
+		}
+		$output['file_count'] = $file_count;
+		$output['component_count'] = $component_count;
+		$output['results'] = $results;
+
+        return $output;
 	}
 	
 	protected function asideUrl($item) {

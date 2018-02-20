@@ -9,7 +9,12 @@ class RouteToolCode extends RouteDefault {
             'id' => $this->file->id
         ]);
 
+        $title = [
+            'title' => $base['current']->id . '/' . $base['current']->filename . ' - Component Kit',
+        ];
+
         $results = (object)array_merge(
+            $title,
             (array)$bar,
             (array)$base
         );

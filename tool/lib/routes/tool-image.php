@@ -7,7 +7,12 @@ class RouteToolImage extends RouteDefault {
 
         $image = $this->Image->set($this->globals, $this->file);
 
+        $title = [
+            'title' => $base['current']->id . '/' . $base['current']->filename . ' - Component Kit',
+        ];
+
         $results = (object)array_merge(
+            $title,
             (array)$image,
             (array)$base
         );

@@ -1,5 +1,5 @@
 <div class="preview">
-    <iframe src="<?= $data->globals->urls->home . '/render/raw/' . $data->current->id . '/component.php'; ?>"></iframe>
+    <iframe src="<?= $data->current->iframe_url; ?>"></iframe>
 </div>
 
 <?= snippet('ckit/main/views/preview/actions'); ?>

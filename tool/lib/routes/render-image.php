@@ -7,7 +7,8 @@ class RouteRenderImage extends RouteDefault {
         'gif',
         'png',
         'jpeg',
-        'jpg'
+        'jpg',
+        'svg'
     ];
 
     public function set($args) {

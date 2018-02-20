@@ -11,8 +11,11 @@ class RouteToolHome extends RouteDefault {
         $this->components = $this->Components->set($this->globals->roots->components, $this->Finder);
 
         $results = (object)[
+            'title' => 'Component Kit',
             'globals' => $this->globals,
-            'components' => $this->components->nested
+            'components' => $this->components->nested,
+            'file_count' => $this->components->file_count,
+            'component_count' => $this->components->component_count,
         ];
 
         return $this->response([

@@ -2,16 +2,16 @@
 namespace JensTornell\ComponentKit;
 
 class FilesAPI {
-    public function set($file) {
+    public function set($args) {
         return (object)$this->files(
-            $file->current->component_root,
-            $file->current->component_root_url,
-            $file->current->id,
-            $file->current->filename
+            $args->current->component_root,
+            $args->home_url,
+            $args->current->id,
+            $args->current->filename
         );
     }
 
-    private function files($component_root, $component_root_url, $id, $current_filename) {
+    private function files($component_root, $home_url, $id, $current_filename) {
         $files = array_filter(glob($component_root . DS . '*'), 'is_file');
         $i = 0;
 
@@ -22,7 +22,7 @@ class FilesAPI {
 
             $results[$i] = [
                 'title' => basename($filepath),
-                'url' => $component_root_url . '/'. $group . '/' . $id . '/' . $filename,
+                'url' => $home_url . '/tool/'. $group . '/' . $id . '/' . $filename,
                 'group' => $group,
             ];
             $results[$i]['active'] = false;
@@ -43,7 +43,7 @@ class FilesAPI {
                 'css', 'js', 'scss', 'sass', 'less', 'php', 'yaml', 'yml'
             ],
             'image' => [
-                'jpg', 'jpeg', 'png', 'gif'
+                'svg', 'jpg', 'jpeg', 'png', 'gif'
             ]
         ];
         foreach($whitelists as $group => $whitelist) {

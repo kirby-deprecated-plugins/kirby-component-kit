@@ -9,7 +9,8 @@ class SettingsClass {
         'directory' => null,
         'lock' => false,
         'preview.js' => false,
-        'preview.css' => false
+        'preview.css' => false,
+        'tool.active' => true,
     ];
 
     public function __construct() {

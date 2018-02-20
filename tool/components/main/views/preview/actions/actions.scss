@@ -1,4 +1,18 @@
 .actions {
+    form {
+        margin: .5rem .1rem;
+        textarea {
+            display: none;
+        }
+        input[type="submit"] {
+            background: #527d50;
+            color: #fff;
+            border: none;
+            font-size: 1rem;
+            font-family: Arial;
+            height: 2rem;
+        }
+    }
     ul {
         background: lighten(#1e262f, 10%);
         li {

@@ -9,7 +9,12 @@ class RouteToolPreview extends RouteDefault {
             'id' => $this->file->id
         ]);
 
+        $title = [
+            'title' => $base['current']->id . ' - Preview - Component Kit',
+        ];
+
         $results = (object)array_merge(
+            $title,
             (array)$bar,
             (array)$base
         );

@@ -1,6 +1,10 @@
 .preview-image {
     img {
         cursor: zoom-in;
+
+        &.image-svg-xml {
+            width: 100%;
+        }
     }
 }
 

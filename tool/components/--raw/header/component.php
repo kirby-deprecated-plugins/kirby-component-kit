@@ -8,7 +8,7 @@ use c;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?= u($data->globals->urls->css); ?>">
+    <link rel="stylesheet" href="<?= $data->globals->urls->css; ?>">
     <title><?= $data->current->id; ?> - Kirby Component Kit</title>
     <link rel="icon" href="<?= u('assets/plugins/kirby-component-kit/png/favicon.png'); ?>" type="image/png" />
 

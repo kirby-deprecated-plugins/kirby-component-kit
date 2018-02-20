@@ -6,10 +6,20 @@
     align-items: center;
     color: #aaa;
 
+    .unlicensed {
+        animation: blinker 1s linear infinite;
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+    }
+
+    @keyframes blinker {  
+        50% { opacity: .5; }
+    }
+
     h1 {
         font-size: 3rem;
         font-weight: normal;
-        margin-bottom: 2rem;
+        //margin-bottom: .5rem;
         color: #fff;
 
         .version {
@@ -17,7 +27,7 @@
             font-size: 1.5rem;
         }
 
-        &:before,
+        /*&:before,
         &:after {
             color: rgba(255,255,255,.2);
         }
@@ -28,10 +38,17 @@
 
         &:after {
             content: ' >';
-        }
+        }*/
     }
 
-    ol {
+    .center {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    ol,
+    ul {
         margin-left: 18px;
         margin-bottom: 1.5rem;
         
@@ -46,9 +63,18 @@
         }
     }
 
+    code {
+        font-size: 1rem;
+        font-family: Arial;
+        background: rgba(0,0,0,.2);
+        display: block;
+        padding: .5rem;
+    }
+
     p {
         font-size: 1rem;
         line-height: 1.5;
+        margin-bottom: 1rem;
     }
 
     a {

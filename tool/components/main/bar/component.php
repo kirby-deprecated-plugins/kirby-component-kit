@@ -14,7 +14,7 @@ namespace JensTornell\ComponentKit;
         </li>
         <li>
             <div class="raw">
-                <a href="<?= u(settings::path() . '/render/raw/' . $data->current->id); ?>" target="_blank"></a>
+                <a href="<?= $data->current->raw_url; ?>" target="_blank"></a>
             </div>
         </li>
     </ul>

@@ -22,8 +22,8 @@ class GlobalsAPI {
             ],
             'urls' => (object)[
                 'home' => u(settings::path()),
-                'css' => settings::get('preview.css'),
-                'js' => settings::get('preview.js'),
+                'css' => u(settings::get('preview.css')),
+                'js' => u(settings::get('preview.js')),
             ],
         ];
         return $results;

@@ -22,6 +22,7 @@ class RouteDefault {
         $this->components = $this->Components->set($this->globals->roots->components, $this->Finder);
         $this->file = $this->File->set('tool', $view, $uid, $this->globals, $this->components->flat);
         $this->files = $this->Files->set((object)[
+            'home_url' => $this->globals->urls->home,
             'current' => $this->file
         ]);
 

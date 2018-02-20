@@ -8,6 +8,6 @@
 
     <?= css('assets/plugins/kirby-component-kit/css/dist/style.min.css'); ?>
 
-    <title><?php #$data['current']['title']; ?></title>
+    <title><?= $data->title; ?></title>
 </head>
 <body>
