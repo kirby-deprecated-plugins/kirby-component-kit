@@ -3,16 +3,9 @@ namespace JensTornell\ComponentKit;
 use response;
 
 class RouteRenderImage extends RouteDefault {
-    protected $whitelist = [
-        'gif',
-        'png',
-        'jpeg',
-        'jpg',
-        'svg'
-    ];
-
     public function set($args) {
         $data = (object)$this->base($args['uid'], $args['view']);
+
         $extension = $data->current->extension;
         $filepath = $data->current->filepath;
 
@@ -26,7 +19,7 @@ class RouteRenderImage extends RouteDefault {
     }
 
     protected function allowed($extension, $filepath) {
-        if(in_array($extension, $this->whitelist) && file_exists($filepath))
+        if(in_array($extension, $this->globals->whitelists->image) && file_exists($filepath))
             return true;
     }
 }

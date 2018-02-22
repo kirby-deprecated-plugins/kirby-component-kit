@@ -1,8 +1,6 @@
 # Kirby Component Kit
 
-![Version](https://img.shields.io/badge/version-0.1-green.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-2.0%2B-red.svg)
-
-*Version 0.1*
+[![Version 0.1](https://img.shields.io/badge/version-0.1-blue.svg)](https://github.com/jenstornell/field-engineer/blob/master/docs/changelog.md) [![Commercial license](https://img.shields.io/badge/license-commercial-red.svg)](https://github.com/jenstornell/field-engineer/blob/master/docs/license.md) [![Commercial license](https://img.shields.io/badge/price-€50-yellow.svg)](https://github.com/jenstornell/field-engineer/blob/master/docs/license.md)
 
 Write a short description of what the plugin is about.
 
@@ -54,6 +52,7 @@ c::set('component.kit.preview.js', null);
 c::set('component.kit.lock', false);
 c::set('component.kit.background', null);
 c::set('component.kit.margin', 0);
+c::set('component.kit.tool.active', true);
 ```
 
 ### option1

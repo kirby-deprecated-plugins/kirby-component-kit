@@ -22,6 +22,7 @@ class RouteDefault {
         $this->components = $this->Components->set($this->globals->roots->components, $this->Finder);
         $this->file = $this->File->set('tool', $view, $uid, $this->globals, $this->components->flat);
         $this->files = $this->Files->set((object)[
+            'globals' => $this->globals,
             'home_url' => $this->globals->urls->home,
             'current' => $this->file
         ]);
@@ -37,8 +38,11 @@ class RouteDefault {
     }
 
     protected function register($globals) {
-        $this->Core->register($globals->roots->tool_components);
-        $this->Core->register($globals->roots->components);
+        $prefix = 'ckit/';
+
+        $this->Snippet = new Snippet();
+        $this->Snippet->register($globals->roots->tool_components, $prefix);
+        $this->Snippet->register($globals->roots->components, '', true);
     }
 
     protected function response($args, $results) {

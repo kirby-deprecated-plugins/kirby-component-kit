@@ -1,30 +1,33 @@
 <?php
 if(isset($data->components)) {
-    foreach($data->components as $key => $item) : ?>
+    foreach($data->components as $key => $item) :
+        $object = (object)$item;
+    ?>
         <ul>
-            <li>
-                <?php $element = (isset($item['aside_url'])) ? 'a href="' . $item['aside_url'] . '"' : 'div class="a"'; ?>
+            <?php $active = ($object->id == $data->current->id && $data->current->view == 'preview') ? ' class="active"' : ''; ?>
+            <li<?= $active; ?>>
+                <?php $element = (isset($object->aside_url)) ? 'a href="' . $object->aside_url . '"' : 'div class="a"'; ?>
                 <<?= $element; ?>>
                     <span>
-                        <div class="icon icon-<?= $item['type']; ?>"></div>
+                        <div class="icon icon-<?= $object->type; ?>"></div>
                         <div class="text">
                             <?= $key; ?>
-                            <?php if($item['count'] > 0) : ?>
-                                <div class="count"><?= $item['count']; ?></div>
+                            <?php if($object->count > 0) : ?>
+                                <div class="count"><?= $object->count; ?></div>
                             <?php endif; ?>
                         </div>
                     </span>
                 </<?= $element; ?>>
 
-                <?php if(isset($data->current->id) && $data->current->id == $item['id']) : ?>
+                <?php if(isset($data->current->id) && $data->current->id == $object->id) : ?>
                     <?= snippet('ckit/aside/item/files', ['item' => $item]); ?>
                 <?php endif; ?>
             </li>
             
-            <?php if(isset($item['_children'])) : ?>
+            <?php if(isset($object->_children)) : ?>
                 <li>
                     <?php
-                        $data->components = $item['_children'];
+                        $data->components = $object->_children;
                         snippet('ckit/aside/item', ['data' => $data]);
                     ?>
                 </li>

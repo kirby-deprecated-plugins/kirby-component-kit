@@ -3,15 +3,17 @@ namespace JensTornell\ComponentKit;
 
 class FilesAPI {
     public function set($args) {
+        $this->globals = $args->globals;
         return (object)$this->files(
             $args->current->component_root,
             $args->home_url,
             $args->current->id,
-            $args->current->filename
+            $args->current->filename,
+            $args
         );
     }
 
-    private function files($component_root, $home_url, $id, $current_filename) {
+    private function files($component_root, $home_url, $id, $current_filename, $args) {
         $files = array_filter(glob($component_root . DS . '*'), 'is_file');
         $i = 0;
 
@@ -28,7 +30,9 @@ class FilesAPI {
             $results[$i]['active'] = false;
 
             if($filepath == $component_root . DS . $current_filename) {
-                $results[$i]['active'] = true;
+                if($args->current->view == 'code' || $args->current->view == 'image') {
+                    $results[$i]['active'] = true;
+                }
             }
 
             $results[$i] = (object)$results[$i];
@@ -38,18 +42,11 @@ class FilesAPI {
     }
 
     protected function group($extension) {
-        $whitelists = [
-            'code' => [
-                'css', 'js', 'scss', 'sass', 'less', 'php', 'yaml', 'yml'
-            ],
-            'image' => [
-                'svg', 'jpg', 'jpeg', 'png', 'gif'
-            ]
-        ];
-        foreach($whitelists as $group => $whitelist) {
+        foreach($this->globals->whitelists as $group => $whitelist) {
             if(in_array($extension, $whitelist)) {
                 return $group;
             }
         }
+        return 'code';
     }
 }

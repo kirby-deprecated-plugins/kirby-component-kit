@@ -8,7 +8,7 @@ class FileAPI {
         $current = $this->current(dirname($uid), $flat);
         $filepath = $current['path'] . DS . $filename;
         $extension = pathinfo($filename)['extension'];
-        $group = $this->group($extension);
+        $group = $this->group($globals, $extension);
         $filesize = $this->filesize($filepath);
         $template_root = $globals->roots->tool_components . DS . '--' . $template . DS . 'component.php';
 
@@ -32,9 +32,17 @@ class FileAPI {
             'filesize_human' => $this->humanFilesize($filesize),
             'modified' => $this->modified($filepath),
             'raw_url' => $globals->urls->home  . '/render/raw/' . $current['id'] . '/' . $filename,
-            'iframe_url' => $globals->urls->home . '/render/raw/' . $current['id'] . '/component.php'
+            'iframe_url' => $globals->urls->home . '/render/raw/' . $current['id'] . '/component.php',
+            'config' => $this->config($current['path']),
         ];
         return $result;
+    }
+
+    private function config($path) {
+        $filepath = $path . DS . 'component.config.json';
+        if(file_exists($filepath)) {
+            return file_get_contents($path . DS . 'component.config.json');
+        }
     }
 
     private function modified($filepath) {
@@ -48,13 +56,6 @@ class FileAPI {
 
         return filesize($filepath);
     }
-
-    /*private function url($id, $filename, $group) {
-        if($group == 'image') {
-            return $this->globals->tool->urls->home . '/render/image/' . $id . '/' . $filename;
-        }
-        return null;
-    }*/
 
     private function humanFilesize($bytes) {
         if($bytes == 0) {
@@ -75,38 +76,8 @@ class FileAPI {
         }
     }
 
-    protected function whitelists() {
-        $whitelists = [
-            'code' => [
-                'css',
-                'coffee',
-                'haml',
-                'html',
-                'js',
-                'json',
-                'less',
-                'ls',
-                'md',
-                'sass',
-                'scss',
-                'php',
-                'twig',
-                'yaml',
-                'yml',
-            ],
-            'image' => [
-                'gif',
-                'jpeg',
-                'jpg',
-                'png',
-                'svg',
-            ]
-        ];
-        return $whitelists;
-    }
-
-    protected function group($extension) {
-        foreach($this->whitelists() as $group => $collections) {
+    protected function group($globals, $extension) {
+        foreach($globals->whitelists as $group => $collections) {
             if(in_array($extension, $collections)) {
                 return $group;
             }

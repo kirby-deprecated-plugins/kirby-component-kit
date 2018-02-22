@@ -1,16 +1,30 @@
 .actions {
+    textarea[name="onload"] {
+        display: none;
+    }
     form {
         margin: .5rem .1rem;
         textarea {
             display: none;
         }
         input[type="submit"] {
-            background: #527d50;
+            background: linear-gradient(to bottom, #067c00 0%,#045600 100%);
+            border: 2px solid #1e262f;
             color: #fff;
-            border: none;
             font-size: 1rem;
             font-family: Arial;
             height: 2rem;
+            border-radius: .25rem;
+            padding: 0 1rem;
+            display: none;
+
+            &.show {
+                display: block;
+            }
+
+            &:hover {
+                background: linear-gradient(to bottom, #3ba335 0%,#045600 100%);
+            }
         }
     }
     ul {

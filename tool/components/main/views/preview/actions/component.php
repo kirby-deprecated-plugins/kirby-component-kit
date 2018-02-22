@@ -1,13 +1,6 @@
 <div class="actions bar">
     <ul>
         <li>
-            <form method="post">
-                <textarea name="data">
-                </textarea>
-                <input type="submit" value="Save">
-            </form>
-        </li>
-        <li>
             <?= snippet('ckit/main/views/preview/actions/backgrounds'); ?>
         </li>
         <li>
@@ -28,6 +21,13 @@
                     </label>
                 </div>
             </div>
+        </li>
+        <li>
+            <textarea name="onload"><?= $data->current->config; ?></textarea>
+            <form method="post">
+                <textarea name="data"><?= $data->current->config; ?></textarea>
+                <input type="submit" value="Save">
+            </form>
         </li>
     </ul>
 </div>

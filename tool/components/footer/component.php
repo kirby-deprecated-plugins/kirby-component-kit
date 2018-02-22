@@ -15,8 +15,57 @@
                 if(set) html.classList.add('ckit-margin');
                 else html.classList.remove('ckit-margin');
             }
+            renderTextarea();
         }
     });
+
+    function renderTextarea() {
+        var color_active = document.querySelector('.color.active');
+        var values = {};
+
+        values['outline'] = document.querySelector('[data-action="outline"]').classList.contains('set');
+        values['margin'] = document.querySelector('[data-action="margin"]').classList.contains('set');
+        values['color'] = (typeof color_active.dataset.value !== 'undefined') ? color_active.dataset.value : false;
+
+        var json = JSON.stringify(values);        
+
+        document.querySelector('form textarea[name="data"]').value = json;
+
+        renderDiff(values);
+    }
+
+    function renderLoad() {
+        var json_onload = document.querySelector('textarea[name="onload"]').value;
+        if(json_onload == '') return;
+
+        var array = JSON.parse(json_onload);
+
+        if(array.outline) {
+            document.querySelector('[data-action="outline"]').click();
+        }
+
+        if(array.margin) {
+            document.querySelector('[data-action="margin"]').click();
+        }
+
+        if(array.color) {
+            document.querySelector('.color[data-value="' + array.color + '"]').click();
+        }
+
+        renderTextarea();
+    }
+
+    function renderDiff(values) {
+        var json_onload = document.querySelector('textarea[name="onload"]').value;
+        var json = JSON.stringify(values);
+        var button = document.querySelector('form input[type="submit"]');
+
+        if(json_onload == json) {
+            button.classList.remove('show');
+        } else {
+            button.classList.add('show');
+        }
+    }
 
     document.addEventListener('DOMContentLoaded', function(){ 
         var colors = document.querySelectorAll('.actions .color');
@@ -33,14 +82,13 @@
                 }
 
                 var siblings = this.parentNode.querySelectorAll('.color');
-                //console.log(siblings);
 
                 for(i=0; i<siblings.length; i++) {
-                    console.log(i);
-                   // console.log(siblings[i]);
                     siblings[i].classList.remove('active');
                 }
                 this.classList.add('active');
+
+                renderTextarea();
             });
         }
     });

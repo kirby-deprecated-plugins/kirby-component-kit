@@ -1,4 +1,5 @@
 <?php
+# REMOVE THIS CLASS
 namespace JensTornell\ComponentKit;
 
 class CoreAPI {

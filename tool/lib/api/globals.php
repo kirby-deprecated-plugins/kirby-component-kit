@@ -25,6 +25,32 @@ class GlobalsAPI {
                 'css' => u(settings::get('preview.css')),
                 'js' => u(settings::get('preview.js')),
             ],
+            'whitelists' => (object) [
+                'code' => [
+                    'css',
+                    'coffee',
+                    'haml',
+                    'html',
+                    'js',
+                    'json',
+                    'less',
+                    'ls',
+                    'md',
+                    'sass',
+                    'scss',
+                    'php',
+                    'twig',
+                    'yaml',
+                    'yml',
+                ],
+                'image' => [
+                    'gif',
+                    'jpeg',
+                    'jpg',
+                    'png',
+                    'svg',
+                ]
+            ],
         ];
         return $results;
     }

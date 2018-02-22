@@ -13,9 +13,6 @@ class BarAPI {
         $urls = [
             'preview' => [ 'title' => 'Preview',
             ],
-            'code' => [
-                'title' => 'PHP',
-            ],
             'html' => [
                 'title' => 'HTML',
             ]

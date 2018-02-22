@@ -71,9 +71,11 @@ kirby()->routes([
     ],
     [
         'pattern' => settings::path() . '/tool/preview/(:all)',
+        'method' => 'GET|POST',
         'action' => function($uid) {
             $ToolPreview = new RouteToolPreview();
             return $ToolPreview->set([
+                'method' => $this->request()->method(),
                 'template' => 'tool',
                 'view' => 'preview',
                 'uid' => $uid

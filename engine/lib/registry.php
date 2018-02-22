@@ -7,7 +7,7 @@ class Snippet {
 		$this->register(settings::directory(), $prefix = null);
 	}
 	
-    function register($root, $prefix = '') {
+    function register($root, $prefix = '', $tool = false) {
 		global $kirby;
 		$this->root = $root;
 		$this->prefix = $prefix;
@@ -23,6 +23,7 @@ class Snippet {
 
 		if($iterator) {
 			$data = [];
+			$blacklist = [];
 			foreach($iterator as $path) {
 				if($path->isDir()) continue;
 
@@ -47,13 +48,32 @@ class Snippet {
 				$type = $this->type($raw_id);
 
 				// Allowed - Is filename allowed
-				if(!$this->allowed($filename, $type)) continue;
+				if(!$this->allowed($filename, $type, $tool)) continue;
 
 				// Registry - If component, return template or snippet, else the stem
-				$registry = ($stem == 'component') ? $type : $stem;
+				if(!$tool) {
+					if($stem == 'component') {
+						$registry = $type;
+					} else {
+						$registry = $stem;
+					}
+				} else {
+					if($stem == 'component.preview' || $stem == 'component') {
+						if(!in_array($id, $blacklist)) {
+							$blacklist[] = $id;
+							$registry = $type;
+						} else {
+							$registry = false;
+						}
+					} else {
+						$registry = $stem;
+					}
+				}
 
 				// Register file
-				$kirby->set($registry, $id, $path);
+				if($registry) {
+					$kirby->set($registry, $id, $path);
+				}
 			}
 		}
 		return $data;
@@ -63,18 +83,28 @@ class Snippet {
 		return (str::startsWith($name, '--') && !str::contains($name, '/')) ? 'template' : 'snippet';
 	}
 
-	function allowed($filename, $type) {
-		$whitelists = [
+	function allowed($filename, $type, $tool = false) {		
+		$whitelists = $this->whitelist();
+		if(!$tool) {
+			unset($whitelists['template'][3]);
+			unset($whitelists['snippet'][1]);
+		}
+		return(in_array($filename, $whitelists[$type]));
+	}
+
+	function whitelist() {
+		return [
 			'template' => [
 				'blueprint.yml',
 				'component.php',
 				'controller.php',
+				'component.preview.php',
 			],
 			'snippet' => [
-				'component.php'
+				'component.php',
+				'component.preview.php',
 			]
 		];
-		return(in_array($filename, $whitelists[$type]));
 	}
 
 	function id($name) {

@@ -106,7 +106,7 @@ class Finder {
 
 			$file_count += $item['count'];
 			$component_count++;
-            $results = array_merge_recursive($results, $temp);
+			$results = array_merge_recursive($results, $temp);
 		}
 		$output['file_count'] = $file_count;
 		$output['component_count'] = $component_count;
