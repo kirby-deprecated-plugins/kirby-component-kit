@@ -37,8 +37,15 @@ class Finder {
 						$key = crc32(dirname($path->getPathname()));
 						$data[$key]['count']++;
 
-						if(!isset($data[$key]['first']) || $path->getFilename() == 'component.php') {
-							$data[$key]['first'] = $path->getFilename();
+						if(!isset($data[$key]['first'])) {
+							$data[$key]['first'] = '';
+						} else {
+							if($data[$key]['first'] != 'component.preview.php' && $path->getFilename() == 'component.php') {
+								$data[$key]['first'] = $path->getFilename();
+							}
+							if($path->getFilename() == 'component.preview.php') {
+								$data[$key]['first'] = $path->getFilename();
+							}
 						}
 					}
 				}
@@ -117,8 +124,18 @@ class Finder {
 	
 	protected function asideUrl($item) {
         if(isset($item['first'])) {
-            $type = ($item['first'] == 'component.php') ? 'preview' : 'code';
-            return u(settings::path() . '/tool/' . $type . '/' . $item['id'] . '/' . $item['first']);
+			switch($item['first']) {
+				case 'component.php':
+				case 'component.preview.php':
+					$view = 'preview';
+					break;
+				case '':
+					$view = 'missing';
+					break;
+				default:
+					$view = 'code';
+			}
+            return u(settings::path() . '/tool/' . $view . '/' . $item['id'] . '/' . $item['first']);
         }
     }
 }

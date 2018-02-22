@@ -7,7 +7,8 @@ class FileAPI {
         $filename = basename($uid);
         $current = $this->current(dirname($uid), $flat);
         $filepath = $current['path'] . DS . $filename;
-        $extension = pathinfo($filename)['extension'];
+        $pathinfo = pathinfo($filename);
+        $extension = (isset($pathinfo['extension'])) ? $pathinfo['extension'] : '';
         $group = $this->group($globals, $extension);
         $filesize = $this->filesize($filepath);
         $template_root = $globals->roots->tool_components . DS . '--' . $template . DS . 'component.php';
@@ -32,7 +33,7 @@ class FileAPI {
             'filesize_human' => $this->humanFilesize($filesize),
             'modified' => $this->modified($filepath),
             'raw_url' => $globals->urls->home  . '/render/raw/' . $current['id'] . '/' . $filename,
-            'iframe_url' => $globals->urls->home . '/render/raw/' . $current['id'] . '/component.php',
+            'iframe_url' => $globals->urls->home . '/render/raw/' . $current['id'] . '/' . $filename,
             'config' => $this->config($current['path']),
         ];
         return $result;

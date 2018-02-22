@@ -70,6 +70,18 @@ kirby()->routes([
         }
     ],
     [
+        'pattern' => settings::path() . '/tool/missing/(:all)',
+        'action' => function($uid) {
+            $uid .= '/.missing';
+            $ToolMissing = new RouteToolMissing();
+            return $ToolMissing->set([
+                'template' => 'tool',
+                'view' => 'missing',
+                'uid' => $uid
+            ]);
+        }
+    ],
+    [
         'pattern' => settings::path() . '/tool/preview/(:all)',
         'method' => 'GET|POST',
         'action' => function($uid) {

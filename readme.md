@@ -1,6 +1,6 @@
 # Kirby Component Kit
 
-[![Version 0.1](https://img.shields.io/badge/version-0.1-blue.svg)](https://github.com/jenstornell/field-engineer/blob/master/docs/changelog.md) [![Commercial license](https://img.shields.io/badge/license-commercial-red.svg)](https://github.com/jenstornell/field-engineer/blob/master/docs/license.md) [![Commercial license](https://img.shields.io/badge/price-€50-yellow.svg)](https://github.com/jenstornell/field-engineer/blob/master/docs/license.md)
+[![Version 0.1](https://img.shields.io/badge/version-0.1-blue.svg)](https://github.com/jenstornell/field-engineer/blob/master/docs/changelog.md) [![Commercial license](https://img.shields.io/badge/license-commercial-red.svg)](https://github.com/jenstornell/field-engineer/blob/master/docs/license.md) [![Commercial license](https://img.shields.io/badge/price-€15-yellow.svg)](https://github.com/jenstornell/field-engineer/blob/master/docs/license.md)
 
 Write a short description of what the plugin is about.
 
@@ -72,6 +72,12 @@ This plugin is provided "as is" with no guarantee. Use it at your own risk and a
 [MIT](https://opensource.org/licenses/MIT)
 
 It is discouraged to use this plugin in any project that promotes racism, sexism, homophobia, animal abuse, violence or any other form of hate speech.
+
+## Donations
+
+If you bought a license, but want to support this project even more you can also send a donation to:
+
+https://www.paypal.me/DevoneraAB
 
 ## Credits
 

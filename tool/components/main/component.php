@@ -18,6 +18,9 @@
             case 'code':
                 snippet('ckit/main/views/code');
                 break;
+            case 'missing':
+                snippet('ckit/main/views/missing');
+                break;
         }
     } else {
         snippet('ckit/main/views/home');
