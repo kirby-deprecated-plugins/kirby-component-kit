@@ -36,16 +36,17 @@ class Finder {
 					if(isset($data[$key])) {
 						$key = crc32(dirname($path->getPathname()));
 						$data[$key]['count']++;
+						
+						if(!isset($data[$key]['first']) || empty($data[$key]['first']) || $data[$key]['first'] == 'component.php') {
+							if($path->getFilename() == 'component.preview.php') {
+								$data[$key]['first'] = $path->getFilename();
+							} elseif($path->getFilename() == 'component.php') {
+								$data[$key]['first'] = $path->getFilename();
+							}
+						}
 
 						if(!isset($data[$key]['first'])) {
 							$data[$key]['first'] = '';
-						} else {
-							if($data[$key]['first'] != 'component.preview.php' && $path->getFilename() == 'component.php') {
-								$data[$key]['first'] = $path->getFilename();
-							}
-							if($path->getFilename() == 'component.preview.php') {
-								$data[$key]['first'] = $path->getFilename();
-							}
 						}
 					}
 				}
@@ -130,7 +131,7 @@ class Finder {
 					$view = 'preview';
 					break;
 				case '':
-					$view = 'missing';
+					$view = 'dashboard';
 					break;
 				default:
 					$view = 'code';

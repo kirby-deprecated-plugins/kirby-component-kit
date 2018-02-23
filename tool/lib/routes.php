@@ -70,13 +70,13 @@ kirby()->routes([
         }
     ],
     [
-        'pattern' => settings::path() . '/tool/missing/(:all)',
+        'pattern' => settings::path() . '/tool/dashboard/(:all)',
         'action' => function($uid) {
-            $uid .= '/.missing';
+            $uid .= '/.dashboard';
             $ToolMissing = new RouteToolMissing();
             return $ToolMissing->set([
                 'template' => 'tool',
-                'view' => 'missing',
+                'view' => 'dashboard',
                 'uid' => $uid
             ]);
         }

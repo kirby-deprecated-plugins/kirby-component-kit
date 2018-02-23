@@ -11,6 +11,9 @@ class SettingsClass {
         'preview.js' => false,
         'preview.css' => false,
         'tool.active' => true,
+        'preview.background' => false,
+        'preview.margin' => false,
+        'preview.outline' => false,
     ];
 
     public function __construct() {

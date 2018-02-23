@@ -4,7 +4,15 @@ if(isset($data->components)) {
         $object = (object)$item;
     ?>
         <ul>
-            <?php $active = ($object->id == $data->current->id && $data->current->view == 'preview') ? ' class="active"' : ''; ?>
+            <?php
+            $id_match = ($object->id == $data->current->id);
+            $allowed_view = ($data->current->view == 'preview' || $data->current->view == 'dashboard');
+
+            $active = '';
+            if($id_match && $allowed_view) {
+                $active = ' class="active"';
+            }
+            ?>
             <li<?= $active; ?>>
                 <?php $element = (isset($object->aside_url)) ? 'a href="' . $object->aside_url . '"' : 'div class="a"'; ?>
                 <<?= $element; ?>>

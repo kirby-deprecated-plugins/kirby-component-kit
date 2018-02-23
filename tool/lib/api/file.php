@@ -43,6 +43,13 @@ class FileAPI {
         $filepath = $path . DS . 'component.config.json';
         if(file_exists($filepath)) {
             return file_get_contents($path . DS . 'component.config.json');
+        } else {
+            $config = [
+                'preview.background' => settings::get('preview.background'),
+                'preview.margin' => settings::get('preview.margin'),                
+                'preview.outline' => settings::get('preview.outline'),
+            ];
+            return json_encode($config);
         }
     }
 

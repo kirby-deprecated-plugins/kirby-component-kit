@@ -50,8 +50,9 @@ c::set('component.kit.directory', kirby()->roots()->site() . DS . 'components');
 c::set('component.kit.preview.css', null);
 c::set('component.kit.preview.js', null);
 c::set('component.kit.lock', false);
-c::set('component.kit.background', null);
-c::set('component.kit.margin', 0);
+c::set('component.kit.preview.background', false);
+c::set('component.kit.preview.margin', false);
+c::set('component.kit.preview.outline', false);
 c::set('component.kit.tool.active', true);
 ```
 

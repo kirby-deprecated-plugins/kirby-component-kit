@@ -25,7 +25,7 @@
 
         values['outline'] = document.querySelector('[data-action="outline"]').classList.contains('set');
         values['margin'] = document.querySelector('[data-action="margin"]').classList.contains('set');
-        values['color'] = (typeof color_active.dataset.value !== 'undefined') ? color_active.dataset.value : false;
+        values['preview.background'] = (typeof color_active.dataset.value !== 'undefined') ? color_active.dataset.value : false;
 
         var json = JSON.stringify(values);        
 
@@ -48,8 +48,8 @@
             document.querySelector('[data-action="margin"]').click();
         }
 
-        if(array.color) {
-            document.querySelector('.color[data-value="' + array.color + '"]').click();
+        if(array['preview.background']) {
+            document.querySelector('.color[data-value="' + array['preview.background'] + '"]').click();
         }
 
         renderTextarea();
