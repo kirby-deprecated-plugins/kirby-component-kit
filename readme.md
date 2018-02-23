@@ -11,6 +11,7 @@ Write a short description of what the plugin is about.
 - Get Started
   1. [Installation instructions](docs/install.md)
   1. [Usage](#usage)
+  1. [CSS and JS](#css-and-js)
 - [Options](#options)
 - [Changelog](docs/changelog.md)
 - [Requirements](#requirements)
@@ -39,26 +40,6 @@ return [
 ```
 
 If you are in the tool and do something like `echo $bar;` it will output the `component.preview.php` data which in this case is `Hello from the tool`. If you are on the site, it will use `controller.php` instead.
-
-## Options
-
-The following options can be set in your `/site/config/config.php` file:
-
-```php
-c::set('component.kit.path', 'component-kit');
-c::set('component.kit.directory', kirby()->roots()->site() . DS . 'components');
-c::set('component.kit.preview.css', null);
-c::set('component.kit.preview.js', null);
-c::set('component.kit.lock', false);
-c::set('component.kit.preview.background', false);
-c::set('component.kit.preview.margin', false);
-c::set('component.kit.preview.outline', false);
-c::set('component.kit.tool.active', true);
-```
-
-### option1
-
-This option is an integer, a number which can be used for calculations.
 
 ## CSS and JS
 
@@ -121,6 +102,28 @@ gulp.task('default', function() {
     gulp.watch('site/components/**/*.js',   ['js' ]);
 });
 ```
+
+It's also available at [example/gulpfile.js](example/gulpfile.js).
+
+## Options
+
+The following options can be set in your `/site/config/config.php` file:
+
+```php
+c::set('component.kit.path', 'component-kit');
+c::set('component.kit.directory', kirby()->roots()->site() . DS . 'components');
+c::set('component.kit.preview.css', null);
+c::set('component.kit.preview.js', null);
+c::set('component.kit.lock', false);
+c::set('component.kit.preview.background', false);
+c::set('component.kit.preview.margin', false);
+c::set('component.kit.preview.outline', false);
+c::set('component.kit.tool.active', true);
+```
+
+### option1
+
+This option is an integer, a number which can be used for calculations.
 
 ## Requirements
 
