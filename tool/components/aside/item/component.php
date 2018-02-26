@@ -5,12 +5,14 @@ if(isset($data->components)) {
     ?>
         <ul>
             <?php
-            $id_match = ($object->id == $data->current->id);
-            $allowed_view = ($data->current->view == 'preview' || $data->current->view == 'dashboard');
-
             $active = '';
-            if($id_match && $allowed_view) {
-                $active = ' class="active"';
+            if(isset($data->current)) {
+                $id_match = ($object->id == $data->current->id);
+                $allowed_view = (in_array($data->current->view, ['preview', 'dashboard', 'html']));
+
+                if($id_match && $allowed_view) {
+                    $active = ' class="active"';
+                }
             }
             ?>
             <li<?= $active; ?>>

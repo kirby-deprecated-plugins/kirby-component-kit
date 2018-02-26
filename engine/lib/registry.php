@@ -24,6 +24,8 @@ class Snippet {
 		if($iterator) {
 			$data = [];
 			$blacklist = [];
+			$buffer = [];
+
 			foreach($iterator as $path) {
 				if($path->isDir()) continue;
 
@@ -44,6 +46,8 @@ class Snippet {
 				// Stem - Filename without extension
 				$stem = pathinfo($filename)['filename'];
 
+				$dirpath = dirname($path);
+
 				// Type - Template or snippet
 				$type = $this->type($raw_id);
 
@@ -51,28 +55,32 @@ class Snippet {
 				if(!$this->allowed($filename, $type, $tool)) continue;
 
 				// Registry - If component, return template or snippet, else the stem
-				if(!$tool) {
-					if($stem == 'component') {
-						$registry = $type;
-					} else {
-						$registry = $stem;
-					}
+				if($stem == 'component' || 'component.preview') {
+					$registry = $type;
 				} else {
-					if($stem == 'component.preview' || $stem == 'component') {
-						if(!in_array($id, $blacklist)) {
-							$blacklist[] = $id;
-							$registry = $type;
-						} else {
-							$registry = false;
-						}
-					} else {
-						$registry = $stem;
-					}
+					$registry = $stem;
 				}
 
-				// Register file
-				if($registry) {
-					$kirby->set($registry, $id, $path);
+				// Buffer
+				$buffer[$path] = [
+					'registry' => $registry,
+					'path' => $path,
+					'id' => $id,
+				];
+
+				// If not tool, never register preview
+				if(!$tool) {
+					unset($buffer[$dirpath . DS . 'component.preview.php']);
+				} else {
+					if($stem == 'component.preview') {
+						unset($buffer[$dirpath . DS . 'component.php']);
+					}
+				}	
+			}
+
+			if(isset($buffer)) {
+				foreach($buffer as $item) {
+					$kirby->set($item['registry'], $item['id'], $item['path']);
 				}
 			}
 		}
