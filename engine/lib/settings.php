@@ -21,7 +21,11 @@ class SettingsClass {
     }
 
     public function get($name) {
-        return c::get($this->prefix . '.' . $name, $this->defaults[$name]);
+        $value = c::get($this->prefix . '.' . $name, $this->defaults[$name]);
+        if($name == 'directory') {
+            $value = str_replace('/', DS, $value);
+        }
+        return $value;
     }
 }
 

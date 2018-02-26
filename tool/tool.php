@@ -2,7 +2,6 @@
 require_once __DIR__ . DS . 'lib' . DS . 'finder.php';
 require_once __DIR__ . DS . 'lib' . DS . 'routes.php';
 require_once __DIR__ . DS . 'lib' . DS . 'render.php';
-#require_once __DIR__ . DS . 'lib' . DS . 'view.php';
 
 require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'globals.php';
 require_once __DIR__ . DS . 'lib' . DS . 'api' . DS . 'core.php';

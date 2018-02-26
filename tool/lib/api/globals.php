@@ -4,6 +4,8 @@ namespace JensTornell\ComponentKit;
 class GlobalsAPI {
     private $kirby;
 
+    ///$kirby->set('option', 'cache', true);
+
     public function __construct() {
         global $kirby;
         $this->kirby = $kirby;
@@ -11,6 +13,7 @@ class GlobalsAPI {
 
     public function set() {
         $plugin_root = $this->toolPluginRoot();
+        $this->kirby->set('option', 'ckit-tool', true);
         $results = (object)[
             'roots' => (object)[
                 'components' => settings::directory(),

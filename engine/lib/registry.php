@@ -55,7 +55,7 @@ class Snippet {
 				if(!$this->allowed($filename, $type, $tool)) continue;
 
 				// Registry - If component, return template or snippet, else the stem
-				if($stem == 'component' || 'component.preview') {
+				if($stem == 'component' || $stem == 'component.preview') {
 					$registry = $type;
 				} else {
 					$registry = $stem;
@@ -84,6 +84,9 @@ class Snippet {
 				}
 			}
 		}
+
+		#print_r($buffer);
+
 		return $data;
 	}
 
