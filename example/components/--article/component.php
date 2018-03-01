@@ -20,7 +20,7 @@
       
     </article>
     
-    <?php snippet('prevnext', ['flip' => true]) ?>
+    <?php snippet('article/prevnext', ['flip' => true]) ?>
     
   </main>
 

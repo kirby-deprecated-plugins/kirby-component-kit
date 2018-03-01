@@ -1,5 +1,5 @@
 <?php
 return [
-    'page' => page('projects'),
+    'page' => page('contact'),
     'site' => site(),
 ];

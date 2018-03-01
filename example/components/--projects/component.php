@@ -3,9 +3,9 @@
   <main class="main" role="main">
 
     <header class="wrap">
-      <h1><?= $title ?></h1>
+      <h1><?= $page->title()->html() ?></h1>
       <div class="intro text">
-        <?= $text ?>
+        <?= $page->text()->kirbytext() ?>
       </div>
       <hr />
     </header>

@@ -5,6 +5,7 @@ use c;
 class SettingsClass {
     private $prefix = 'component.kit';
     private $defaults = [
+        'assets' => true,
         'path' => 'component-kit',
         'directory' => null,
         'lock' => false,
@@ -22,8 +23,13 @@ class SettingsClass {
 
     public function get($name) {
         $value = c::get($this->prefix . '.' . $name, $this->defaults[$name]);
-        if($name == 'directory') {
-            $value = str_replace('/', DS, $value);
+        switch($name) {
+            case 'directory':
+                $value = str_replace('/', DS, $value);
+                break;
+            case 'assets':
+                $value = ($this->defaults[$name] === true) ? settings::get('path') . '/assets' : $this->defaults[$name];
+                break;
         }
         return $value;
     }

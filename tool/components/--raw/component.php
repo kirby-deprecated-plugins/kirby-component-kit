@@ -16,6 +16,12 @@ if(file_exists($component_preview)) {
     $filepath = dirname($data->current->filepath) . DS . 'component.preview.php';
 }
 
+if($data->current->type == 'template') {
+    kirby()->set('option', 'ckit.results', $params);
+    #print_r($data);
+    #print_r($params);
+}
+
 $html = $Render->snippet($data->current->filepath, $params);
 
 snippet('ckit/raw/header');

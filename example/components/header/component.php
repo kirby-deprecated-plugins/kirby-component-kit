@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-  <title><?= $seo_title ?></title>
-  <meta name="description" content="<?= $seo_description ?>">
+  <title><?= $site->title()->html() ?> | <?= $page->title()->html() ?></title>
+  <meta name="description" content="<?= $site->description()->html() ?>">
 
   <?= css('assets/css/index.css') ?>
 
@@ -24,7 +24,3 @@
 
     </div>
   </header>
-
-<?php # $site->title()->html() | $page->title()->html()
-/* $site->description()->html() */
-?>

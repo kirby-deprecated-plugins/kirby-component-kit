@@ -53,7 +53,7 @@
       <?php endif ?>
     </section>
 
-    <?php snippet('pagination') ?>
+    <?php snippet('blog/pagination') ?>
 
   </main>
 
