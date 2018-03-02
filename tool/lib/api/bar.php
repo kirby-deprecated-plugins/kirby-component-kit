@@ -1,5 +1,6 @@
 <?php
 namespace JensTornell\ComponentKit;
+use ckit;
 
 class BarAPI {
     public function set($args) {
@@ -9,7 +10,7 @@ class BarAPI {
     }
 
     protected function urls($view, $id) {        
-        $root = u(settings::path() . '/');
+        $root = u(ckit::path() . '/');
         $urls = [
             'preview' => [ 'title' => 'Preview',
             ],

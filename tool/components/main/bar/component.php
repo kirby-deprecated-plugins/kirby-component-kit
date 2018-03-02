@@ -1,8 +1,9 @@
 <?php
 namespace JensTornell\ComponentKit;
 ?>
-<div class="actions bar">
+<div class="actions bar top">
     <ul>
+        <li></li>
         <li>
             <div class="views">
                 <?php foreach($data->bar as $key => $item) : ?>
@@ -12,9 +13,12 @@ namespace JensTornell\ComponentKit;
                 <?php endforeach; ?>
             </div>
         </li>
-        <li>
+        <li class="external">
             <div class="raw">
                 <a href="<?= $data->current->raw_url; ?>" target="_blank"></a>
+            </div>
+            <div class="site">
+                <a href="<?= u(); ?>" target="_blank"></a>
             </div>
         </li>
     </ul>

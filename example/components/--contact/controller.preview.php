@@ -1,5 +1,6 @@
 <?php
-return [
-    'page' => page('contact'),
-    'site' => site(),
-];
+return function() {
+    return [
+        'page' => page('contact'),
+    ];
+};

@@ -3,10 +3,11 @@ namespace JensTornell\ComponentKit;
 use Media;
 use Response;
 use f;
+use ckit;
 
-if(settings::get('assets')) {
+if(ckit::get('assets')) {
     kirby()->set('route', [
-        'pattern' => settings::get('assets') . '/(:all)/(:any)',
+        'pattern' => ckit::get('assets') . '/(:all)/(:any)',
         'method'  => 'GET',
         'action'  => function($id, $filename) {
             $Globals = new GlobalsAPI();
@@ -19,7 +20,7 @@ if(settings::get('assets')) {
             unset($whitelist['php']);
             $whitelist = array_flip($whitelist);
 
-            $filepath = str_replace('/', DS, settings::directory() . DS . $id . DS . $filename);
+            $filepath = str_replace('/', DS, ckit::directory() . DS . $id . DS . $filename);
             $extension = f::extension($filepath);
             $error = new Response('The file could not be found', $extension, 404);
 

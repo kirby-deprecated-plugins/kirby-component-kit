@@ -1,10 +1,11 @@
 <?php
 namespace JensTornell\ComponentKit;
 use str;
+use ckit;
 
 class Snippet {
 	function run() {
-		$this->register(settings::directory(), $prefix = null);
+		$this->register(ckit::directory(), $prefix = null);
 	}
 	
     function register($root, $prefix = '', $tool = false) {
@@ -84,8 +85,6 @@ class Snippet {
 				}
 			}
 		}
-
-		#print_r($buffer);
 
 		return $data;
 	}

@@ -2,10 +2,11 @@
 namespace JensTornell\ComponentKit;
 use Response;
 use tpl;
+use ckit;
 
 kirby()->routes([    
     [
-        'pattern' => settings::path() . '/render/image/(:all)',
+        'pattern' => ckit::path() . '/render/image/(:all)',
         'action' => function($uid) {
             $RenderImage = new RouteRenderImage();
             return $RenderImage->set([
@@ -16,7 +17,7 @@ kirby()->routes([
         }
     ],
     [
-        'pattern' => settings::path() . '/render/raw/(:all)',
+        'pattern' => ckit::path() . '/render/raw/(:all)',
         'action' => function($uid) {
             $RenderRaw = new RouteRenderRaw();
             return $RenderRaw->set([
@@ -27,7 +28,7 @@ kirby()->routes([
         }
     ],
     [
-        'pattern' => settings::path(),
+        'pattern' => ckit::path(),
         'action' => function() {
             $ToolHome = new RouteToolHome();
             return $ToolHome->set([
@@ -37,7 +38,7 @@ kirby()->routes([
         }
     ],
     [
-        'pattern' => settings::path() . '/tool/code/(:all)',
+        'pattern' => ckit::path() . '/tool/code/(:all)',
         'action' => function($uid) {
             $ToolCode = new RouteToolCode();
             return $ToolCode->set([
@@ -48,7 +49,7 @@ kirby()->routes([
         }
     ],
     [
-        'pattern' => settings::path() . '/tool/html/(:all)',
+        'pattern' => ckit::path() . '/tool/html/(:all)',
         'action' => function($uid) {
             $ToolHtml = new RouteToolHtml();
             return $ToolHtml->set([
@@ -59,7 +60,7 @@ kirby()->routes([
         }
     ],
     [
-        'pattern' => settings::path() . '/tool/image/(:all)',
+        'pattern' => ckit::path() . '/tool/image/(:all)',
         'action' => function($uid) {
             $ToolImage = new RouteToolImage();
             return $ToolImage->set([
@@ -70,7 +71,7 @@ kirby()->routes([
         }
     ],
     [
-        'pattern' => settings::path() . '/tool/dashboard/(:all)',
+        'pattern' => ckit::path() . '/tool/dashboard/(:all)',
         'action' => function($uid) {
             $uid .= '/.dashboard';
             $ToolMissing = new RouteToolMissing();
@@ -82,7 +83,7 @@ kirby()->routes([
         }
     ],
     [
-        'pattern' => settings::path() . '/tool/preview/(:all)',
+        'pattern' => ckit::path() . '/tool/preview/(:all)',
         'method' => 'GET|POST',
         'action' => function($uid) {
             $ToolPreview = new RouteToolPreview();

@@ -1,4 +1,6 @@
 <?php
-return [
-    'page' => page('blog'),
-];
+return function() {
+    return [
+        'page' => page('blog'),
+    ];
+};

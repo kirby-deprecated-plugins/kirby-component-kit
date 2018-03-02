@@ -1,5 +1,6 @@
 <?php
-return [
-    'page' => page('projects'),
-    'site' => site(),
-];
+return function() {
+    return [
+        'page' => page('projects'),
+    ];
+};

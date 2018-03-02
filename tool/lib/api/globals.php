@@ -1,5 +1,6 @@
 <?php
 namespace JensTornell\ComponentKit;
+use ckit;
 
 class GlobalsAPI {
     private $kirby;
@@ -14,19 +15,19 @@ class GlobalsAPI {
         $this->kirby->set('option', 'ckit-tool', true);
         $results = (object)[
             'roots' => (object)[
-                'components' => settings::directory(),
+                'components' => ckit::directory(),
                 'template_raw' => str_replace('/', DS, $plugin_root . '/tool/components/--raw/component.php'),
                 'template_tool' => str_replace('/', DS, $plugin_root . '/tool/components/--tool/component.php'),
-                'assets' => settings::assets(),
-                'tool' => settings::path(),
+                'assets' => ckit::assets(),
+                'tool' => ckit::path(),
                 'tool_components' => $this->toolComponentsRoot(),
                 'tool_plugin' => $this->toolPluginRoot(),
             ],
             'whitelists' => $this->whitelists(),
             'urls' => (object)[
-                'home' => u(settings::path()),
-                'css' => u(settings::get('preview.css')),
-                'js' => u(settings::get('preview.js')),
+                'home' => u(ckit::path()),
+                'css' => u(ckit::get('preview.css')),
+                'js' => u(ckit::get('preview.js')),
             ],
             
         ];

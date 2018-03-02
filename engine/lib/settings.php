@@ -1,6 +1,7 @@
 <?php
 namespace JensTornell\ComponentKit;
 use c;
+use ckit;
 
 class SettingsClass {
     private $prefix = 'component.kit';
@@ -28,20 +29,9 @@ class SettingsClass {
                 $value = str_replace('/', DS, $value);
                 break;
             case 'assets':
-                $value = ($this->defaults[$name] === true) ? settings::get('path') . '/assets' : $this->defaults[$name];
+                $value = ($this->defaults[$name] === true) ? ckit::get('path') . '/assets' : $this->defaults[$name];
                 break;
         }
         return $value;
-    }
-}
-
-class settings {
-    public static function get($name) {
-        $SettingsClass = new SettingsClass($name);
-        return $SettingsClass->get($name);
-    }
-    public static function __callStatic($name, $args) {
-        $SettingsClass = new SettingsClass($name);
-        return $SettingsClass->get($name);
     }
 }

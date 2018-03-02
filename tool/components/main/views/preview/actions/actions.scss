@@ -29,6 +29,7 @@
     }
     ul {
         background: lighten(#1e262f, 10%);
+
         li {
             .colors,
             .switches {
@@ -36,19 +37,23 @@
                 margin: .5rem .1rem;
             }
 
-            .raw a {
-                position: absolute;
+            .raw a,
+            .site a {
+                /*position: absolute;
                 top: 0;
-                right: 0;
+                right: 0;*/
                 height: 3rem;
+                width: 3rem;
                 line-height: 3rem;
-                padding: 0 1rem;
                 background: var(--raw);
                 background-size: 18px;
                 background-repeat: no-repeat;
                 background-position: center;
-                width: 18px;
                 display: block;
+            }
+
+            .site a {
+                background-image: var(--globe);
             }
 
             .views {
@@ -221,6 +226,15 @@
 
 .bar {
     background: #1e262f;
+
+    &.top {
+        ul {
+            justify-content: space-between;
+        }
+        .external {
+            display: flex;
+        }
+    }
 
     ul {
         list-style: none;

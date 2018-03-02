@@ -1,7 +1,9 @@
 <?php
 namespace JensTornell\ComponentKit;
 
-return [
-    'page' => page('blog/content-in-kirby'),
-    'image_url' => u(settings::assets() . '/' . $data->current->id . '/image.jpg'),
-];
+return function() use ($data) {
+    return [
+        'page' => page('blog/content-in-kirby'),
+        'image_url' => u(ckit::assets() . '/' . $data->current->id . '/image.jpg'),
+    ];
+};

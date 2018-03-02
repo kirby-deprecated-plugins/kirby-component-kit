@@ -1,10 +1,11 @@
 <?php
 namespace JensTornell\ComponentKit;
 use str;
+use ckit;
 
 class Finder {
 	function root() {
-		return settings::directory();
+		return ckit::directory();
 	}
     function paths($root, $prefix = '') {
 		$this->root = $root;
@@ -136,7 +137,7 @@ class Finder {
 				default:
 					$view = 'code';
 			}
-            return u(settings::path() . '/tool/' . $view . '/' . $item['id'] . '/' . $item['first']);
+            return u(ckit::path() . '/tool/' . $view . '/' . $item['id'] . '/' . $item['first']);
         }
     }
 }

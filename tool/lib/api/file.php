@@ -1,6 +1,7 @@
 <?php
 namespace JensTornell\ComponentKit;
 use f;
+use ckit;
 
 class FileAPI {
     public function set($template, $view, $uid, $globals, $flat) {
@@ -45,9 +46,9 @@ class FileAPI {
             return file_get_contents($path . DS . 'component.config.json');
         } else {
             $config = [
-                'preview.background' => settings::get('preview.background'),
-                'preview.margin' => settings::get('preview.margin'),                
-                'preview.outline' => settings::get('preview.outline'),
+                'preview.background' => ckit::get('preview.background'),
+                'preview.margin' => ckit::get('preview.margin'),                
+                'preview.outline' => ckit::get('preview.outline'),
             ];
             return json_encode($config);
         }
