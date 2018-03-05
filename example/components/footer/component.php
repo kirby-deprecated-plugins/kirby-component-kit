@@ -4,7 +4,7 @@
       <p class="footer-copyright"><?php
         // Parse Kirbytext to support dynamic year,
         // but remove all HTML like paragraph tags:
-        echo html::decode($site->copyright()->kirbytext())
+        echo $copyright
       ?></p>
 
       <p class="footer-madewithkirby">

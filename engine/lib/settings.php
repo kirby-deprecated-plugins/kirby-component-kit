@@ -16,6 +16,7 @@ class SettingsClass {
         'preview.background' => false,
         'preview.margin' => false,
         'preview.outline' => false,
+        'component.snippet' => true,
     ];
 
     public function __construct() {

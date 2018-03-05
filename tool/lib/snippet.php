@@ -1,6 +1,7 @@
 <?php
 namespace JensTornell\ComponentKit;
 use tpl;
+use ckit;
 
 class SnippetComponent extends \Kirby\Component\Snippet {
   public function file($name) {
@@ -18,4 +19,6 @@ class SnippetComponent extends \Kirby\Component\Snippet {
   }
 }
 
-$kirby->set('component', 'snippet', 'JensTornell\ComponentKit\SnippetComponent');
+if(ckit::get('component.snippet')) {
+  $kirby->set('component', 'snippet', 'JensTornell\ComponentKit\SnippetComponent');
+}

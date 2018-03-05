@@ -119,6 +119,7 @@ c::set('component.kit.preview.background', false);
 c::set('component.kit.preview.margin', false);
 c::set('component.kit.preview.outline', false);
 c::set('component.kit.tool.active', true);
+c::set('component.kit.component.snippet', true);
 ```
 
 ### option1
