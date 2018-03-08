@@ -12,6 +12,6 @@ use c;
     <title><?= $data->current->id; ?> - Kirby Component Kit</title>
     <link rel="icon" href="<?= u('assets/plugins/kirby-component-kit/png/favicon.png'); ?>" type="image/png" />
 
-    <?= css('assets/plugins/kirby-component-kit/css/dist/preview.min.css'); // For tool settings ?>
+    <link rel="stylesheet" href="<?= u('assets/plugins/kirby-component-kit/css/dist/preview.min.css'); ?>">
 </head>
 <body>
