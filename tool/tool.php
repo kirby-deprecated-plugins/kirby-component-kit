@@ -21,5 +21,3 @@ require_once __DIR__ . DS . 'lib' . DS . 'routes' . DS . 'tool-html.php';
 require_once __DIR__ . DS . 'lib' . DS . 'routes' . DS . 'tool-home.php';
 require_once __DIR__ . DS . 'lib' . DS . 'routes' . DS . 'tool-preview.php';
 require_once __DIR__ . DS . 'lib' . DS . 'routes' . DS . 'tool-missing.php';
-
-require_once __DIR__ . DS . 'lib' . DS . 'snippet.php';

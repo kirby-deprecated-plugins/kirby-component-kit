@@ -1,16 +1,23 @@
 <?php
-return function() use ($data) {
-    $page = page('blog');
-    $perpage  = $page->perpage()->int();
-    $articles = $page->children()
-                 ->visible()
-                 ->flip()
-                 ->paginate(($perpage >= 1)? $perpage : 5);
+return function() {
+    $site_controller = ckitSiteController();
 
-    return [
-        'page' => $page,
-        'articles' => $articles,
-        'pagination' => $articles->pagination(),
-        'assets_path' => $data->globals->roots->components . DS . 'icons' . DS,
+    $assets_path = u(ckit::assets() . '/assets/svg');
+    $paging = [
+        'prev_active' => true,
+        'next_active' => false,
+        'prev_icon_url' => $assets_path . '/arrow-left.svg',
+        'next_icon_url' => $assets_path . '/arrow-right.svg',
+        'prev_url' => '#',
+        'next_url' => '#',
     ];
+
+    $results = [
+        'title' => 'Blog',
+        'text' => 'Jujubes chocolate cake dragée. Candy chupa chups sesame snaps carrot cake jelly-o. Pastry croissant chocolate cake. Marshmallow marshmallow chupa chups donut oat cake powder.',
+        'paging' => $paging,
+        'assets_path' => $assets_path,
+    ];
+
+    return array_merge($site_controller, $results);
 };

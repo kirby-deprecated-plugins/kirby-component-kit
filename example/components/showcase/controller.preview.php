@@ -1,7 +1,7 @@
 <?php
-return function() {
+return function() use ($ckit) {
     $image_url = u(ckit::assets() . '/showcase');
-    $items = [
+    $cases = [
         (object)[
             'url' => '#',
             'title' => 'Case 1',
@@ -28,11 +28,32 @@ return function() {
             'image_url' => $image_url . '/case5.jpg',
         ],
     ];
+
     return [
-        'title' => 'Home',
-        'items' => $items,
-        'intro' => 'Cake tiramisu tootsie roll tiramisu bear claw dragée gummies. Danish candy canes chocolate soufflé lemon drops. Biscuit cookie tootsie roll gummies sesame snaps chupa chups.',
-        'text' => 'Danish powder jelly-o. Gummi bears chupa chups macaroon jujubes. Tootsie roll jelly-o soufflé croissant.',
-        'projects_url' => '#',
+        'cases' => $cases
     ];
 };
+
+/*
+return function() {
+    $projects = page('projects')->children()->visible();
+    #if(isset($limit)) $projects = $projects->limit($limit);
+    $image = $project->images()->sortBy('sort', 'asc')->first();
+    if($image) {
+        $thumb = $image->crop(600, 600);
+    }
+
+    foreach($projects as $project) {
+        $cases[] = [
+            'url' => $project->url(),
+            'title' => $project->title()->html(),
+            'image_url' => ($thumb) ? $thumb->url() : null,
+        ];
+    }
+
+    return [
+        'limit' => (isset($limit)) ? $limit : null,
+        'cases' => $cases,
+    ];
+};
+*/

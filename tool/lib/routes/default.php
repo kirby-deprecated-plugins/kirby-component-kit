@@ -5,7 +5,6 @@ use response;
 class RouteDefault {
     public function __construct() {
         $this->Globals = new GlobalsAPI();
-        #$this->Core = new CoreAPI();
         $this->File = new FileAPI();
         $this->Components = new ComponentsAPI();
         $this->Finder = new Finder();

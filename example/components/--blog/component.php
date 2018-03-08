@@ -3,7 +3,7 @@
   <main class="main" role="main">
 
     <header class="wrap">
-      <h1><?= $page->title()->html() ?></h1>
+      <h1><?= $title ?></h1>
 
       <?php
       // This page uses a separate controller to set variables, which can be used
@@ -13,7 +13,7 @@
       if($pagination->page() == 1):
       ?>
         <div class="intro text">
-          <?= $page->text()->kirbytext() ?>
+          <?= kirbytext($text) ?>
         </div>
       <?php endif ?>
 

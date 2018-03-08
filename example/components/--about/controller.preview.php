@@ -1,14 +1,15 @@
 <?php
-return function($site) use ($ckit) {
-    $image_url = u(ckit::assets() . '/' . $ckit->current->raw);
+return function($site) {
+    $site_controller = ckitSiteController();
+    $image_url = u(ckit::assets() . '/--about/');
 
-    return [
+    $results = [
         'title' => 'About',
         'text' => 'Cake sweet donut fruitcake sugar plum biscuit jelly beans. Jelly chocolate bar chupa chups chocolate cake candy canes oat cake gummies icing sweet roll. Powder pudding tootsie roll pudding cotton candy pie.',
         'intro' => 'Icing powder bear claw caramels. Topping biscuit muffin topping gingerbread apple pie caramels jelly-o. Carrot cake chocolate lollipop fruitcake danish chocolate pastry marshmallow.',
         'members' => [
             (object)[
-                'image_url' => $image_url . '/people1.jpg',
+                'image_url' => $image_url . 'people1.jpg',
                 'title' => 'Tomas G. Ross',
                 'position' => 'Community support',
                 'text' => '',
@@ -16,7 +17,7 @@ return function($site) use ($ckit) {
                 'email' => 'TomasGRoss@rhyta.com',
             ],
             (object)[
-                'image_url' => $image_url . '/people2.jpg',
+                'image_url' => $image_url . 'people2.jpg',
                 'title' => 'Ana G. Ivory',
                 'position' => 'Wildlife officer',
                 'text' => '',
@@ -24,7 +25,7 @@ return function($site) use ($ckit) {
                 'email' => 'AnaGIvory@jourrapide.com',
             ],
             (object)[
-                'image_url' => $image_url . '/people3.jpg',
+                'image_url' => $image_url . 'people3.jpg',
                 'title' => 'Daryl D. Morano',
                 'position' => 'Electronic technician',
                 'text' => '',
@@ -32,7 +33,7 @@ return function($site) use ($ckit) {
                 'email' => 'DarylDMorano@dayrep.com',
             ],
             (object)[
-                'image_url' => $image_url . '/people4.jpg',
+                'image_url' => $image_url . 'people4.jpg',
                 'title' => 'Tina M. Campbell',
                 'position' => 'Interior designer',
                 'text' => '',
@@ -41,4 +42,5 @@ return function($site) use ($ckit) {
             ],
         ]
     ];
+    return array_merge($site_controller, $results);
 };

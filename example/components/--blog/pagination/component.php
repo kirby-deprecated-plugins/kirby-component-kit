@@ -1,23 +1,23 @@
-<?php if($pagination->hasPages()): ?>
+<?php if($paging): ?>
   <nav class="pagination wrap cf">
 
-    <?php if($pagination->hasPrevPage()): ?>
-      <a class="pagination-item left" href="<?= $pagination->prevPageURL() ?>" rel="prev" title="newer articles">
-        <?= f::read($assets_path . 'arrow-left.svg'); ?>
+    <?php if($paging->prev_active): ?>
+      <a class="pagination-item left" href="<?= $paging->prev_url ?>" rel="prev" title="newer articles">
+        <?= f::read($paging->prev_icon_url); ?>
       </a>
     <?php else: ?>
       <span class="pagination-item left is-inactive">
-        <?= f::read($assets_path . 'arrow-left.svg'); ?>
+        <?= f::read($paging->prev_icon_url); ?>
       </span>
     <?php endif ?>
 
-    <?php if($pagination->hasNextPage()): ?>
-      <a class="pagination-item right" href="<?= $pagination->nextPageURL() ?>" rel="next" title="older articles">
-      <?= f::read($assets_path . 'arrow-right.svg'); ?>
+    <?php if($paging->next_active): ?>
+      <a class="pagination-item right" href="<?= $paging->next_url ?>" rel="next" title="older articles">
+      <?= f::read($paging->next_icon_url); ?>
       </a>
     <?php else: ?>
       <span class="pagination-item right is-inactive">
-      <?= f::read($assets_path . 'arrow-right.svg'); ?>
+      <?= f::read($paging->next_icon_url); ?>
       </span>
     <?php endif ?>
 

@@ -1,8 +1,10 @@
 <?php
 return function($site, $pages, $page) {
+    $site_controller = ckitSiteController();
+
     foreach($page->contactoptions()->toStructure() as $item) {
         $icon = $page->image($item->icon());
-        $contacts = [
+        $contacts[] = (object)[
             'icon_url' => $icon->url(),
             'icon_width' => $icon->width(),
             'title' => $item->title()->html(),
@@ -11,10 +13,12 @@ return function($site, $pages, $page) {
             'linktext' => $item->linktext(),
         ];
     }
-    return [
+    $results = [
         'title' => $page->title()->html(),
-        'text' => $page->text()->kirbytext(),
         'intro' => $page->intro()->kirbytext(),
+        'twitter' => $page->text(),
         'contacts' => $contacts,
     ];
+
+    return array_merge($site_controller, $results);
 };

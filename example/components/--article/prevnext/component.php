@@ -17,11 +17,11 @@ https://getkirby.com/docs/templates/snippets
 $directionPrev = @$flip ? 'right' : 'left';
 $directionNext = @$flip ? 'left'  : 'right';
 
-if($page->hasNextVisible() || $page->hasPrevVisible()): ?>
+if($paging->has_next || $paging->has_prev): ?>
   <nav class="pagination <?= !@$flip ?: ' flip' ?> wrap cf">
 
-    <?php if($page->hasPrevVisible()): ?>
-      <a class="pagination-item <?= $directionPrev ?>" href="<?= $page->prevVisible()->url() ?>" rel="prev" title="<?= $page->prevVisible()->title()->html() ?>">
+    <?php if($paging->has_prev): ?>
+      <a class="pagination-item <?= $directionPrev ?>" href="<?= $paging->prev_url ?>" rel="prev" title="<?= $paging->prev_title ?>">
         <?= f::read($assets_path . 'arrow-' . $directionPrev . '.svg'); ?>
       </a>
     <?php else: ?>
@@ -30,8 +30,8 @@ if($page->hasNextVisible() || $page->hasPrevVisible()): ?>
       </span>
     <?php endif ?>
 
-    <?php if($page->hasNextVisible()): ?>
-      <a class="pagination-item <?= $directionNext ?>" href="<?= $page->nextVisible()->url() ?>" rel="next" title="<?= $page->nextVisible()->title()->html() ?>">
+    <?php if($paging->has_next): ?>
+      <a class="pagination-item <?= $directionNext ?>" href="<?= $paging->next_url ?>" rel="next" title="<?= $paging->next_title ?>">
         <?= f::read($assets_path . 'arrow-' . $directionNext . '.svg'); ?>
       </a>
     <?php else: ?>

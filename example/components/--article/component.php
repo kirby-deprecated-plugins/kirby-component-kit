@@ -5,22 +5,22 @@
     <article class="article single wrap">
 
       <header class="article-header">
-        <h1><?= $page->title()->html() ?></h1>
+        <h1><?= $title ?></h1>
         <div class="intro text">
-          <?= $page->date('F jS, Y') ?>
+          <?= $date ?>
         </div>
         <hr />
       </header>
       
-      <?php snippet('coverimage', $page) ?>
+      <?php snippet('coverimage', ['image_url', $image_url]) ?>
       
       <div class="text">
-        <?= $page->text()->kirbytext() ?>
+        <?= kirbytext($text) ?>
       </div>
       
     </article>
     
-    <?php snippet('article/prevnext', ['flip' => true]) ?>
+    <?php snippet('article/prevnext', ['flip' => true, 'paging' => $paging]) ?>
     
   </main>
 

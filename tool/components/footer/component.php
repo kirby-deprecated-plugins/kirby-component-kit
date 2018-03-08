@@ -52,6 +52,13 @@
             document.querySelector('.color[data-value="' + array['preview.background'] + '"]').click();
         }
 
+        var iframe = document.querySelector('.preview iframe').contentWindow.document.querySelector('head');
+        var style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = '<?= u('assets/plugins/kirby-component-kit/css/dist/preview.min.css'); ?>';
+
+        iframe.appendChild(style);
+
         renderTextarea();
     }
 

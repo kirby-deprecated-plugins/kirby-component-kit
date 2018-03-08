@@ -1,9 +1,12 @@
 <?php
-namespace JensTornell\ComponentKit;
-
-return function() use ($data) {
+return function() {
     return [
-        'page' => page('blog/content-in-kirby'),
-        'image_url' => u(ckit::assets() . '/' . $data->current->id . '/image.jpg'),
+        'image_url' => u(ckit::assets() . '/coverimage/image.jpg'),
     ];
 };
+
+/*
+if($image = $item->coverimage()->toFile()) {
+        $url = $image->url();
+    }
+*/

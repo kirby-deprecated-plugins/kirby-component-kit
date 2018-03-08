@@ -3,15 +3,15 @@
   <main class="main" role="main">
 
     <header class="wrap">
-      <h1><?= $page->title()->html() ?></h1>
+      <h1><?= $title ?></h1>
       <div class="intro text">
-        <?= $page->text()->kirbytext() ?>
+        <?= kirbytext($text) ?>
       </div>
       <hr />
     </header>
       
     <div class="wrap wide">    
-      <?php snippet('showcase') ?>
+      <?php snippet('showcase', ['cases' => $items]) ?>
     </div>
 
   </main>

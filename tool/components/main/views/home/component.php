@@ -13,9 +13,7 @@
             <?php endif; ?>
 
         <div class="center">
-            
-
-            <?php if($data->component_count != 0) : ?>
+            <?php if($data->component_count == 0) : ?>
                 <p>Create a component file to get started:</p>
                 <p>
                     <code>

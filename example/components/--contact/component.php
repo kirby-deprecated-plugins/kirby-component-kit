@@ -32,7 +32,7 @@
     </div>
       
     <div class="contact-twitter text wrap cf">
-      <?= $text ?>
+      <?= kirbytext($twitter) ?>
     </div>
     
   </main>

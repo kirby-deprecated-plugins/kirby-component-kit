@@ -4,7 +4,8 @@ use Response;
 use tpl;
 use ckit;
 
-kirby()->routes([    
+$kirby = kirby();
+$kirby->routes([
     [
         'pattern' => ckit::path() . '/render/image/(:all)',
         'action' => function($uid) {
