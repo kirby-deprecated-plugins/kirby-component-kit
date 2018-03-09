@@ -1,8 +1,22 @@
 # Work with components
 
-## Folders
-
 By default your components are saved in `site/components`.
+
+## Simple example
+
+A very basic example with just a few files.
+
+```text
+├─site/components
+└─--blog
+  ├─blueprint.yml
+  ├─component.php
+  ├─controller.php
+  └─pagination
+    └─component.php
+```
+
+## Folders
 
 - There are two kind of components, one for templates and one for snippets.
 - The folder name will be the name of the component. You are allowed to use `a-z` and `-` as folder name.
@@ -53,19 +67,6 @@ By default your components are saved in `site/components`.
 - `controller.preview.php`
 
 *(see [tool](docs/tool.md) for more information)*
-
-## Example of folder and file structure
-
-`--blog` and `pagination` are folders in this example:
-
-```text
---blog
-  blueprint.yml
-  component.php
-  controller.php
-  pagination
-    component.php
-```
 
 - [CSS and JS](docs/css-and-js.md)
 - [Assets in components](docs/assets.md)
