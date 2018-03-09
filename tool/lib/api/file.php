@@ -2,6 +2,7 @@
 namespace JensTornell\ComponentKit;
 use f;
 use ckit;
+use yaml;
 
 class FileAPI {
     public function set($template, $view, $uid, $globals, $flat) {
@@ -41,17 +42,18 @@ class FileAPI {
     }
 
     private function config($path) {
-        $filepath = $path . DS . 'component.config.json';
+        $filepath = $path . DS . 'component.config.yml';
         if(file_exists($filepath)) {
-            return file_get_contents($path . DS . 'component.config.json');
+            $data = file_get_contents($filepath);
+            $config = yaml::decode($data);
         } else {
             $config = [
                 'preview.background' => ckit::get('preview.background'),
                 'preview.margin' => ckit::get('preview.margin'),                
                 'preview.outline' => ckit::get('preview.outline'),
             ];
-            return json_encode($config);
         }
+        return $config;
     }
 
     private function modified($filepath) {

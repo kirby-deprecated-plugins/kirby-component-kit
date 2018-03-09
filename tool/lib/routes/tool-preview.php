@@ -1,12 +1,14 @@
 <?php
 namespace JensTornell\ComponentKit;
+use yaml;
 
 class RouteToolPreview extends RouteDefault {
     public function set($args) {
         $base = $this->base($args['uid'], $args['view']);
 
         if($args['method'] == 'POST') {
-            file_put_contents($base['current']->component_root . DS . 'component.config.json', $_POST['data']);
+            $data = yaml::encode(json_decode($_POST['data'], true));
+            file_put_contents($base['current']->component_root . DS . 'component.config.yml', $data);
         }
 
         $base = $this->base($args['uid'], $args['view']);

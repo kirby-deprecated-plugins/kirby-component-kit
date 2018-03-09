@@ -34,7 +34,11 @@ class Raw {
 
     public function complete($data) {
         if($data->current->filename == 'component.php' && $data->current->type == 'snippet') {
-            $output = snippet('ckit/raw/header') . '{{ckit}}' . snippet('ckit/raw/footer');
+            if(!isset($data->current->config['wrapper']) || $data->current->config['wrapper'] === true) {
+                $output = snippet('ckit/raw/header', [], true) . "\n{{ckit}}\n" . snippet('ckit/raw/footer', [], true);
+            } else {
+                $output = "{{ckit}}";
+            }
             $output = str_replace('{{ckit}}', $this->html($data), $output);
         } else {
             $output = $this->html($data);

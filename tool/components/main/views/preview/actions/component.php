@@ -23,9 +23,9 @@
             </div>
         </li>
         <li>
-            <textarea name="onload"><?= $data->current->config; ?></textarea>
+            <textarea name="onload"><?= json_encode($data->current->config); ?></textarea>
             <form method="post">
-                <textarea name="data"><?= $data->current->config; ?></textarea>
+                <textarea name="data"><?= json_encode($data->current->config); ?></textarea>
                 <input type="submit" value="Save">
             </form>
         </li>

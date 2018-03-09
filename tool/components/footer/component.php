@@ -1,5 +1,6 @@
 <script src="<?= u('assets/plugins/kirby-component-kit/js/script.min.js'); ?>"></script>
 <script>
+    var wrapper = true;
     toggly.init({
         'callback': function(e) {
             var action = e.target.dataset.action;
@@ -25,8 +26,12 @@
 
         values['outline'] = document.querySelector('[data-action="outline"]').classList.contains('set');
         values['margin'] = document.querySelector('[data-action="margin"]').classList.contains('set');
+        if(wrapper == false) {
+            values['wrapper'] = wrapper;
+        }
         values['preview.background'] = (typeof color_active.dataset.value !== 'undefined') ? color_active.dataset.value : false;
 
+        console.log(values);
         var json = JSON.stringify(values);        
 
         document.querySelector('form textarea[name="data"]').value = json;
@@ -76,6 +81,10 @@
 
     document.addEventListener('DOMContentLoaded', function(){ 
         var colors = document.querySelectorAll('.actions .color');
+        var config = JSON.parse(document.querySelector('form textarea[name="data"]').value);
+        if('wrapper' in config) {
+            wrapper = config.wrapper;
+        }
 
         for(i=0; i<colors.length; i++) {
             colors[i].addEventListener('click', function() {
