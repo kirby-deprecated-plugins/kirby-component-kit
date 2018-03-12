@@ -34,15 +34,13 @@ site/components
 - It can't be nested. The folder needs to be placed in the root.
 - The folder name need to start with `--` followed by a name, like `--projects`. It will tell the plugin that it should behave like a template. It will also improve the sorting of the folders.
 
-### Preserved files
-
-**Will be registered if they exists:**
+**Files that will be registered if they exists:**
 
 - `blueprint.yml` ([more info](https://getkirby.com/docs/panel/blueprints))
 - `component.php` (will register template, [more info](https://getkirby.com/docs/templates/hello-world))
 - `controller.php` ([more info](https://getkirby.com/docs/developer-guide/advanced/controllers))
 
-**Will be used in the tool if they exists:**
+**Files that will be used in the tool if they exists:**
 
 - `component.config.yml`
 - `component.preview.php`
@@ -56,13 +54,11 @@ site/components
 - It can be nested at an infinite depth in any type of component.
 - The folder name can not start with `--`, because it's reserved by the plugin for template components.
 
-### Preserved files
-
-**Will be registered if they exists:**
+**Files that will be registered if they exists:**
 
 - `component.php` (will register snippet, [more info](https://getkirby.com/docs/templates/snippets))
 
-**Will be used in the tool if they exists:**
+**Files that will be used in the tool if they exists:**
 
 - `component.config.yml`
 - `component.preview.php`
