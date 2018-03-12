@@ -2,7 +2,7 @@
 
 It may not be completely fair to compare these two plugins because they work a bit different.
 
-Patterns use a `pattern` function instead of `snippet` and with Component Kit you still use templates and snippets.
+[Patterns](https://github.com/getkirby-plugins/patterns-plugin) use a `pattern` function instead of `snippet` and with Component Kit you still use templates and snippets.
 
 ## Core
 
@@ -12,6 +12,7 @@ Patterns use a `pattern` function instead of `snippet` and with Component Kit yo
 | Snippet support             | Yes           | -        |
 | Blueprint support           | Yes           | -        |
 | Controller support          | Yes           | -        |
+| Pattern support             | -             | -        |
 
 ## Tool
 
@@ -27,5 +28,5 @@ Patterns use a `pattern` function instead of `snippet` and with Component Kit yo
 | Image preview without tool  | Yes           | -             |
 | Controller preview file     | Yes           | Yes (kind of) |
 | Markdown preview            | -             | Yes           |
-| Global preview background   | -             | Yes           |
+| Global preview background   | Yes           | Yes           |
 | Multiple preview css        | -             | Yes           |
