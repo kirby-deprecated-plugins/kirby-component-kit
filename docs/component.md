@@ -2,6 +2,13 @@
 
 By default your components are saved in `site/components`.
 
+## Reasons to use a component approach
+
+To have different files bundled together as a component have many benefits.
+
+- If you delete a component, all the files that belong to it will be deleted as well.
+- No more jumping around to find the files you need to the thing you are creating. All you need is in the component folder.
+
 ## Simple example
 
 A very basic example with just a few files and folders.
@@ -22,8 +29,6 @@ site/components
 - To prevent collisions, make sure you don't use a filename that is used by the plugin (see preserved files).
 
 ## Template component
-
-### Specifics
 
 - It works like a template.
 - It can't be nested. The folder needs to be placed in the root.
@@ -46,8 +51,6 @@ site/components
 *(see [tool](docs/tool.md) for more information)*
 
 ## Snippet component
-
-### Specifics
 
 - It works like a snippet.
 - It can be nested at an infinite depth in any type of component.
