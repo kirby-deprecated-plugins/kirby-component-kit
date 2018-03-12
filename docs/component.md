@@ -4,10 +4,10 @@ By default your components are saved in `site/components`.
 
 ## Simple example
 
-A very basic example with just a few files.
+A very basic example with just a few files and folders.
 
 ```text
-├─site/components
+site/components
 └─--blog
   ├─blueprint.yml
   ├─component.php
@@ -16,11 +16,10 @@ A very basic example with just a few files.
     └─component.php
 ```
 
-## Folders
-
 - There are two kind of components, one for templates and one for snippets.
 - The folder name will be the name of the component. You are allowed to use `a-z` and `-` as folder name.
-- No matter which component type you create, you are allowed to put any file you want in there. To prevent collisions, make sure you don't use a filename that is used by the plugin.
+- No matter which component type you create, you are allowed to put any file you want in there.
+- To prevent collisions, make sure you don't use a filename that is used by the plugin (see preserved files).
 
 ## Template component
 
