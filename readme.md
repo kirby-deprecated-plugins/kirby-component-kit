@@ -14,6 +14,7 @@ Build your site with components.
 - [Work with components](docs/component.md)
 - [Work with the tool](docs/tool.md)
 - [Options](docs/options.md)
+- [Differences to Patterns](docs/differences-to-patterns.md)
 
 ## Changelog
 

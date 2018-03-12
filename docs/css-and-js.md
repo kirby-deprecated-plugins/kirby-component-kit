@@ -1,4 +1,4 @@
-## CSS and JS
+# CSS and JS
 
 To use css and javascript in a component/modular way, you need a build process of some kind.
 
@@ -53,6 +53,7 @@ gulp.task('js', function() {
         .pipe(notify("JS generated!"));
 });
 
+// Default
 gulp.task('default', function() {
     gulp.watch('assets/css/global.scss', ['css']);
     gulp.watch('site/components/**/*.scss', ['css']);
@@ -61,3 +62,5 @@ gulp.task('default', function() {
 ```
 
 It's also available at [example/gulpfile.js](example/gulpfile.js).
+
+Then you should use `gulp` in the command prompt to run Gulp. On each save the css or javascript should be saved to your assets folder.
