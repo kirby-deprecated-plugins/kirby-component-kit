@@ -66,5 +66,12 @@ site/components
 
 *(see [tool](docs/tool.md) for more information)*
 
-- [CSS and JS](docs/css-and-js.md)
-- [Assets in components](docs/assets.md)
+## Assets
+
+If your component has assets, you may at some point want to be able to get access to them.
+
+You can do that by visiting `https://example.com/component-kit/assets/{component}/{filename}`.
+
+## CSS and JS
+
+Read about how to [build CSS and JS files](docs/css-and-js.md).
