@@ -6,7 +6,9 @@ Build your site with components.
 
 ![Screenshot](docs/screenshot.png)
 
-*Above you can see a modified version of the Kirby starterkit "theme".*
+*Above you can see the tool with a modified version of the Kirby starterkit "theme".*
+
+[https://youtu.be/MG4Aq_LHEGk](Watch a teaser on Youtube)
 
 ## Documentation
 
