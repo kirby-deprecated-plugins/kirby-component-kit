@@ -15,7 +15,9 @@ Build your site with components.
 - [Installation instructions](docs/install.md)
 - [Work with components](docs/component.md)
 - [Work with the tool](docs/tool.md)
+- [Begin with the starterkit](docs/starterkit.md)
 - [Options](docs/options.md)
+- [Tricks](docs/tricks.md)
 - [Differences to Patterns](docs/differences-to-patterns.md)
 
 ## Changelog
@@ -24,17 +26,19 @@ See [Changelog](docs/changelog.md)
 
 ## Requirements
 
-- [**Kirby**](https://getkirby.com/) 2.5+
+- [**Kirby**](https://getkirby.com/) 2.5+ (does not work with Kirby 3 yet)
 
 ## Disclaimer
 
 This plugin is provided "as is" with no guarantee. Use it at your own risk and always test it yourself before using it in a production environment. If you find any issues, please [create a new issue](https://github.com/jenstornell/kirby-component-kit/issues/new).
 
-## License
-
-Commercial.
-
 It is discouraged to use this plugin in any project that promotes racism, sexism, homophobia, animal abuse, violence or any other form of hate speech.
+
+## Purchase
+
+Be sure to try before you buy. Refunds are not supported. Read more in the [license agreement](docs/license.md).
+
+**Price:** 15 EUR (on each project/domain)
 
 ## Donations
 

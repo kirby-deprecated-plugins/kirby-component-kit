@@ -28,9 +28,21 @@ If you have not change the folder structure the default directory will be `../si
 
 The preview css for the built in header snippet in the tool.
 
+**Add a relative url like this:**
+
+```php
+c::set('component.kit.preview.css', '/component-kit/assets/{component}/{file}');
+```
+
 ### preview.js
 
 The preview js for the built in footer snippet in the tool.
+
+**Add a relative url like this:**
+
+```php
+c::set('component.kit.preview.js', '/component-kit/assets/{component}/{file}');
+```
 
 ### lock
 

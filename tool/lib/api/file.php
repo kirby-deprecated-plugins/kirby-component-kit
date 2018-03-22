@@ -42,7 +42,7 @@ class FileAPI {
     }
 
     private function config($path) {
-        $filepath = $path . DS . 'component.config.yml';
+        $filepath = $path . DS . 'config.yml';
         if(file_exists($filepath)) {
             $data = file_get_contents($filepath);
             $config = yaml::decode($data);

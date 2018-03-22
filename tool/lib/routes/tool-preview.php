@@ -8,7 +8,7 @@ class RouteToolPreview extends RouteDefault {
 
         if($args['method'] == 'POST') {
             $data = yaml::encode(json_decode($_POST['data'], true));
-            file_put_contents($base['current']->component_root . DS . 'component.config.yml', $data);
+            file_put_contents($base['current']->component_root . DS . 'config.yml', $data);
         }
 
         $base = $this->base($args['uid'], $args['view']);

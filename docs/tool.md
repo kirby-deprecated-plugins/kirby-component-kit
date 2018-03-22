@@ -1,5 +1,16 @@
 # Tool
 
+## Sidebar
+
+Components and their files are displayed in the sidebar.
+
+![](sidebar.png)
+
+- **Orange puzzle:** Template component
+- **Gray puzzle:** A component folder without files
+- **Blue puzzle:** A snippet component
+- **Number:** File counter
+
 ## Views
 
 To see the views you need to click a component in the sidebar.
@@ -56,7 +67,7 @@ Things close to the corners and sides can be hard to see without a margin. With 
 
 ### Save
 
-The save button is only visible if there is no config file, or there has been changes to the values in the bar. When you save, there a `component.config.yml` will be created in the component folder. Because it's in YAML, it's easy to read an edit even outside the tool.
+The save button is only visible if there is no config file, or there has been changes to the values in the bar. When you save, there a `config.yml` will be created in the component folder. Because it's in YAML, it's easy to read an edit even outside the tool.
 
 ## Tool component files
 
@@ -103,9 +114,9 @@ return function() {
 <?= $copyright ?>
 ```
 
-### component.config.yml
+### config.yml
 
-When you use the inspector and save the values it will be stored in `component.config.yml`. It uses yaml because it's easy for a human to read and edit. You can edit it in your editor if you want.
+When you use the inspector and save the values it will be stored in `config.yml`. It uses yaml because it's easy for a human to read and edit. You can edit it in your editor if you want.
 
 **Example**
 

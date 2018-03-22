@@ -8,6 +8,7 @@ To have different files bundled together as a component have many benefits.
 
 - If you delete a component, all the files that belong to it will be deleted as well.
 - No more jumping around to find the files you need to the thing you are creating. All you need is in the component folder.
+- A component can be completely independent from the content files.
 
 ## Simple example
 
@@ -42,7 +43,7 @@ site/components
 
 **Files that will be used in the tool if they exists:**
 
-- `component.config.yml`
+- `config.yml`
 - `component.preview.php`
 - `controller.preview.php`
 
@@ -60,7 +61,7 @@ site/components
 
 **Files that will be used in the tool if they exists:**
 
-- `component.config.yml`
+- `config.yml`
 - `component.preview.php`
 - `controller.preview.php`
 
