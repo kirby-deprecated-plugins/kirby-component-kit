@@ -32,6 +32,6 @@ When you get your license code, add `c::set('component.kit.license', 'YOUR_LICEN
 
 ## Purchase
 
-Buying licenses is a good way to support this project.
+Read about how to purchase here:
 
-**Price:** 15 EUR (on each project/domain)
+https://github.com/jenstornell/kirby-component-kit#purchase

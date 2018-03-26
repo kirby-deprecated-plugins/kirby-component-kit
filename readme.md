@@ -40,6 +40,9 @@ Be sure to try before you buy. Refunds are not supported. Read more in the [lice
 
 **Price:** 15 EUR (on each project/domain)
 
+Buy your license here and you should get a license code to your mail:
+https://devonera.onfastspring.com/kirby-component-kit
+
 ## Donations
 
 If you bought a license, but want to support this project even more, you can also send a donation to:
