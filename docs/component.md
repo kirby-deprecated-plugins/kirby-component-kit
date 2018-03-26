@@ -65,7 +65,7 @@ site/components
 - `component.preview.php`
 - `controller.preview.php`
 
-*(see [tool](docs/tool.md) for more information)*
+*(see [tool](tool.md) for more information)*
 
 ## Assets
 
@@ -75,4 +75,4 @@ You can do that by visiting `https://example.com/component-kit/assets/{component
 
 ## CSS and JS
 
-Read about how to [build CSS and JS files](docs/css-and-js.md).
+Read about how to [build CSS and JS files](css-and-js.md).
