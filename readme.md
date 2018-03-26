@@ -1,6 +1,6 @@
 # Kirby Component Kit
 
-[![Version 0.1](https://img.shields.io/badge/version-0.1-blue.svg)](https://github.com/jenstornell/component-kit/blob/master/docs/changelog.md) [![Commercial license](https://img.shields.io/badge/license-commercial-red.svg)](https://github.com/jenstornell/component-kit/blob/master/docs/license.md) [![Commercial license](https://img.shields.io/badge/price-€15-yellow.svg)](https://github.com/jenstornell/component-kit#purchase)
+[![Version 0.1](https://img.shields.io/badge/version-0.1-blue.svg)](https://github.com/jenstornell/kirby-component-kit/blob/master/docs/changelog.md) [![Commercial license](https://img.shields.io/badge/license-commercial-red.svg)](https://github.com/jenstornell/kirby-component-kit/blob/master/docs/license.md) [![Commercial license](https://img.shields.io/badge/price-€15-yellow.svg)](https://github.com/jenstornell/kirby-component-kit#purchase)
 
 Build your site with components.
 
