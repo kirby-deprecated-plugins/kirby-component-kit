@@ -12,7 +12,7 @@ To make the component completely independent of the content, you need to follow 
 
 This way, your components will not rely on your content files. It means that you can use your component on another site.
 
-To see how it works, look at the [modified starterkit](docs/starterkit.md).
+To see how it works, look at the [modified starterkit](starterkit.md).
 
 ### Example
 

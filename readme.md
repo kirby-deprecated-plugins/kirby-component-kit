@@ -34,13 +34,14 @@ This plugin is provided "as is" with no guarantee. Use it at your own risk and a
 
 It is discouraged to use this plugin in any project that promotes racism, sexism, homophobia, animal abuse, violence or any other form of hate speech.
 
-## Purchase
+## Purchase - Buy a license
 
 Be sure to try before you buy. Refunds are not supported. Read more in the [license agreement](docs/license.md).
 
 **Price:** 15 EUR (on each project/domain)
 
 Buy your license here and you should get a license code to your mail:
+
 https://devonera.onfastspring.com/kirby-component-kit
 
 ## Donations
