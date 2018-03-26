@@ -34,4 +34,4 @@ When you get your license code, add `c::set('component.kit.license', 'YOUR_LICEN
 
 Read about how to purchase here:
 
-https://github.com/jenstornell/kirby-component-kit#purchase
+https://github.com/jenstornell/kirby-component-kit#purchase---buy-a-license
